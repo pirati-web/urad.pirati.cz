@@ -1,0 +1,273 @@
+{* This is the welcome page, you can delete it *}
+
+{block content}
+<div class="row">
+    <div class="col-xs-3 col-sm-2">
+        <a href="//{$item->link|noescape}">
+            <img class="img-responsive" src="{$basePath}/thumbnails/1.jpg" alt="...">
+        </a>
+    </div>
+    <div class="col-xs-9 col-sm-7">
+        <h2 class="media-heading"><a href="//{$item->link|noescape}">{$item->name}</a> </h2>
+        <h5> <span class="glyphicon glyphicon-folder-open"> </span><a href=""> {$catName->name}</a></h5>
+        <p class="text-justify">{$item->desc}</p>
+    </div>
+    <div class="col-xs-9 col-xs-offset-3 col-sm-3 col-sm-offset-0">
+        <a href="//{$item->link|noescape}" class="btn btn-block btn-lg btn-warning" type="button" ><span class="glyphicon glyphicon-link"></span> přejít na web</a>
+        <button class="btn btn-block btn-warning" type="button" ><span class="glyphicon glyphicon-heart"></span> užitečný web <span class="badge"> {$likes}</span></button>
+        <button class="btn btn-block btn-warning" type="button" data-toggle="modal" data-target="#pridatkomentar"><span class="glyphicon glyphicon-comment"></span> přidat komentář</button>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-xs-12">
+        {foreach $comments as $comment}      
+            {if $iterator->isFirst()}<h3 class="media-heading"><span class="glyphicon glyphicon-comment"> </span> <a href="">Komentáře ({$commentsN})</a></h3><br>{/if}
+            <h4>{$comment->name} <small class="pull-right">{$comment->date|date:'%d.%m.%Y %H:%M'}</small></h4>
+            <p class="text-justify"><small>{$comment->text}</small></p>
+                {/foreach}
+    </div>
+
+    <div class="col-xs-12">
+        <br><a href=""><span class="glyphicon glyphicon-arrow-down"></span> vypsat všechny komentáře</a><br>
+    </div>
+
+</div>
+
+
+<br>
+<div class="row">
+    <div class="col-sm-4">
+
+        <div class="text-center">
+            <h3><span class="glyphicon glyphicon-th-list"></span> {$catName->name}</h3><br>
+        </div>   
+        <div class="list-group">
+
+            <a href="#" class="list-group-item"><span class="badge"><span class="glyphicon glyphicon-heart"></span> 24</span>Mapy stabilního katastru</a>
+            <a href="#" class="list-group-item"><span class="badge"><span class="glyphicon glyphicon-heart"></span> 14</span>Mapy stabilního katastru</a>
+            <a href="#" class="list-group-item"><span class="badge"><span class="glyphicon glyphicon-heart"></span> 10</span>Mapy stabilního katastru</a>
+            <a href="#" class="list-group-item"><span class="badge"><span class="glyphicon glyphicon-heart"></span> 7</span>Mapy stabilního katastru</a>
+            <a href="#" class="list-group-item"><span class="badge"><span class="glyphicon glyphicon-heart"></span> 5</span>Mapy stabilního katastru</a>
+            <a href="#" class="list-group-item active text-center">{$catCount} dalších odkazů</a>
+        </div>
+
+    </div>
+    <div class="col-sm-4">
+
+        <div class="text-center">
+            <h3><span class="glyphicon glyphicon-comment"></span> Nové komentáře</h3><br>
+        </div>   
+        <div class="list-group">
+
+            <a href="#" class="list-group-item"><span class="pull-right"><small>28.5.2014 22:14</small></span>Začátek komentáře...</a>
+            <a href="#" class="list-group-item"><span class="pull-right"><small>28.5.2014 22:14</small></span>Začátek komentáře...</a>
+            <a href="#" class="list-group-item"><span class="pull-right"><small>28.5.2014 22:14</small></span>Začátek komentáře...</a>
+            <a href="#" class="list-group-item"><span class="pull-right"><small>28.5.2014 22:14</small></span>Začátek komentáře...</a>
+            <a href="#" class="list-group-item"><span class="pull-right"><small>28.5.2014 22:14</small></span>Začátek komentáře...</a>
+            <a href="#" class="list-group-item"><span class="pull-right"><small>28.5.2014 22:14</small></span>Začátek komentáře...</a>
+        </div>
+
+    </div>
+    <div class="col-sm-4">
+
+        <div class="text-center">
+            <h3><span class="glyphicon glyphicon-link"></span> Nové odkazy</h3><br>
+        </div>   
+        <div class="list-group">
+
+            <a href="#" class="list-group-item">Název odkazu...</a>
+            <a href="#" class="list-group-item">Název odkazu...</a>
+            <a href="#" class="list-group-item">Název odkazu...</a>
+            <a href="#" class="list-group-item">Název odkazu...</a>
+            <a href="#" class="list-group-item">Název odkazu...</a>
+            <a href="#" class="list-group-item">Název odkazu...</a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{/block}
+
+{block scripts}
+{include parent}
+{/block}
+
+{block head}
+{/block}
+
+{block forms}
+
+<div class="col-sm-5">
+    <br>
+    <div class="row">
+        <div class=" col-xs-12">
+            <form class="form-horizontal" role="form">
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-warning" type="button"><span class="glyphicon glyphicon-search"></span> hledat</button>
+                    </span>
+                </div>
+            </form>
+        </div></div><br>
+    <div class="row">
+
+        <div class=" col-xs-6">
+            <button class="btn btn-block btn-warning" type="button" data-toggle="modal" data-target="#pridatkategorii"><span class="glyphicon glyphicon-plus"></span> kategorii</button>
+        </div>
+        <div class=" col-xs-6">
+            <button class="btn btn-block btn-warning" type="button" data-toggle="modal" data-target="#pridatodkaz"><span class="glyphicon glyphicon-plus"></span> odkaz</button>
+        </div>
+    </div>
+
+</div>
+
+{* tyhle divy zacinaji nekde jinde *}
+</div>
+</div>
+</div>
+
+<!-- pridat kategorii -->
+<div class="modal fade" id="pridatkategorii" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Přidat kategorii</h4>
+            </div>
+            <div class="modal-body">
+                {form categoryForm class => "form-horizontal", role => "form"}
+                    <div class="form-group">
+                        <label for="frm-name" class="col-sm-3 control-label">název</label>
+                        <div class="col-sm-9">
+                            <input n:name="name" type="text" class="form-control" id="nazev" placeholder="název">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="frm-desc" class="col-sm-3 control-label">podnázev</label>
+                        <div class="col-sm-9">
+                            <input n:name="desc" type="text" class="form-control" id="podnazev" placeholder="podnázev">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="frm-icon" class="col-sm-3 control-label">návrh ikonky</label>
+                        <div class="col-sm-9">
+                            <input n:name="icon" type="text" class="form-control" id="popis_ikony" placeholder="nepovinné">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button n:name="save" type="submit" class="btn btn-warning">uložit návrh</button>
+                        </div>
+                    </div>
+                    {input id}
+                {/form}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- pridat odkaz -->
+<div class="modal fade" id="pridatodkaz" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Přidat odkaz</h4>
+            </div>
+            <div class="modal-body">
+                {form itemForm class => "form-horizontal", role => "form"}
+                    <div class="form-group">
+                        <label for="frm-name" class="col-sm-2 control-label">název</label>
+                        <div class="col-sm-10">
+                            <input n:name="name" type="text" class="form-control" id="nazev" placeholder="název">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="frm-id_category" class="col-sm-2 control-label">kategorie</label>
+                        <div class="col-sm-10">
+                            {input id_category class=>"form-control", id=>"kategorie"}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="frm-link" class="col-sm-2 control-label">URL</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">http://</span>
+                                <input n:name="link" type="text" class="form-control" id="url" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="frm-desc" class="col-sm-2 control-label">popis</label>
+                        <div class="col-sm-10">
+                            <textarea n:name="desc" class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button n:name="save" type="submit" class="btn btn-warning">uložit návrh</button>
+                        </div>
+                    </div>
+                    {input id}
+                {/form}      
+            </div>
+
+        </div>
+    </div>
+</div> 
+<!-- o webu -->
+<div class="modal fade" id="owebu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">O webu</h4>
+            </div>
+            <div class="modal-body">
+                bla bla bla
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- pridat komentar -->
+<div class="modal fade" id="pridatkomentar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Přidat komentář</h4>
+            </div>
+            <div class="modal-body">                    
+                {form commentForm class => "form-horizontal", role => "form"}
+                    <div class="form-group">
+                        <label for="frm-name" class="col-sm-2 control-label">název</label>
+                        <div class="col-sm-10">
+                            <input n:name="name" type="text" class="form-control" id="jmeno" placeholder="jméno">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="frm-text" class="col-sm-2 control-label">podnázev</label>
+                        <div class="col-sm-10">
+                            <textarea n:name="text" class="form-control" rows="5"></textarea>                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button n:name="save" type="submit" class="btn btn-warning">vložit komentář</button>
+                        </div>
+                    </div>
+                    {input id}
+                {/form}
+            </div>
+
+        </div>
+    </div>
+</div>    
+{/block}

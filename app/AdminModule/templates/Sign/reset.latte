@@ -1,0 +1,43 @@
+{var $robots = noindex}
+{block content}
+<h2 n:block=title>Změna hesla</h2>
+{control resetPassword}
+{include #js}  
+
+{snippet checkU}
+        {ifset $message2}
+            <div style="bottom:0" class="{$messType2}">{$message2|noescape}</div>
+        {else}
+            <div style="bottom:0"  class="{$messType}">{$message|noescape}</div>
+        {/ifset}
+{/snippet}
+
+<script type="text/javascript" n:syntax="latte">
+    $('input[name="mail"]').closest("td").after('<td id="snipp"></td>');
+    $("#snippet--checkU").detach().appendTo("#snipp");
+</script>
+{define #js}
+<script type="text/javascript" n:syntax="double">
+    {{include #jsCallback, input => mail, link => checkUserR}}
+</script>
+{/define}
+
+{define #jsCallback}
+$('#{$control["resetPassword"][$input]->htmlId}').on('input', function() {
+    $.nette.ajax({
+        type: 'GET',
+        url: '{link {$link}!}',
+        data: {
+            //'value': $(this).val(),
+            'mail': $('#{$control["resetPassword"][$input]->htmlId}').val()
+        }
+    });
+});
+{/define}
+{/block}
+
+{block head}
+{/block}
+
+{block forms}
+{/block}

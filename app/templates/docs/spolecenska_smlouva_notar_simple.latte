@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<style type="text/css">
+		@page { size: 21cm 29.7cm; margin: 2.5cm }
+		p { margin-bottom: 0.25cm; direction: ltr; line-height: 120%; text-align: left; orphans: 2; widows: 2 }	
+	</style>
+</head>
+<body lang="cs-CZ" dir="ltr">
+<p align="center" style="margin-bottom: 0cm; line-height: 108%"><a name="_GoBack"></a>
+{var more = count($company->getPersons())>1}
+{var moreActingPersons = count($company->getActingPersons())>1}
+{var $title = (!$more) ? 'ZAKLADATELSKÁ LISTINA' : 'SPOLEČENSKÁ SMLOUVA'}
+<span><font face="Andale Mono"><font size="5" style="font-size: 18pt"><b>{$title|padline:44,STR_PAD_BOTH}<!-- Zakomponovat:
+ Možnosti (1 jednatel, x jednatelů…, samostatně, společně)
+ Asisto do smlouvy (správce vkladu, seznam společníků)
+ Oznámení valné hromady --></b></font></font></span></p>
+<p align="center" style="margin-bottom: 0cm; line-height: 108%;background-color: #ffff00"><font face="Andale Mono"><font size="4" style="font-size: 14pt">{$company->getName()|padline:54,STR_PAD_BOTH}</font></font></p>
+<p align="center" style="margin-bottom: 0cm; line-height: 108%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Práva
+a povinnosti vyplývající z&nbsp;této smlouvy se řídí
+příslušnými ustanoveními zák. č. 89/2012 Sb., občanský
+zákoník (dále jen „občanský zákoník“) a zákona č.
+90/2012 Sb., zákon o obchodních společnostech a družstvech (dále
+jen „zákon o obchodních korporacích“).------------------------------------</font></font></p>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I">
+	<li>
+		<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společníci--------------------------------------------</font></font></p>
+	</li>
+</ol>
+<ol>
+	<li>
+	<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společník<span style="background-color: #ffff00">{if $more}y{else}em{/if}</span></font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt">
+				obchodní společnosti <span style="background-color: #ffff00">{if $more}jsou{else}je{/if}</span></font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt">:-------------------</font></font></p>
+	</li>
+</ol>
+{foreach $company->getPersons() as $p}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%;background-color: #ffff00"><font face="Andale Mono"><font size="3" style="font-size: 12pt">{$p->getFullTextOutput()|padline:58}</font></font></p>
+    {/foreach}
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="2">
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Název
+	a sídlo obchodní korporace-----------------------</font></font></p>
+	</li>
+</ol>
+<ol>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Název
+			korporace zní:----------------------------------<br><span style="background-color: #ffff00">{$company->getName()|padline:58}</span></font></font></p>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Sídlo
+			korporace je v obci:----------------------------<br><span style="background-color: #ffff00">{$company->getSeat()->getCity()|padline:58}</span></font></font></p>
+	</li>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="3">
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Předmět
+	podnikání--------------------------------------</font></font></p>
+	</li>
+</ol>
+<ol>
+    {foreach $company->getNonFreeAreas() as $area}
+		<li>
+			<span style="background-color: #ffff00"><p style="margin-bottom: 0cm; line-height: 108%;"><font face="Andale Mono"><font size="3" style="font-size: 12pt">{$area|padline:58}</font></font></p></span>
+		</li>
+    {/foreach}	
+	<li>
+    	<span style="background-color: #ffff00"><p style="margin-bottom: 0cm; line-height: 108%;"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Výroba, obchod a služby neuvedené v přílohách 1 až 3 živnostenského zákona-------------------------------------</font></font></p></span>
+	</li>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="4">
+	<li>
+	<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Doba trvání--------------------------------------------</font></font></p>
+	</li>
+</ol>
+<ol>
+	<li>
+	<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společnost	je založena na dobu neurčitou.--------------</font></font></p>
+	</li>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/></p>
+<ol type="I" start="5">
+	<li>
+	<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Základní kapitál---------------------------------------</font></font></p>
+	</li>
+</ol>
+<ol>
+	<li>
+	<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Základní
+	kapitál společnosti činí: </font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt"><span style="background-color: #ffff00">{block|stripHtml|padline:58}{number_format($company->getCapital(),0,",",".")},-
+				Kč (slovy: {$company->getCapital()|slovne:Kč}){/block}</span></font></font></p>
+	</li>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/></p>
+<ol type="I" start="6">
+	<li>
+	<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Vklady
+	a podíly společníků-----------------------------</font></font></p>
+	</li>
+</ol>
+<ol>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Vklady
+	společníků společnosti činí:--------------------</font></font></p>
+	</li>
+</ol>
+{foreach $company->getPersons() as $p}
+{var amount=$company->getCapital()*$company->getShares()[$iterator->counter-1]}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%;background-color: #ffff00">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt">{$p->getFullTextOutput()|padline:58}</font></font></p>
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%;background-color: #ffff00">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt">{block|stripHtml|padline:58}vklad
+ve výši {number_format($amount,0,",",".")},- Kč (slovy {$amount|slovne:Kč}){/block}</font></font></p>
+{/foreach}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%">
+<br/>
+
+</p>
+<ol start="2">
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společníci
+	mají pouze základní podíl. Se základním podílem nejsou
+	spojena žádná zvláštní práva a povinnosti.</font></font></p>
+	</li>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol start="3">
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Výše
+	podílů jednotlivých společníků:-------------------</font></font></p>
+	</li>
+</ol>
+{foreach $company->getPersons() as $p}
+{var share=$company->getShares()[$iterator->counter-1]}
+{var amount=$company->getCapital()*$share}
+<p style="margin-left: 1.27cm; margin-bottom: 0.28cm; line-height: 108%;background-color: #ffff00">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt">{$p->getFullTextOutput()|padline:58}</font></font></p>
+<p style="margin-left: 1.27cm; margin-bottom: 0.28cm; line-height: 108%">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt">{block|stripHtml|padline:64}na
+	jeho vklad ve výši </font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt"><span style="background-color: #ffff00">{number_format($amount,0,",",".")},-Kč (slovy: {$amount|slovne:Kč})</span></font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt">
+	připadá základní podíl označený </font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt"><span style="background-color: #ffff00">č. {$iterator->counter} (slovy: {$iterator->counter|slovne:""} </span></font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt">
+	ve výši </font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt"><span style="background-color: #ffff00">{$share*100}% (slovy: {$share*100|slovne:"%"}){/block}</span></font></font></p>
+{/foreach}
+<p style="margin-left: 1.27cm; margin-bottom: 0.28cm; line-height: 108%">
+<br/>
+<br/>
+
+</p>
+<ol type="I" start="7">
+
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Jednatelé,
+	počet jednatelů a způsob jednání za společnost-----------------------------------------------</font></font></p>
+</ol>
+
+<ol start="1">
+	<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Statutárním
+	orgánem společnosti </font></font>
+	<font face="Andale Mono"><font size="3" style="font-size: 12pt"><span style="background-color: #ffff00">
+		{var $acting_count=count($company->getActingPersons())}
+		{block|stripHtml|padline:25}
+		{if ($acting_count==1) || ($acting_count>5)} je {else} jsou {/if}
+		{$acting_count} (slovy: {$acting_count|slovne:"",'M'})
+		jednatel{if $moreActingPersons}{if $acting_count>4}ů{else}é{/if}{/if}
+		{/block}
+		<!-- jsou dva jednatelé. / etc. --></span></span></font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt">.</font></font>
+		</p>
+</ol>
+<ol start="2">
+	<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt"><span>{if $company->getActions()["desc"]}{$company->getActions()["desc"]|firstUpper}{else}{$company->getActions()["name"]|firstUpper}{/if}.</span></font></font></p>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="8">
+	<li/>
+	<p style="margin-bottom: 0cm; line-height: 100%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Závěrečná
+		ustanovení---------------------------</font></font></p>
+</ol>
+<ol start="1">
+	<p style="margin-bottom: 0cm; line-height: 100%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Vkladová
+		povinnost zakladatelů:------------------------</font></font></p>
+</ol>
+{foreach $company->getPersons() as $p}
+{var amount = $company->getCapital()*$company->getShares()[$iterator->counter-1]}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 100%">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt">
+	<span style="background-color: #ffff00">{$p->getFullTextOutput()|padline:58}</span><br>
+	{block|stripHtml|padline:53}
+	 má vkladovou povinnost ve výši
+	  {number_format($amount,0,",",".")},- Kč (slovy: {$amount|slovne:Kč})
+jenž se zavazuje splnit před podáním návrhu na zápis místně
+příslušnému rejstříkovému soudu, nejpozději však do 4 (slovy: čtyř) týdnů
+ode dne uzavření této společenské smlouvy.
+{/block}
+</font></font></p>
+{/foreach}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 100%">
+<br/>
+
+</p>
+<ol start="2">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Správcem
+	vkladů se určuje Zakladači s.r.o., identifikační číslo 05622701.-</font></font></p>
+</ol>
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 100%">
+<br/>
+
+</p>
+<ol start="3">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Prvními
+	jednateli společnosti byli zakladateli určeni:-</font></font></p>
+</ol>
+{foreach $company->getActingPersons() as $p}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%">
+<br/>
+
+</p>
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%;background-color: #ffff00">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt">{$p->getFullTextOutput()|padline:58}</font></font></p>
+{/foreach}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%">
+<br/>
+
+</p>
+<ol start="4">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Zakladatelé
+	souhlasí se zápisem svých údajů do obchodního rejstříku jako
+	společníci této společnosti.---</font></font></p>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+</body>
+</html>

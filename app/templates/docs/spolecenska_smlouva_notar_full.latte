@@ -1,0 +1,762 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<style type="text/css">
+		@page { size: 21cm 29.7cm; margin: 2.5cm }
+		p { margin-bottom: 0.25cm; direction: ltr; line-height: 120%; text-align: left; orphans: 2; widows: 2 }	
+	</style>
+</head>
+<body lang="cs-CZ" dir="ltr">
+<p class="western" align="right" style="margin-bottom: 0cm; line-height: 115%; orphans: 0; widows: 0; page-break-after: avoid">
+NZ /2019</p>
+<p class="western" align="right" style="margin-bottom: 0cm; line-height: 115%; orphans: 0; widows: 0; page-break-after: avoid">
+																		
+									N /2019</p>
+<p class="western" align="center" style="margin-bottom: 0cm; font-variant: small-caps; line-height: 115%; orphans: 0; widows: 0; page-break-after: avoid">
+<br/>
+
+</p>
+<p class="western" align="center" style="margin-bottom: 0cm; font-variant: small-caps; line-height: 115%; orphans: 0; widows: 0; page-break-after: avoid">
+<br/>
+
+</p>
+<p class="western" align="center" style="margin-bottom: 0cm; line-height: 115%; orphans: 0; widows: 0; page-break-after: avoid">
+<span style="font-variant: small-caps"><font size="6" style="font-size: 24pt">Notářský
+zápis</font></span></p>
+<p class="western" align="justify" style="margin-bottom: 0cm; line-height: 115%; orphans: 0; widows: 0">
+<br/>
+
+</p>
+<p class="western" align="justify" style="margin-bottom: 0cm; line-height: 115%; orphans: 0; widows: 0">
+<br/>
+
+</p>
+<p class="western" align="justify" style="margin-right: 0.1cm; margin-bottom: 0.42cm; line-height: 115%; orphans: 0; widows: 0">
+		<font face="Andale Mono"><font size="3" style="font-size: 12pt">
+sepsaný dne <sdfield type=DATETIME sdnum="2057;0;DD/MM/YYYY">{time()|date:'%d.%m.%Y'}</sdfield>
+(slovy: {time()|date:'d'|slovne:'radove'} {time()|date:'m'|mesic} roku {time()|date:'Y'|slovne:''}) v notářské
+kanceláři na adrese Karla Havlíčka Borovského 170, Sokolov, Mgr.
+Viktorem Semanikem, notářem se sídlem v Sokolově, notářská
+kancelář Karla Havlíčka Borovského 170, Sokolov. 	
+</font></font>
+</p>
+<p class="western" align="justify" style="margin-right: 0.1cm; margin-bottom: 0.42cm; line-height: 115%; orphans: 0; widows: 0">
+<b>Účastník:	</b></p>
+<p class="western" align="justify" style="margin-bottom: 0cm; line-height: 108%; background: #ffff00">
+		<font face="Andale Mono"><font size="3" style="font-size: 12pt">
+{var intro=""}
+{foreach $company->getActingPersons() as $p}
+	{if ($iterator->counter > 1)}
+		{if ($iterator->counter == count($company->getActingPersons()))}
+			{var $intro .= "a "}	
+		{else}
+			{var $intro .= ", "}
+		{/if}
+	{/if}
+	{var $intro .= $p->getFullTextOutput() . ' '}
+{/foreach}
+{block|stripHtml|padline:58}
+{$intro}, kteří jsou zastoupeni na základě plných mocí společností <b>Zakladači s.r.o.</b> se sídlem Gutova 3317/15,
+Strašnice, 100 00, Praha 10, identifikační číslo 05622701, která
+je zastoupena jednatelkou <b>Kateřinou Heidt</b>, dat. nar.
+20.12.1986, trvale bydlištěm Gutova 3317/15, Strašnice, 100 00,
+Praha 10, která je zastoupena na základě plné moci <b>Václavem
+Křížem</b>, dat. nar. 22.06.1991, trvale bydlištěm Kladenská
+218, 357 31, Krásno.
+{/block}
+</font></font>
+</p>
+<p class="western" align="justify" style="margin-right: 0.1cm; margin-bottom: 0.42cm; line-height: 115%; orphans: 0; widows: 0">
+		<font face="Andale Mono"><font size="3" style="font-size: 12pt">
+<b>Václav Kříž</b>, jehož totožnost byla prokázána
+z&nbsp;předloženého platného úředního průkazu prohlašuje, že
+je způsobilý samostatně právně jednat v rozsahu právního
+jednání, o&nbsp;kterém je notářský zápis.	
+</font></font>
+</p>
+<p class="western" align="justify" style="margin-right: 0.1cm; margin-bottom: 0.42cm; line-height: 115%; orphans: 0; widows: 0">
+		<font face="Andale Mono"><font size="3" style="font-size: 12pt">
+Existence společnosti <b>Zakladači s.r.o.</b> byla prokázána
+z&nbsp;předloženého výpisu z&nbsp;obchodního rejstříku.	
+</font></font>
+</p>
+<p class="western" align="justify" style="margin-right: 0.1cm; margin-bottom: 0.42cm; line-height: 115%; orphans: 0; widows: 0">
+		<font face="Andale Mono"><font size="3" style="font-size: 12pt">
+Plné moci pro společnost {$company->getName()} pro společnost <b>Zakladači s.r.o.</b> tvoří <b>přílohu č. 1
+</b>tohoto notářského zápisu.	
+</font></font>
+</p>
+<p class="western" align="justify" style="margin-right: 0.1cm; margin-bottom: 0.42cm; line-height: 115%; orphans: 0; widows: 0">
+		<font face="Andale Mono"><font size="3" style="font-size: 12pt">
+Plná moc pro <b>Václava Kříže</b> tvoří <b>přílohu č. 2</b> tohoto
+notářského zápisu.
+</font></font>
+</p>
+<p class="western" align="center" style="margin-bottom: 0.42cm; line-height: 0.64cm; orphans: 0; widows: 0">
+		<font face="Andale Mono"><font size="3" style="font-size: 12pt">
+<b>I.</b>
+</font></font>
+</p>
+<p class="western" align="justify" style="margin-bottom: 0.42cm; line-height: 0.64cm; orphans: 0; widows: 0">
+		<font face="Andale Mono"><font size="3" style="font-size: 12pt">
+Účastníci zakládají obchodní společnost společenskou smlouvou
+v&nbsp;tomto znění	
+</font></font>
+</p>
+<p class="western" align="center" style="margin-bottom: 0cm; line-height: 108%">
+<br/>
+
+
+<p align="center" style="margin-bottom: 0cm; line-height: 108%"><a name="_GoBack"></a>
+{var more = count($company->getPersons())>1}
+{var moreActingPersons = count($company->getActingPersons())>1}
+{var $title = (!$more) ? 'ZAKLADATELSKÁ LISTINA' : 'SPOLEČENSKÁ SMLOUVA'}
+<span><font face="Andale Mono"><font size="5" style="font-size: 18pt"><b>{$title|padline:44,STR_PAD_BOTH}<!-- Zakomponovat:
+ Možnosti (1 jednatel, x jednatelů…, samostatně, společně)
+ Asisto do smlouvy (správce vkladu, seznam společníků)
+ Oznámení valné hromady --></b></font></font></span></p>
+<p align="center" style="margin-bottom: 0cm; line-height: 108%;background-color: #ffff00"><font face="Andale Mono"><font size="4" style="font-size: 14pt">{$company->getName()|padline:54,STR_PAD_BOTH}</font></font></p>
+<p align="center" style="margin-bottom: 0cm; line-height: 108%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Práva
+a povinnosti vyplývající z&nbsp;této smlouvy se řídí
+příslušnými ustanoveními zák. č. 89/2012 Sb., občanský
+zákoník (dále jen „občanský zákoník“) a zákona č.
+90/2012 Sb., zákon o obchodních společnostech a družstvech (dále
+jen „zákon o obchodních korporacích“).------------------------------------</font></font></p>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I">
+	<li>
+		<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společníci--------------------------------------------</font></font></p>
+	</li>
+</ol>
+<ol>
+	<li>
+	<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společník<span style="background-color: #ffff00">{if $more}y{else}em{/if}</span></font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt">
+				obchodní společnosti <span style="background-color: #ffff00">{if $more}jsou{else}je{/if}</span></font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt">:-------------------</font></font></p>
+	</li>
+</ol>
+{foreach $company->getPersons() as $p}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%;background-color: #ffff00"><font face="Andale Mono"><font size="3" style="font-size: 12pt">{$p->getFullTextOutput()|padline:58}</font></font></p>
+    {/foreach}
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="2">
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Název
+	a sídlo obchodní korporace-----------------------</font></font></p>
+	</li>
+</ol>
+<ol>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Název
+			korporace zní:----------------------------------<br><span style="background-color: #ffff00">{$company->getName()|padline:58}</span></font></font></p>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Sídlo
+			korporace je v obci:----------------------------<br><span style="background-color: #ffff00">{$company->getSeat()->getCity()|padline:58}</span></font></font></p>
+	</li>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="3">
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Předmět
+	podnikání--------------------------------------</font></font></p>
+	</li>
+</ol>
+<ol>
+    {foreach $company->getNonFreeAreas() as $area}
+		<li>
+			<span style="background-color: #ffff00"><p style="margin-bottom: 0cm; line-height: 108%;"><font face="Andale Mono"><font size="3" style="font-size: 12pt">{$area|padline:58}</font></font></p></span>
+		</li>
+    {/foreach}	
+	<li>
+    	<span style="background-color: #ffff00"><p style="margin-bottom: 0cm; line-height: 108%;"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Výroba, obchod a služby neuvedené v přílohách 1 až 3 živnostenského zákona-------------------------------------</font></font></p></span>
+	</li>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="4">
+	<li>
+	<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Doba trvání--------------------------------------------</font></font></p>
+	</li>
+</ol>
+<ol>
+	<li>
+	<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společnost	je založena na dobu neurčitou.--------------</font></font></p>
+	</li>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/></p>
+<ol type="I" start="5">
+	<li>
+	<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Základní kapitál---------------------------------------</font></font></p>
+	</li>
+</ol>
+<ol>
+	<li>
+	<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Základní
+	kapitál společnosti činí: </font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt"><span style="background-color: #ffff00">{block|stripHtml|padline:58}{number_format($company->getCapital(),0,",",".")},-
+				Kč (slovy: {$company->getCapital()|slovne:Kč}){/block}</span></font></font></p>
+	</li>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/></p>
+<ol type="I" start="6">
+	<li>
+	<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Vklady
+	a podíly společníků-----------------------------</font></font></p>
+	</li>
+</ol>
+<ol>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Vklady
+	společníků společnosti činí:--------------------</font></font></p>
+	</li>
+</ol>
+{foreach $company->getPersons() as $p}
+{var amount=$company->getCapital()*$company->getShares()[$iterator->counter-1]}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%;background-color: #ffff00">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt">{$p->getFullTextOutput()|padline:58}</font></font></p>
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%;background-color: #ffff00">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt">{block|stripHtml|padline:58}vklad
+ve výši {number_format($amount,0,",",".")},- Kč (slovy {$amount|slovne:Kč}){/block}</font></font></p>
+{/foreach}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%">
+<br/>
+
+</p>
+<ol start="2">
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společníci
+	mají pouze základní podíl. Se základním podílem nejsou
+	spojena žádná zvláštní práva a povinnosti.</font></font></p>
+	</li>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol start="3">
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Výše
+	podílů jednotlivých společníků:-------------------</font></font></p>
+	</li>
+</ol>
+{foreach $company->getPersons() as $p}
+{var share=$company->getShares()[$iterator->counter-1]}
+{var amount=$company->getCapital()*$share}
+<p style="margin-left: 1.27cm; margin-bottom: 0.28cm; line-height: 108%;background-color: #ffff00">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt">{$p->getFullTextOutput()|padline:58}</font></font></p>
+<p style="margin-left: 1.27cm; margin-bottom: 0.28cm; line-height: 108%">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt">{block|stripHtml|padline:64}na
+	jeho vklad ve výši </font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt"><span style="background-color: #ffff00">{number_format($amount,0,",",".")},-Kč (slovy: {$amount|slovne:Kč})</span></font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt">
+	připadá základní podíl označený </font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt"><span style="background-color: #ffff00">č. {$iterator->counter} (slovy: {$iterator->counter|slovne:""} </span></font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt">
+	ve výši </font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt"><span style="background-color: #ffff00">{$share*100}% (slovy: {$share*100|slovne:"%"}){/block}</span></font></font></p>
+{/foreach}
+<p style="margin-left: 1.27cm; margin-bottom: 0.28cm; line-height: 108%">
+<br/>
+<br/>
+
+</p>
+<ol type="I" start="7">
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Orgány
+	společnosti-------------------------------------</font></font></p>
+	</li>
+</ol>
+<ol>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Orgány
+	společnosti jsou:-------------------------------</font></font></p>
+	</li>
+</ol>
+<ol>
+	<ol type="a">
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">valná
+		hromada----------------------------------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">jednatelé--------------------------------------</font></font></p>
+		</li>
+	</ol>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="8">
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Valná
+	hromada----------------------------------</font></font></p>
+	</li>
+</ol>
+<ol>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Do
+	působnosti valné hromady zejména patří:-------------</font></font></p>
+	</li>
+</ol>
+<ol>
+	<ol type="a">
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">schválení
+		jednání učiněných jménem společnosti před jejím vznikem
+		podle §127 Občanského zákoníku,---</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">rozhodování
+		o změně obsahu společenské smlouvy, nedochází-li k němu na
+		základě jiných právních skutečností,-----------------------------------------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">rozhodování
+		o zvýšení či snížení základního kapitálu nebo o
+		připuštění nepeněžitého vkladu či o možnosti započtení
+		peněžité pohledávky vůči společnosti proti pohledávce na
+		splnění vkladové povinnosti,------------------------------------------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">volba,
+		odvolání a odměňování jednatelů,--------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">udělení
+		a odvolání prokury,--------------------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">schvalování
+		smlouvy o výkonu funkce,-----------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">schvalování
+		řádné, mimořádné, konsolidované účetní závěrky a v
+		případech, kdy její vyhotovení stanoví právní předpis, i
+		mezitímní účetní závěrky, rozdělení zisku nebo jiných
+		vlastních zdrojů a úhrady ztrát,-----------------------------------------------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><a name="p190-2-i"></a>
+		<font face="Andale Mono"><font size="3" style="font-size: 12pt">rozhodnutí
+		o přeměně společnosti, ledaže zákon upravující přeměny
+		obchodních společností a družstev stanoví jinak,---------------------------------------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><a name="p190-2-j"></a>
+		<font face="Andale Mono"><font size="3" style="font-size: 12pt">schválení
+		převodu, pachtu nebo zastavení závodu nebo takové jeho části,
+		která by znamenala podstatnou změnu dosavadní struktury závodu
+		nebo podstatnou změnu v předmětu podnikání nebo činnosti
+		společnosti,----------------------------------------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><a name="p190-2-k"></a>
+		<font face="Andale Mono"><font size="3" style="font-size: 12pt">schválení
+		smlouvy o tichém společenství,-------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><a name="p190-2-m"></a><a name="p190-2-l"></a>
+		<font face="Andale Mono"><font size="3" style="font-size: 12pt">schválení
+		finanční asistence,------------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">rozhodnutí
+		o naložení se vkladovým ážiem,------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">rozhodnutí
+		o zrušení společnosti s&nbsp;likvidací,--</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">při
+		zrušení společnosti s&nbsp;likvidací volba a odvolání likvidátora.--------------------------------</font></font></p>
+		</li>
+	</ol>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol start="2">
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Dále
+	do působnosti valné hromady patří případy, které jí do její
+	působnosti svěřuje zákon či toto zakladatelské právní
+	jednání.-------------------------------------------</font></font></p>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Valná
+	hromada si může vyhradit rozhodování dalších případů, a to
+	i když dle zákona o obchodních korporacích náleží do
+	působnosti jiného orgánu.-----------------------</font></font></p>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společníci
+	vykonávají své právo podílet se na řízení společnosti na
+	valné hromadě nebo mimo ni.----------------</font></font></p>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">
+	Valná hromada se koná nejméně jednou za účetní období, nejpozději do šesti měsíců od posledního dne předcházejícího
+	účetního období, dále pak podle potřeby. Valnou hromadu svolává jednatel, a to následovně: termín a program valné 
+	hromady je nutno oznámit společníkům nejméně pět dnů přede dnem jejího konání, a to pozvánkou zaslanou společníkům
+	emailem nebo jinými prostředky elektronické komunikace, či pozvánkou zaslanou na adresu společníka uvedenou v seznamu
+	společníků. Každý společník je oprávněn zvolit si preferovaný způsob doručení pozvánky na valnou hromadu. Pokud tak
+	neučiní a zároveň uvede svou emailovou adresu či jiný kontakt pro elektronickou komunikaci, má se za to, že souhlasí
+	se zasíláním pozvánky na valnou hromadu emailem či jiným prostředkem elektronické komunikace.-----</font></font></p>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Jednatel
+	je povinen svolat kdykoli valnou hromadu:-----</font></font></p>
+	<ol type="a">
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">požádají-li
+		o to společníci, jejichž vklady dosahují alespoň 10 % (slovy: deset procent)
+		základního kapitálu nebo mají alespoň 10% (slovy: desetiprocentní) podíl na
+		hlasovacích právech,----------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">zjistí-li,
+		že společnosti hrozí úpadek podle jiného právního předpisu,
+		nebo z&nbsp;jiných vážných důvodů, zejména je-li ohrožen
+		cíl sledovaný společností.---------------------------------------</font></font></p>
+		</li>
+	</ol>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">V&nbsp;případě,
+	že valná hromada nemá jednatele, nebo ten neplní dlouhodobě své
+	povinnosti, svolá valnou hromadu kterýkoliv společník.-----------------------------------</font></font></p>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Valná
+	hromada je schopná usnášení, jsou-li přítomni společníci,
+	kteří mají alespoň polovinu všech hlasů. Každý společník
+	má jeden hlas na každou 1 Kč (slovy: jednu korunu českou) svého vkladu.----</font></font></p>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">K&nbsp;účasti
+	společníka a hlasování na valné hromadě je možné využít
+	technické prostředky. Podmínky využití technických prostředků
+	určí statutární orgán.------------</font></font></p>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společníci
+	mohou vykonat své hlasovací právo korespondenčním hlasováním,
+	kdy písemně odevzdají své hlasy před konáním valné hromady.-----------------------</font></font></p>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Valná
+	hromada rozhoduje prostou většinou hlasů přítomných
+	společníků, není-li dále stanoveno jinak.-----</font></font></p>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">K&nbsp;přijetí
+	usnesení o:---------------------------------</font></font></p>
+	<ol type="a">
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">změně
+		obsahu společenské smlouvy,--------------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">rozhodnutí,
+		jehož důsledkem je změna společenské smlouvy,-------------------------------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">k&nbsp;rozhodnutí
+		o připuštění nepeněžitého vkladu či o možnosti započtení
+		peněžité pohledávky vůči společnosti proti pohledávce na
+		splnění vkladové povinnosti,----------------------------------------</font></font></p>
+		</li>
+		<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">rozhodnutí
+		o zrušení společnosti s&nbsp;likvidací----------------------------------------</font></font></p>
+		</li>
+	</ol>
+</li>
+</ol>
+<p style="margin-left: 1.91cm; margin-bottom: 0cm; line-height: 108%">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt">je
+zapotřebí souhlasu alespoň dvoutřetinové většiny hlasů všech
+společníků.-------------------------------</font></font></p>
+<ol start="13">
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Prezenci
+	přítomných na valné hromadě zajišťuje jednatel. Společník
+	může být na valné hromadě zastoupen zmocněncem na základě
+	písemné plné moci.-----------------</font></font></p>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společník
+	nepřítomný na valné hromadě může dodatečně písemně
+	vykonat své hlasovací právo, a to nejdéle do sedmi dnů ode dne
+	konání valné hromady.------------------------</font></font></p>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společníci
+	mohou hlasovat pomocí technických prostředků i při rozhodování
+	per rollam (mimo valnou hromadu). Osoba oprávněná svolat valnou
+	hromadu doručí návrh rozhodnutí stejným způsobem, jakým
+	svolává valnou hromadu.----------</font></font></p>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Valná
+	hromada zvolí svého předsedu a zapisovatele. Do zvolení předsedy
+	řídí valnou hromadu svolavatel.---------</font></font></p>
+	</li>
+	<li>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Pokud
+	má společnost jediného společníka, působnost valné hromady
+	vykonává tento jediný společník a podíl jediného společníka
+	je převoditelný bez omezení.---------</font></font></p>
+	</li>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="9">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Jednatelé,
+	počet jednatelů a způsob jednání za společnost-----------------------------------------------</font></font></p>
+</ol>
+<ol>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Statutárním
+	orgánem společnosti </font></font>
+	<font face="Andale Mono"><font size="3" style="font-size: 12pt"><span style="background-color: #ffff00">
+		{var $acting_count=count($company->getActingPersons())}
+		{block|stripHtml|padline:25}
+		{if ($acting_count==1) || ($acting_count>5)} je {else} jsou {/if}
+		{$acting_count} (slovy: {$acting_count|slovne:"",'M'})
+		jednatel{if $moreActingPersons}{if $acting_count>4}ů{else}é{/if}{/if}
+		{/block}
+		<!-- jsou dva jednatelé. / etc. --></span></span></font></font><font face="Andale Mono"><font size="3" style="font-size: 12pt">.</font></font>
+		</p>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Jednatele
+	jmenuje valná hromada.----------------------</font></font></p>
+	<li/>
+	<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt"><span style="background-color: #ffff00">{if $company->getActions()["desc"]}{$company->getActions()["desc"]|firstUpper}{else}{$company->getActions()["name"]|firstUpper}{/if}.</span></font></font></p>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Jednateli
+	náleží obchodní vedení společnosti. Jednatel je zejména
+	povinen zajistit řádné vedení předepsané evidence a
+	účetnictví, vést seznam společníků a informovat společníky
+	o záležitostech společnosti.------------------</font></font></p>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Vztah
+	mezi jednatelem a společností se řídí přiměřeně
+	ustanoveními o příkazní smlouvě, pokud ze smlouvy o výkonu
+	funkce, byla-li uzavřena, nebo ze zákona nevyplývá jiné určení
+	práv a povinností. Smlouva o výkonu funkce jednatele musí mít
+	písemnou formu a musí být schválena valnou hromadou.-----------------------------------------</font></font></p>
+</ol>
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%">
+<br/>
+
+</p>
+<ol type="I" start="10">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Práva
+	a povinnosti společníků-------------------------</font></font></p>
+</ol>
+<ol>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společníci
+	mají nárok na podíl na zisku určeném valnou hromadou k
+	rozdělení mezi společníky v poměru svých podílů.--------------------------------------------------</font></font></p>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společníci
+	ručí společně a nerozdílně za závazky společnosti do výše
+	souhrnu nesplacených částí vkladů všech společníků podle
+	stavu zápisu v obchodním rejstříku. Zápisem splacení všech
+	vkladů do obchodního rejstříku ručení zaniká.-------------------------------------------</font></font></p>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Valná
+	hromada je oprávněna uložit společníkům povinnost přispět na
+	zvýšení vlastního kapitálu příplatkem mimo základní kapitál
+	peněžitým plněním nad výši vkladu až do poloviny základního
+	kapitálu podle výše svých vkladů.----</font></font></p>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společníci
+	vykonávají svá práva týkající se řízení společnosti a
+	kontroly její činnosti především na valné hromadě. Společník
+	má právo na valné hromadě i mimo ni požadovat od jednatelů
+	informace o společnosti, nahlížet do dokladů společnosti,
+	kontrolovat údaje obsažené v předložených dokladech a další
+	práva na informace určená společenskou smlouvou; to platí
+	obdobně pro společníkova zástupce, bude-li zavázán alespoň ke
+	stejné mlčenlivosti jako společník a společnosti tuto
+	skutečnost doloží.-----</font></font></p>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společníci
+	souhlasí se zapsáním do příslušného veřejného rejstříku.-------------------------------------</font></font></p>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="11">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Zákaz
+	konkurence--------------------------------------</font></font></p>
+</ol>
+<ol>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Zákaz
+	konkurence v rozsahu dle ustanovení § 199 Zákona o obchodních
+	korporacích platí pouze pro jednatele společnosti.---------------------------------------------</font></font></p>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="12">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Podíl-------------------------------------------------</font></font></p>
+</ol>
+<ol>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Podíl
+	představuje účast společníka na společnosti a z této účasti
+	plynoucí práva a povinnosti.-----------------</font></font></p>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Každý
+	společník může mít více podílů.-----------------</font></font></p>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společník
+	může převést svůj podíl na jiného společníka bez souhlasu
+	valné hromady.------------------------------</font></font></p>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Společník
+	může převést svůj podíl na třetí osobu bez souhlasu valné
+	hromady.----------------------------------</font></font></p>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Smlouva
+	o převodu podílu musí mít písemnou formu. Podpisy musí být
+	úředně ověřeny. Převodce ručí za závazky, které přešly
+	převodem podílu. Účinky převodu podílu nastávají vůči
+	společnosti dnem, kdy jí je doručena účinná smlouva o převodu
+	podílu.--------------------------------</font></font></p>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Rozdělit
+	podíl je možné při zachování výše vkladu společníka
+	alespoň 1 Kč (slovy: jedna koruna česká).---------------------------------</font></font></p>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<ol type="I" start="13">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Závěrečná
+	ustanovení---------------------------</font></font></p>
+</ol>
+<ol>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Vkladová
+	povinnost zakladatelů:------------------------</font></font></p>
+</ol>
+{foreach $company->getPersons() as $p}
+{var amount = $company->getCapital()*$company->getShares()[$iterator->counter-1]}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 100%">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt">
+	<span style="background-color: #ffff00">{$p->getFullTextOutput()|padline:58}</span><br>
+	{block|stripHtml|padline:53}
+	 má vkladovou povinnost ve výši
+	  {number_format($amount,0,",",".")},- Kč (slovy: {$amount|slovne:Kč})
+jenž se zavazuje splnit před podáním návrhu na zápis místně
+příslušnému rejstříkovému soudu, nejpozději však do 4 (slovy: čtyř) týdnů
+ode dne uzavření této společenské smlouvy.
+{/block}
+</font></font></p>
+{/foreach}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 100%">
+<br/>
+
+</p>
+<ol start="2">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Správcem
+	vkladů se určuje Zakladači s.r.o., identifikační číslo 05622701.-</font></font></p>
+</ol>
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 100%">
+<br/>
+
+</p>
+<ol start="3">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Prvními
+	jednateli společnosti byli zakladateli určeni:-</font></font></p>
+</ol>
+{foreach $company->getActingPersons() as $p}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%">
+<br/>
+
+</p>
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%;background-color: #ffff00">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt">{$p->getFullTextOutput()|padline:58}</font></font></p>
+{/foreach}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%">
+<br/>
+
+</p>
+<ol start="4">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Andale Mono"><font size="3" style="font-size: 12pt">Zakladatelé
+	souhlasí se zápisem svých údajů do obchodního rejstříku jako
+	společníci této společnosti.---</font></font></p>
+</ol>
+<p class="western" align="justify" style="margin-bottom: 0cm; line-height: 100%">
+<br/>
+</p>
+
+<p align="center" style="margin-top: 0.42cm; margin-bottom: 0cm; line-height: 0.64cm; orphans: 0; widows: 0">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt"><b>II.</b></font></font></p>
+<p align="center" style="margin-top: 0.42cm; margin-bottom: 0cm; line-height: 0.64cm; orphans: 0; widows: 0">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt"><b>Prohlášení
+zakladatele dle §46 odst. 2 zákona č. 90/2012 Sb., o obchodních
+korporacích </b></font></font>
+</p>
+<p align="justify" style="margin-top: 0.42cm; margin-bottom: 0cm; line-height: 0.64cm; orphans: 0; widows: 0"><a name="_GoBack"></a>
+<font face="Andale Mono"><font size="3" style="font-size: 12pt">Zástupce
+účastník{if $more}ů{else}a{/if}
+{$intro}
+kte{if $more}ří{else}rý{/if} jsou jmenováni do funkce prvních jednatelů společnosti,
+prohlašuje, že ohledně
+majetku účastníků nebo majetku obchodní korporace, v&nbsp;níž
+účastní{if $more}ci{else}k{/if} působí nebo působil{if $more}i{/if} v posledních 3 letech jako
+člen{if $more}ové{/if} orgánu, nebylo vedeno insolvenční řízení podle jiného
+právního předpisu nebo řízení podle § 63 až 65 zákona č.
+90/2012 Sb., o obchodních korporacích a není u {if $more}nich{else}něj{/if} dána jiná
+překážka funkce.	</font></font></p>
+<p align="justify" style="margin-top: 0.42cm; margin-bottom: 0cm; line-height: 0.64cm; orphans: 0; widows: 0">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt">Zástupce
+účastník{if $more}ů{else}a{/if}</font><font size="3" style="font-size: 12pt"><b> </b></font><font size="3" style="font-size: 12pt">dále
+za účastník{if $more}y{else}a{/if}</font><font size="3" style="font-size: 12pt"><b>
+</b></font><font size="3" style="font-size: 12pt">prohlašuje, že
+{if $more}tito{else}tento{/if} souhlasí se svým zápisem do obchodního rejstříku.	</font></font></p>
+<p align="center" style="margin-top: 0.42cm; margin-bottom: 0cm; line-height: 0.64cm; orphans: 0; widows: 0">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt"><b>III.</b></font></font></p>
+<p align="center" style="margin-top: 0.42cm; margin-bottom: 0cm; line-height: 0.64cm; orphans: 0; widows: 0">
+<font face="Andale Mono"><font size="3" style="font-size: 12pt"><b>Vyjádření
+notáře dle § 70 a § 70 a zákona č. 358/1992 Sb., notářského
+řádu v&nbsp;platném znění</b></font></font></p>
+<p align="justify" style="margin-top: 0.42cm; margin-bottom: 0cm; line-height: 0.64cm; orphans: 0; widows: 0">
+		<font face="Andale Mono"><font size="3" style="font-size: 12pt">Právní
+jednání je v souladu s právními předpisy a dalšími dokumenty,
+se kterými soulad právního jednání vyžaduje zvláštní právní
+předpis a právní jednání splňuje náležitosti a&nbsp;podmínky
+stanovené zvláštním právním předpisem pro zápis do veřejného
+seznamu nebo zápis do veřejného rejstříku.	</font></font></p>
+<p align="justify" style="margin-top: 0.42cm; margin-bottom: 0cm; line-height: 0.64cm; orphans: 0; widows: 0">
+		<font face="Andale Mono"><font size="3" style="font-size: 12pt">O
+tom byl tento notářský zápis sepsán, zástupcem účastníků
+přečten, a poté jím schválen.	</font></font></p>
+<p class="western" align="justify" style="margin-bottom: 0cm; line-height: 100%">
+		<br/>
+</body>
+</html>

@@ -1,0 +1,177 @@
+
+{form form role=>"form",class=>"form-horizontal"}
+	<div class="well offer">
+		<div class="hide">
+			{*input have_seat*}
+			{foreach $form[have_seat]->items as $key => $label}
+				<label n:name="have_seat:$key">
+					<input n:name="have_seat:$key" {if $key == $form[have_seat]->getValue()}checked="checked"{/if}> {$label}
+				</label>
+			{/foreach}
+		</div>
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active"><a href="#mamsidlo"  aria-controls="mamsidlo" role="tab" data-toggle="tab">Mám své sídlo </a></li>
+			{*<li role="presentation"><a href="#chcisidlo"  aria-controls="chcisidlo" role="tab" data-toggle="tab">Chci sídlo {*<span class="label label-warning">Akce - dárek</span>}</a></li>*}
+			
+	    </ul>
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane" id="chcisidlo">
+				<br />
+				{*<div class="alert alert-warning">
+					<b>Akce:</b> 1 hodina pronájmu kanceláře nebo zasedací místnosti <strong>zdarma jako dárek</strong> pro klienty Firma POINT! Vyzkoušejte si styl podnikání 21. století. Kancelář používáte, jen když ji potřebujete.
+				</div>*}
+				<div class="row">
+					<div class="col-sm-6">
+						<h4>Adresa sídla</h4>
+						{foreach $form[seatService]->items as $key => $label}
+							<label n:name="seatService:$key">
+								<input n:name="seatService:$key" class="seat" {if $key == $form[seatService]->getValue()}checked="checked"{/if}> {$label}
+							</label>
+							<script>
+								$(function(){ 
+									var s = { 
+										name: "{$seatServiceContent[$key]["name"]|noescape}",
+										price: new Array()
+									};
+									s.price[12] = "{$seatServiceContent[$key]["price_12"]|noescape}";
+									s.price[24] = "{$seatServiceContent[$key]["price_24"]|noescape}";
+									s.price[36] = "{$seatServiceContent[$key]["price_36"]|noescape}";
+									window.seat[{$key}] = s;
+								});
+							</script>
+							<br />
+						{/foreach}
+
+						<h4>Délka předplaceného období</h4>
+						{foreach $form[seatServiceTarif]->items as $key => $label}
+							<label n:name="seatServiceTarif:$key">
+								<input n:name="seatServiceTarif:$key" class="tarif"> {$label}
+							</label>
+							<script>
+								$(function(){ 
+									window.tarif[{$key}] = { 
+										months: "{$tarifServiceContent[$key]["months"]|noescape}",
+									};
+								});
+							</script>
+							<br />
+						{/foreach}
+					</div>
+					<div class="col-sm-6">
+						<div class="panel panel-default ">
+							<div class="panel-body">
+								<h4>Konfigurace sídla</h4>
+								Sídlo: <span id="seatField"></span><br />
+								Období: <span id="monthsField">0</span> měsíců<br />
+								Pošta: <span id="postField">Bez pošty</span><br />
+								Telefon: <span id="phoneField">Bez telefonu</span><br />
+								Měsíční cena: <b><span id="priceField">0</span> Kč</b> / měsíc
+							</div>
+							<div class="panel-footer">
+								<div class="row">
+									<div class="col-xs-12  text-left"><h3><small>Celkem</small> <span id="totalCost">0</span> Kč <small>bez DPH</small></h3></div>
+								</div>
+							</div>
+						</div>
+					</div> 
+				</div> 
+
+				<h4>Pošta</h4>
+				{foreach $form[postService]->items as $key => $label}
+					<label n:name="postService:$key">
+						<input n:name="postService:$key" class="post"> {$label}
+					</label>
+					{if $postServiceContent[$key]["info"]}
+						<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Poznámka" data-content="{$postServiceContent[$key]["info"]}"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+					{/if}
+					<script>
+						$(function(){ 
+							window.post[{$key}] = { 
+								name: "{$postServiceContent[$key]["name"]|noescape}",
+								price: "{$postServiceContent[$key]["price"]|noescape}"
+							};
+						});
+					</script>
+					<br />
+				{/foreach}
+
+				<h4>Telefon</h4>
+				{foreach $form[phoneService]->items as $key => $label}
+					<label n:name="phoneService:$key">
+						<input n:name="phoneService:$key" class="phone"> {$label}
+					</label>
+					{if $phoneServiceContent[$key]["info"]}
+						<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Poznámka" data-content="{$phoneServiceContent[$key]["info"]}"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+					{/if}
+					<script>
+						$(function(){ 
+							window.phone[{$key}] = { 
+								name: "{$phoneServiceContent[$key]["name"]|noescape}",
+								price: "{$phoneServiceContent[$key]["price"]|noescape}"
+							};
+						});
+					</script>
+					<br />
+				{/foreach}
+
+				<h4> Kanceláře</h4>
+				Na všech adresách je též k dispozici krátkodobý pronájem kanceláře a zasedací místnosti. Minimální doba pronájmu je půl hodiny. Kancelář lze zarezervovat v administraci.
+				<br /><br />
+				{*<div class="alert alert-warning">
+					<b>Akce:</b> 1 hodina pronájmu kanceláře nebo zasedací místnosti <strong>zdarma jako dárek</strong> pro klienty Firma POINT! Vyzkoušejte si styl podnikání 21. století. Kancelář používáte, jen když ji potřebujete.
+				</div>*}			
+				
+			</div>
+			<div role="tabpanel" class="tab-pane active" id="mamsidlo"> 
+				<br />
+				<div class="form">
+					<fieldset>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="">Ulice*</label>  
+							<div class="col-md-6">
+								<input id="" n:name="street" type="text" placeholder="ulice" class="form-control input-md" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="">Číslo popisné/orientační*</label>  
+							<div class="col-md-6">
+								<input id="" n:name="street_number" type="text" placeholder="cislo ulice" class="form-control input-md" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="">Město*</label>  
+							<div class="col-md-6">
+								<input id="" list="city" n:name="city" type="text" placeholder="mesto" class="form-control input-md" required="">
+								<datalist id="city">
+									<option n:foreach="$city as $c" value="{$c->name}"></option>
+								</datalist>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="">PSČ*</label>  
+							<div class="col-md-6">
+								<input id="" n:name="zip_code" type="text" placeholder="psc" class="form-control input-md" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="">Stát*</label>  
+							<div class="col-md-6">
+								<input id="" n:name="state" type="text" placeholder="stat" class="form-control input-md" required="" readonly>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="">Jména nebo názvy majitelů*</label>  
+							<div class="col-md-6">
+								<input id="" n:name="owner_name" type="text" placeholder="např. Jana Nováková, Spoluvlastník s.r.o." class="form-control input-md" required="">
+							</div>
+							<div class="col-md-3">
+								<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Upozornění" data-content="Pokud má nemovitost více majitelů, je třeba souhlas všech. Jména majitelů oddělte čárkami, vygenerují se na jeden dokument."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+	</div>
+	{include '../buttons.latte', "_form" => $form}
+{/form}

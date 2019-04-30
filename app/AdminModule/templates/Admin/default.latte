@@ -1,0 +1,86 @@
+{block content}
+
+    <div class="panel"> 
+        
+        
+              <div class="panel-body">
+                  <h2>{if $superadmin}Superadmin{else}{$leadingCompany->name}{/if}</h2>
+                <br>                        
+                <div class="row">
+                <div class="col-xs-12 col-sm-6 "> 
+                 <ul>
+                    {if !$superadmin}
+                        {foreach $companies as $c}
+                            <li><a n:href="Admin:show $c->id">{$c->name}</a></li>
+                        {/foreach}
+                    {/if}
+                 </ul>    
+                 </div>
+                 </div>
+                 {snippet findCompanyName}   
+                 <h3>Vyhledání objednávky</h3>
+                 {form form role=>"form", class=>"form-inline ajax"}
+                <div class="form-group col-xs-10">
+                    <div class="col-xs-12">
+                        <div style="width: 100%" class="input-group my-group">
+                            <input type="text" class="form-control input-lg" placeholder="název společnosti*" n:name="company" id="frm-userForm-company" value="">                            
+                            
+                        </div>
+                    </div>
+                </div>                              
+		        <div class="form-group col-xs-2"> 
+			        <div class="col-xs-2 col-sm-4 text-right">
+				        <button class="btn btn-warning btn-lg" type="submit" n:name="search" value="další">Hledat <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>				        
+			        </div>
+		        </div>	            
+                {/form}
+                    {ifset $message}                
+                        {$message}
+                    {/ifset}
+		            {ifset $companyName}			        
+				        <div class="row">	
+                        <div class="col-xs-12 col-sm-12"> 
+                                <h3>Firmy ke spravování</h3>
+                                <table class="table table-striped">
+                                    <tr><td><strong>Název společnosti</strong></td>
+                                        <td><strong>Spravovat</strong></td>                                        
+                                        {foreach $companyName as $c}
+                                        <tr class="company-info">
+                                            <td><span class="cname">{$c["name"]}</span></td>
+                                            <td><span><a n:href="Admin:show $c['id']">editace</span></td>                                               
+                                        </tr>
+                                        {/foreach}
+                                </table>
+                        </div>
+				        </div>
+                    {/ifset}    
+                {/snippet}   
+                </div>
+              {*<div class="col-xs-12 col-sm-6 text-right"> 
+              <img src="{$basePath}/img/logo-firmy.jpg" class="img-thumbnail"/> <br> <br>             
+              <a href="">změnit logo</a>           
+              </div>*}
+              </div>
+               <h4 class="page-header"><span class="glyphicon glyphicon-user" aria-hidden="true" >
+              </span> Uživatelský účet</h4>
+                 <ul>
+                 <li>{$user->getIdentity()->getData()["factname"]}</li>
+                 <li>registrace: {$user->getIdentity()->getData()["register"]|date:'d.n.Y'}</li>
+              </div>
+    </div> 
+    <script type="text/javascript" n:syntax="double">
+        $(function () {
+            $.nette.init();
+        });
+    </script>
+{/block}
+
+{block scripts}
+{include parent}
+{/block}
+
+{block head}
+{/block}
+
+{block forms}
+{/block}

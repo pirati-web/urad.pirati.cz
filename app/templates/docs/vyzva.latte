@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<title></title>
+	<style type="text/css">
+		@page { size: 21cm 29.7cm; margin: 2.5cm }
+		p { margin-bottom: 0.25cm; direction: ltr; line-height: 120%; text-align: left; orphans: 2; widows: 2 }
+		a:link { color: #0000ff }
+	</style>
+</head>
+<body lang="cs-CZ" link="#0000ff" dir="ltr">
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><span><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><b>{$company->getName()|upper}</b></font></font></span></p>
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><span><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><b>VÝZVA KE SLOŽENÍ ZÁKLADNÍHO KAPITÁLU</b></font></font></span></p>
+
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%">
+	<span>
+		<font face="Times New Roman, serif">
+			<font size="3" style="font-size: 12pt">
+				<b>VE VÝŠI: {$company->getCapital()} KČ</b>
+			</font>
+		</font>
+	</span>
+</p>
+
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%">
+	<span>
+		<font face="Times New Roman, serif">
+			<font size="3" style="font-size: 12pt">
+				Číslo účtu: 2201132201/2010<br>
+				Variabilní symbol {date('mdy')}{str_pad($invNumber, 4, '0', STR_PAD_LEFT)}<br>
+				Tabulka podle spolecniku: <br>
+			</font>
+		</font>
+	</span>
+</p>
+
+<table width="614" cellpadding="7" cellspacing="0">
+	<col width="200">
+	<col width="355">
+	<col width="15">
+	<tr valign="top">
+		<td width="200" style="border: 1px solid #00000a; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0.2cm; padding-right: 0.19cm">
+			<p align="justify" style="margin-left: 0.5cm; text-indent: -0.5cm">
+			<font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><b>Jméno/název</b></font></font></p>
+		</td>
+		<td width="355" style="border: 1px solid #00000a; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0.2cm; padding-right: 0.19cm">
+			<p align="justify" style="margin-left: 0.5cm; text-indent: -0.5cm">
+			<font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><b>Částka</b></font></font></p>
+		</td>
+		<td width="15" style="border: 1px solid #00000a; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0.2cm; padding-right: 0.19cm">
+			<p style="margin-left: 0.5cm; text-indent: -0.5cm">Specifický symbol</p>
+		</td>
+	</tr>
+	{foreach $company->getPersons() as $p}
+		<tr valign="top">
+			<td width="200" style="border: 1px solid #00000a; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0.2cm; padding-right: 0.19cm">
+				<p align="justify" style="margin-left: 0.5cm; text-indent: -0.5cm">
+				<font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$p->getFullName()}</font></font></p>
+			</td>
+			<td width="355" style="border: 1px solid #00000a; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0.2cm; padding-right: 0.19cm">
+				<p align="justify" style="margin-left: 0.5cm; text-indent: -0.5cm">
+				<font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$company->getCapital()*$company->getShares()[$iterator->counter-1]} Kč</font></font></p>
+			</td>
+			<td width="15" style="border: 1px solid #00000a; padding-top: 0cm; padding-bottom: 0cm; padding-left: 0.2cm; padding-right: 0.19cm">
+				<p align="justify" style="margin-left: 0.5cm; text-indent: -0.5cm">
+				{$iterator->counter|padLeft:3,'0'}
+				</p>
+			</td>			
+		</tr>
+	{/foreach}
+</table>
+
+<font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">
+       Vaše společnost nemůže vzniknout předtím, než bude kapitál plně splacen.
+    </font></font>
+</p>
+</body>
+</html>

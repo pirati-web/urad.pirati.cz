@@ -1,0 +1,189 @@
+{* This is the welcome page, you can delete it *}
+{block content}
+<div class="jumbotron">
+	<div class="container text-center">
+        <h2>Založte si firmu online</h2>
+        <p>Založení firmy zabere 15 minut a nemusíte ani vstát od počítače.<br> Piráti pohlídají i plnění regulací po založení. <a n:href="Info:OSluzbe">Jak to funguje?</a></p>
+        <br>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="panel ">  
+						{form demandForm, class=>"form-horizontal"}
+							<div class="panel-heading">
+								<h3 class="text-warning">Popište prosím Váš problém. Veškeré změny stojí 500Kč plus státní poplatky.</h3>
+							</div>
+							<div class="panel-body">
+								<fieldset>
+									<!-- Text input-->
+									<div class="form-group">
+										<div class="col-md-8 col-md-offset-2 ">
+											<textarea rows="10" n:name="text" class="form-control"></textarea>
+										</div>
+									</div>
+								</fieldset>
+
+							</div>
+							<div class="panel-footer">
+								<button class="btn btn-warning btn-lg" type="submit" n:name="send" value="ODESLAT">ODESLAT <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span></button>
+									{*<a n:href="NewCompany:registrace" class="btn btn-warning btn-lg">REGISTRACE <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span></a>*}
+							</div>
+						{/form}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>    
+
+<!-- /container -->
+<div class="modal fade" id="poplatky" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title" id="myModalLabel">Poplatky za založení společnosti</h3>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<table class="table table-striped">
+							<tr><th class="col-md-6">Položka</th><th class="col-md-3">Cena</th><th class="col-md-3">z toho DPH</th></tr>
+							<tr><td>Soudní poplatek za zápis do obchodního rejstříku</td>
+								<td>2 700Kč</td>
+								<td>0Kč</td>
+							</tr>
+							<tr><td>Notářský poplatek za zápis do obchodního rejstříku</td>
+								<td>363Kč</td>
+								<td>63Kč</td>
+							</tr>               
+							<tr><td>Osvědčovací notářský zápis</td>
+								<td>1 210Kč</td>
+								<td>210Kč</td>
+							</tr>
+							<tr><td>Odměna notáře (při základním kapitálu nad 266 500Kč se zvýší)</td>
+								<td>4 840Kč</td>
+								<td>840Kč</td>
+							</tr>
+							<tr><td>Správní poplatek za živnostenské oprávnění</td>
+								<td>1 000Kč</td>
+								<td>0Kč</td>
+							</tr>
+							<tr><td>Ostatní administrativní výdaje (ověřování podpisů, poštovné atd.)</td>
+								<td>847Kč</td>
+								<td>147Kč</td>
+							</tr>
+							<tr><td><strong>Celkem</strong></td>
+								<td><strong>10 960Kč</strong></td>
+								<td>1 260Kč</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title" id="myModalLabel">Přihlášení do administrace</h3>
+			</div>
+			<div class="modal-body">
+				<div class="row"><div class="col-md-6">
+
+						{*<form>*}
+						{form signInForm, role=>"form"}
+							<fieldset>
+								<legend>účet</legend>        
+
+								<div class="form-group">
+									<label for="exampleInputEmail1">Přihlašovací jméno</label>
+									<input n:name="username" type="email" class="form-control" id="" placeholder="email">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">Heslo</label>
+									<input n:name="password" type="password" class="form-control" id="" placeholder="heslo">
+								</div>
+
+								{*<div class="checkbox">
+								  <label>
+									<input type="checkbox"> Souhlasím s podmínkami
+								  </label>
+								</div>*}
+								<button n:name="send" type="submit" class="btn btn-warning">Přihlásit</button>
+							</fieldset>
+						{/form}
+						{*</form>*}
+
+
+
+					</div>
+					<div class="col-md-6">
+						<form>
+							<fieldset>
+								<legend>Jiný účet</legend>        
+
+								<a href="{plink OPAuth:facebook}" class="btn btn-social btn-facebook"><i class="fa fa-facebook"></i>Přihlásit přes Facebook</a>
+								<br><br>
+								<a href="{plink OPAuth:google}" class="btn btn-social btn-google"><i class="fa fa-google"></i>Přihlásit přes Google+</a>
+							</fieldset>
+						</form>
+
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{/block}
+
+{block scripts}
+{include parent}
+<script type="text/javascript" n:syntax="double">
+	Nette.validators.dateValidator = function (elem, args, val) {
+		return val % 11 === 0;
+	};
+	$(document).ready(function () {
+		var heights = $(".panel").map(function () {
+			//console.log($(this).find(".panel-heading").height()+" "+$(this).find(".panel-body").height());
+			return $(this).find(".panel-heading").height() + $(this).find(".panel-body").height();
+		}).get(),
+				maxHeight = Math.max.apply(null, heights);
+
+		$(".panel-body").each(function () {
+			$(this).height(maxHeight - $(this).parent().find(".panel-heading").height());
+		});
+	});
+</script>
+<script type="text/javascript" n:syntax="double">
+	$(function () {
+		$.nette.init();
+		$.nette.ext('spinner');
+	});
+</script>
+{/block}
+
+{block head}
+<style>
+    @media (max-width: 768px) {
+		body {
+			margin: 0;
+			padding-top: 140px;
+			padding-bottom: 20px;
+
+		}
+	}
+</style>
+{/block}
+
+{block forms}
+{/block}

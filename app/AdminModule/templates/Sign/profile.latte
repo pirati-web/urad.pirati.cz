@@ -1,0 +1,30 @@
+{var $robots = noindex}
+{*block title}
+<h2>Vyberte si místo dovolené. <span>Přesně podle VÁS.</span></h2>
+{/block}
+{block slide}
+{/block*}
+{block content}
+<h2 n:block=title>Úprava profilu</h2>
+
+{control $prForm}
+
+<script type="text/javascript" n:syntax="latte">
+    $('input[name="password"]').closest("td").after('<td><p id="password_complexity" class="inline-hints sidetip"></p></td>');
+    $('input[name="password"]').yapsm({
+                dictionary: function() {
+                                return ["admin", "test"];
+                            }
+                }).on('input', function() {
+                    $("#password_complexity").html(this.complexity);
+                });
+</script>
+
+{* or use {include '../components/form.latte', form => $presenter[signInForm]} *}
+{/block}
+
+{block head}
+{/block}
+
+{block forms}
+{/block}

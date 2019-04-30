@@ -1,0 +1,56 @@
+{var $robots = noindex}
+{block content}
+{if $flashes}
+        <div class="row">   
+            <div class="col-md-12">          
+            <div class='clear'>&nbsp;</div>
+                <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} flash {$flash->type}"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> {$flash->message}</div> 
+            <div class='clear'>&nbsp;</div>
+        </div> 
+        </div>
+        {/if}
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+<h3>Změna hesla</h3> <br>
+{form changePassWord class=>"form-horizontal", role=>"form"}
+  
+  <div class="form-group">
+    <label for="frm-password" class="col-sm-2 control-label">Heslo</label>
+    <div class="col-sm-10">
+      <input n:name="password" type="password" class="form-control" id="heslo" placeholder="heslo">
+    </div>
+  </div>    
+
+  <div class="form-group">
+    <label for="frm-password2" class="col-sm-2 control-label">Heslo znovu</label>
+    <div class="col-sm-10">
+      <input n:name="password2" type="password" class="form-control" id="heslo2" placeholder="heslo">
+    </div>
+  </div>    
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button n:name="change" type="submit" class="btn btn-warning">potvrdit</button>
+    </div>
+  </div>
+{/form}
+  </div>
+  </div>
+
+<script type="text/javascript" n:syntax="latte">
+    $('input[name="password"]').after('<div><p id="password_complexity" class="inline-hints sidetip"></p></div>');
+    $('input[name="password"]').yapsm({
+                dictionary: function() {
+                                return ["admin", "test"];
+                            }
+                }).keyup(function() {
+                    $("#password_complexity").html(this.complexity);
+                });
+</script>
+{/block}
+
+{block head}
+{/block}
+
+{block forms}
+{/block}

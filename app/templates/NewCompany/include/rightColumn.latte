@@ -1,0 +1,496 @@
+
+{if trim($company->getName())}
+	<div class="panel panel-default">
+		<!-- Default panel contents -->
+		<div class="panel-heading text-right"><h3>{*$company->getName()*}Název společnosti</h3>  </div>              
+		<!-- Table -->
+		<table class="table table-striped">
+			<tbody>
+				<tr><td class="text-left">{$company->getName()}</td></tr>
+			</tbody>
+		</table>
+	</div>
+{/if}
+{if (count($users)>0)}
+	<div class="panel panel-default">
+		<!-- Default panel contents -->
+		<div class="panel-heading text-right"><h3>Společníci</h3></div>
+		<!-- Table -->
+		<table class="table table-striped">
+			<tbody>
+                {foreach $users as $userA}
+                    <tr>
+                        <td class="text-left">{$userA->getFullName()} </td>
+                        {if $formToRender > 5}
+							<td>{$company->getShares()[$iterator->counter-1]*100} %</td>
+                        {/if}
+                        {*<td><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></td>*}
+                        <td><a href="{link deleteSpolecnik! $iterator->counter}" <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
+                    </tr>
+                {/foreach}
+			</tbody>
+		</table>
+	</div>
+{/if}
+{if (count($jednatele)>0)}
+	<div class="panel panel-default">
+		<!-- Default panel contents -->
+		<div class="panel-heading text-right"><h3>Jednatelé</h3></div>
+		<!-- Table -->
+		<table class="table table-striped">
+			<tbody>
+                {foreach $jednatele as $userA}
+                    <tr>
+                        <td class="text-left">{$userA->getFullName()} </td>
+                        {*<td><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></td>*}
+                        <td>{*<a href="{*link deleteJednatel! $iterator->counter}" <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>*}</td>
+                    </tr>
+                {/foreach}
+			</tbody>
+		</table>
+	</div>
+{/if}
+<div class="panel panel-default" id="costs">
+	<!-- Default panel contents -->
+	<div class="panel-heading text-right">
+		<h3>Náklady</h3>
+		
+		<p class="text-right nomargin">
+			{if $company->getType() == "full"}
+				{*<a href="{link setType! type => "simple"}" onclick="return confirm('Opravdu si přejete zjednodušenou smlouvu ?');" title="Soudní poplatek 0 Kč, notářský poplatek 2420 Kč vč. DPH. Obsahuje jen povinné náležitosti dle zákona o obchodních korporacích (90/2012).">Chci levnější s.r.o. ve zjednodušeném rozsahu</a>*}
+				<a href="#" data-toggle="modal" data-target="#confirm-simple">Chci levnější s.r.o. ve zjednodušeném rozsahu</a>
+				<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Soudní poplatek 0 Kč, notářský poplatek 2420 Kč vč. DPH. Obsahuje jen povinné náležitosti dle zákona o obchodních korporacích (90/2012).">
+						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+					</a>
+			{else}
+				<a href="{link setType! type => "full"}" >Chci standardní s.r.o.</a>
+			{/if}
+		</p>
+	</div>
+
+	<!-- Table -->
+	<table class="table table-striped">
+		{foreach $charges->getByCategory(\ChargeList::CATEGORY_REGULAR) as $p}
+			<tr>
+				<td class="text-left">
+					{$p->getName("rightColumn")|noescape} 
+					{if $p->info}
+						<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="{$p->getName("rightColumn")|stripTags}" data-placement="bottom" data-content="{$p->info}">
+							<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+						</a>
+					{/if}
+				</td>
+				<td>
+					{number_format($p->price,0,",","")},- 
+					{if $p->hasVat()}
+						s DPH<br>
+						<em><small>{number_format($p->priceWithoutVat,0,",","")},- bez DPH</small></em>
+					{/if}
+					{if $p->priceComment}
+						<br><em><small>{$p->priceComment|noescape}</small></em>
+					{/if}
+				</td>
+			</tr>
+		{/foreach}
+			
+		{if $charges->getByCategory(\ChargeList::CATEGORY_ADDITIONAL)}
+			<tr><td colspan="2" class="text-right"><h4>Doplňkové služby</h4></td></tr>
+			{foreach $charges->getByCategory(\ChargeList::CATEGORY_ADDITIONAL) as $p}
+				<tr>
+					<td class="text-left">
+						{$p->getName("rightColumn")|noescape}
+						{if $p->info}
+							<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="{$p->getName("rightColumn")|stripTags}" data-placement="bottom" data-content="{$p->info}">
+								<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+							</a>
+						{/if}
+					</td>
+					<td>
+						{number_format($p->price,0,",","")},- 
+						{if $p->hasVat()}
+							s DPH<br>
+							<em><small>{number_format($p->priceWithoutVat,0,",","")},- bez DPH</small></em>
+						{/if}
+						{if $p->priceComment}
+							<br><em><small>{$p->priceComment|noescape}</small></em>
+						{/if}
+					</td>
+				</tr>
+			{/foreach}
+		{/if}
+			
+		{*var $sum=0}
+		{var $sumWithoutVat = 0*}
+		{*foreach $payments as $p}
+			{*<td>800,- s DPH<br><em><small>800,- bez DPH</small><em></td>}
+			<tr>
+				<td class="text-left">
+					{$p["desc"]} 
+					{if $p["info"]}
+						<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="{$p["desc"]}" data-placement="bottom" data-content="{$p["info"]}">
+							<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+					{/if}
+				</td>
+				<td class="ico">
+					{number_format($p["value"],0,",","")},-
+					{if $p["vat"]>0} 
+						s DPH<br>
+						<em><small>{number_format($p["w_vat"],0,",","")},- bez DPH</small></em>
+						{*+ {number_format($p->value-$p->w_vat,0,",","")} DPH)}
+					{/if}
+					{? $sum+=$p["value"]}
+					{? $sumWithoutVat += $p["w_vat"]}
+				</td>
+			</tr>
+        {/foreach*}
+
+		{*var additionalServices = ""}
+		{capture $additionalServices*}
+			{*if $formToRender>2 && $specialAreas}
+				{foreach $specialAreas as $p2}
+					<tr>
+						<td class="text-left">
+							{$p2->desc} 
+							{if $p2->info}
+								<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="{$p2->desc}" data-placement="bottom" data-content="{$p2->info}">
+									<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+								</a>
+							{/if}
+						</td>
+						<td>
+							{number_format($p2->value,0,",","")},-
+							{if $p2->vat>0} 
+								s DPH<br>
+								<em><small>({number_format($p2->w_vat,0,",","")} + {number_format($p2->value-$p2->w_vat,0,",","")} DPH)</small></em>
+							{/if}
+						</td>
+					</tr>
+					{? $sum+=$p2->value}
+					{? $sumWithoutVat += $p2->w_vat}
+				{/foreach}
+			{/if*}
+			
+			{*if $formToRender>3}
+				{if $company->getSeat() && !$company->getSeat()->hasOwnSeat()}
+					<tr>
+						<td class="text-left">
+							Sídlo: {$company->getSeat()->getName()}
+							{*<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Účetnictví" data-placement="bottom" data-content="Účetnictví se fakturuje zvlášť, a to vždy k poslednímu dni v měsíci. Za první den poskytování služby se považuje datum zápisu firmy do Obchodního rejstříku."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>}
+						</td>
+						<td>
+							{$company->getSeat()->getPriceWithVat()},- s DPH<br>
+							<em><small>{number_format($company->getSeat()->getPrice(),0,",","")},- bez DPH<br> za {$company->getSeat()->getMonths()} měsíců</small></em>
+							{? $sum+=$company->getSeat()->getPriceWithVat()}
+							{? $sumWithoutVat += $company->getSeat()->getPrice()}
+						</td>
+					</tr>
+				{/if}
+				{if $company->getPostService() && $company->getPostService()->getPrice()}
+					<tr>
+						<td class="text-left">
+							Pošta: {$company->getPostService()->getName()|truncate:35}
+							{if $company->getPostService()->getInfo()}
+								<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Poznámka" data-placement="bottom" data-content="{$company->getPostService()->getInfo()}"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+							{/if}
+						</td>
+						<td>
+							<em><small>{number_format($company->getPostService()->getPrice(),0,",","")},- bez DPH<br> za {$company->getSeat()->getMonths()} měsíců</small></em>
+							{? $sum+=$company->getPostService()->getPriceWithVat()}
+							{? $sumWithoutVat += $company->getPostService()->getPrice()}
+						</td>
+					</tr>
+				{/if}
+				{if $company->getPhoneService() && $company->getPhoneService()->getPrice()}
+					<tr>
+						<td class="text-left">
+							Telefon: {$company->getPhoneService()->getName()}
+							{if $company->getPhoneService()->getInfo()}
+								<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Poznámka" data-placement="bottom" data-content="{$company->getPhoneService()->getInfo()}"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+							{/if}
+						</td>
+						<td>
+							<em><small>{number_format($company->getPhoneService()->getPrice(),0,",","")},- bez DPH<br> za {$company->getSeat()->getMonths()} měsíců</small></em>
+							{? $sum+=$company->getPhoneService()->getPriceWithVat()}
+							{? $sumWithoutVat += $company->getPhoneService()->getPrice()}
+						</td>
+					</tr>
+				{/if}
+			{/if*}
+			
+			{* priplatky zahranicni spolecnici *}
+			{*foreach $company->getPersons() as $per}
+				{var $p = $foreignPeopleCost}
+				{if $formToRender>=4 && method_exists($per,"getText")}
+					<tr>
+						<td class="text-left">
+							{$p->desc} 
+							{if $p->info}
+								<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="{$p->desc}" data-placement="bottom" data-content="{$p->info}">
+									<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+								</a>
+							{/if}
+						</td>
+						<td>
+							{number_format($p->value,0,",","")},-
+							{if $p->vat>0} 
+								s DPH<br>
+								<em><small>{number_format($p->w_vat,0,",","")},- bez DPH</small></em>
+								{* + {number_format($p->value-$p->w_vat,0,",","")} DPH)}
+							{/if}
+							
+						</td>
+						{? $sum+=$p->value}
+						{? $sumWithoutVat += $p->w_vat}
+					</tr>
+				{/if}
+			{/foreach*}
+
+			{* priplatky zahranicni jednatele *}
+			{*foreach $jednatele as $per}
+				{var $p = $foreignAPeopleCost}
+				{if $formToRender>=6 && method_exists($per,"getText")}
+					<tr>
+						<td class="text-left">
+							{$p->desc} 
+							{if $p->info}
+								<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="{$p->desc}" data-placement="bottom" data-content="{$p->info}">
+									<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+								</a>
+							{/if}
+						</td>
+						<td>
+							{number_format($p->value,0,",","")},-
+							{if $p->vat>0} 
+								s DPH<br>
+								<em><small>{number_format($p->w_vat,0,",","")},- bez DPH</small></em>
+								{* + {number_format($p->value-$p->w_vat,0,",","")} DPH)}
+							{/if}
+						</td>
+						{? $sum+=$p->value}
+						{? $sumWithoutVat += $p->w_vat}
+					</tr>
+				{/if}
+			{/foreach*}    
+
+			{* priplatky jiny zpusob jednani }
+			{if $formToRender>6 && $company->getActions()["acting_id"]==4}
+				{var $p = $actingCost}
+					<tr>
+						<td class="text-left">
+							{$p->desc} 
+							{if $p->info}
+								<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="{$p->desc}" data-placement="bottom" data-content="{$p->info}">
+									<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+								</a>
+							{/if}
+						</td>
+						<td>
+							{number_format($p->value,0,",","")},-
+							{if $p->vat>0}
+								s DPH<br>
+								<em><small>{number_format($p->w_vat,0,",","")},- bez DPH</small></em>
+								{* + {number_format($p->value-$p->w_vat,0,",","")} DPH)}
+							{/if}
+						</td>
+						{? $sum+=$p->value}
+						{? $sumWithoutVat += $p->w_vat }
+					</tr>
+			{/if*}						
+
+			{* priplatky ucetnictvi *}
+			{*if $formToRender>7}
+				{foreach $company->getTaxes() as $tax}
+					{if !$tax["source"]->payment_id}
+						{? continue}
+					{/if}
+					<tr>
+						{var $p2 = $tax["source"]->ref("payments","payment_id")}
+						<td class="text-left">
+							{$p2->desc} 
+							{if $p2->info}
+								<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="{$p2->desc}" data-placement="bottom" data-content="{$p2->info}">
+									<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+								</a>
+							{/if}
+						</td>
+						<td>
+							{number_format($p2->value,0,",","")},-
+							{if $p2->vat>0} s DPH<br>
+								<em><small>{number_format($p2->w_vat,0,",","")},- bez DPH</small></em>
+								{* + {number_format($p2->value-$p2->w_vat,0,",","")} DPH)}
+							{/if}
+							{? $sum+=$p2->value}
+							{? $sumWithoutVat += $p2->w_vat }
+						</td>
+					</tr>
+				{/foreach}
+				{if $company->getAccountancy()}
+					<tr>
+						<td class="text-left">
+							{$company->getAccountancy()->getName()}
+							<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Účetnictví" data-placement="bottom" data-content="Účetnictví se fakturuje zvlášť, a to vždy k poslednímu dni v měsíci. Za první den poskytování služby se považuje datum zápisu firmy do Obchodního rejstříku."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+						</td>
+						<td>nefakturováno<br><em><small>{number_format($company->getAccountancy()->getPrice(),0,",","")},- bez DPH za měsíc</small></em></td>
+					</tr>
+				{/if}
+			{/if*}
+			
+			{* priplatky banky *}
+			{*var bank = $company->getBank()}
+			{if $formToRender>8 && $bank && $bank["source"]->payments_id}
+				{var $p = $bank["source"]->payments}
+					<tr>
+						<td class="text-left">
+							Účet {$p->desc} 
+							{if $p->info}
+								<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="{$p->desc}" data-placement="bottom" data-content="{$p->info}">
+									<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+								</a>
+							{/if}
+						</td>
+						<td>
+							{number_format($p->value,0,",","")},-
+							{if $p->vat>0}
+								s DPH<br>
+								<em><small>{number_format($p->w_vat,0,",","")},- bez DPH</small></em>
+							{/if}
+						</td>
+						{? $sum+=$p->value}
+						{? $sumWithoutVat += $p->w_vat }
+					</tr>
+			{/if*}
+			
+			{* priplatky compliance }
+			{var compliance = $company->getCompliance()}
+			{if $formToRender>8 && $compliance}
+				{var $p = $complianceCost}
+					<tr>
+						<td class="text-left">
+							{$p->desc} 
+							{if $p->info}
+								<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="{$p->desc}" data-placement="bottom" data-content="{$p->info}">
+									<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+								</a>
+							{/if}
+						</td>
+						<td>
+							{number_format($p->value,0,",","")},- 
+							{if $p->vat>0}
+								s DPH za rok<br>
+								<em><small>{number_format($p->w_vat,0,",","")},- bez DPH za rok</small></em>
+							{/if}
+						</td>
+						{? $sum+=$p->value}
+						{? $sumWithoutVat += $p->w_vat }
+					</tr>
+			{/if*}
+		{*/capture*}
+
+		{*if trim($additionalServices)}
+			<tr><td colspan="2" class="text-right"><h4>Doplňkové služby</h4></td></tr>
+			{$additionalServices|noescape}
+		{/if*}
+		
+		
+
+		<tr>
+			<td class="text-left">
+				<strong>Celkem</strong>
+			</td>
+			<td>
+				{*<strong>{number_format($sum,0,",","")},- Kč s DPH</strong><br>
+				<em><small>{number_format($sumWithoutVat,0,",","")},- Kč bez DPH</small></em>*}
+				<strong>{number_format($charges->getTotalSum(),0,",","")},- Kč s DPH</strong><br>
+				<em><small>{number_format($charges->getSumWithoutVat()+$charges->getSumNotVat(),0,",","")},- Kč bez DPH</small></em>
+			</td>
+		</tr>
+		
+		{*<tr>
+			<td colspan="2">
+				<p><i>Uvedený seznam nákladů je výsledkem průběžného výpočtu dle vámi zvolené konfigurace služeb.</i></p>
+			</td>
+		</tr>*}
+		
+		{* doplnkove sluzby *}		
+		{*if $formToRender>7}
+			<tr><td colspan="2" class="text-left"><b>Účetnictví</b></td></tr>
+			{if $company->getAccountancy()}
+				<tr>
+					<td class="text-left">
+						{$company->getAccountancy()->getName()}
+						<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Účetnictví" data-placement="bottom" data-content="Účetnictví se fakturuje zvlášť, a to vždy k poslednímu dni v měsíci. Za první den poskytování služby se považuje datum zápisu firmy do Obchodního rejstříku."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+					</td>
+					<td>{*number_format($p->value,0,",","")},-s DPH<br>}<em><small>{number_format($company->getAccountancy()->getPrice(),0,",","")},- bez DPH za měsíc</small></em></td>
+				</tr>
+			{/if}
+		{/if*}
+		</table>
+		{if $formToRender<10}
+			<div class="panel-footer">
+				<p><i>Uvedený seznam nákladů je výsledkem průběžného výpočtu dle Vámi zvolené konfigurace služeb.</i></p>
+			</div>
+		{/if}
+</div>
+
+<div class="modal fade" id="confirm-simple" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body text-left">
+                <p>Zakladatelská listina nebo společenská smlouva jednoduché s.r.o. může obsahovat pouze povinné náležitosti dle zákona 90/2012. Některé možnosti nastavení proto budou omezeny.</p>
+
+				<p>Jednorázová úspora 5120 Kč vč. DPH se dle našeho názoru v dlouhodobém horizontu nevyplatí, protože ve společenské smlouvě nesmí být náležitosti činící ovládaní firmy snazší a flexibilnější pro majitele, které vkládáme do naší standardní smlouvy. Důrazně tedy doporučujeme zakládat firmu ve standardním rozsahu.</p>
+
+				<p>Rozsah můžete kdykoli během procesu zakládání změnit zpět na standardní.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Zavřít</button>
+                <a href="{link setType! type => "simple"}" class="btn btn-success btn-ok">Potvrdit změnu</a>
+            </div>
+        </div>
+    </div>
+</div>
+			
+<div class="modal fade" id="discount-code" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+			<div class="modal-header text-left">
+                <h3>Slevový kód</h3>
+            </div>
+            <div class="modal-body text-left">
+				<form n:name="discountForm" class="form-horizontal">
+					{if isset($errorCode) && $errorCode}
+						<div class="row">
+							<div class="col-md-5 text-center">
+								<p class="error">Slevový kód není správný</p>
+							</div>
+						</div>
+					{/if}
+					<div class="row">
+						<label class="col-md-5 control-label" for="">Zadejte prosím slevový kód*</label>  
+						<div class="col-md-7">
+							<input n:name="code" class="form-control input-md">
+						</div>
+					</div>
+					<div class="row margin-top-20">
+						<div class="text-center">
+							<input n:name="send" class="btn btn-warning btn-lg">
+						</div>
+					</div>
+				</form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Zavřít</button>
+            </div>
+        </div>
+    </div>
+</div>
+			
+{if isset($errorCode) && $errorCode}
+	<script>
+		$(function(){ 
+			$('#discount-code').modal('show')
+		});
+	</script>
+{/if}
+			
+			

@@ -1,0 +1,236 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+*}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="{ifset #description}{include description|striptags}{/ifset}">
+        <meta name="author" content="">
+        <link rel="icon" href="{$basePath}/img/favicon.ico">
+
+        <title>{*ifset #title}{include title|striptags} | {/ifset}1. Pirátská *}Na úřad z domova | Založení firmy online</title>
+        <!-- Bootstrap -->
+        <link href="{$basePath}/css/bootstrap.css" rel="stylesheet">
+        <!--<link href="{$basePath}/css/bootstrap-theme.css" rel="stylesheet">-->
+        <link rel="stylesheet" href="{$basePath}/css/font-awesome.min.css">
+        <link href="{$basePath}/css/bootstrap-social.css" rel="stylesheet">
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="{$basePath}/js/jquery.js"></script>
+        <script src="{$basePath}/js/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="{$basePath}/css/jquery-ui.css">
+        <script src="{$basePath}/js/nette.ajax.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="{$basePath}/js/bootstrap.min.js"></script>         
+        <script src="{$basePath}/js/sweetalert.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{$basePath}/css/sweetalert.css">
+		<link rel="stylesheet" type="text/css" href="{$basePath}/css/style.css">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+		
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+		{block head}{/block}
+
+		<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+	<link rel="stylesheet" type="text/css" href="{$basePath}/css/cookieconsent.min.css" />
+<script src="{$basePath}/js/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "#ffffff",
+      "text": "#000000"
+    }
+  },
+  "showLink": false,
+  "position": "bottom-right",
+  "content": {
+    "message": "Používáme cílení na základě zanechané cookie, abychom vás v on-line mohli informovat o našem volebním programu. Pokud vám přijde obtěžující, že některá z moře reklam v on-line světě bude i ta o pirátském programu, doporučujeme vymazat cookies v historii. Toto pravidlo platí pro práci v on-line obecně. Ihned po kampani všechny cookies vymažeme a nikdy je neposkytneme třetí straně. Vaši Piráti.",
+    "dismiss": "SOUHLASÍM"
+  }
+})});
+</script>
+		<!-- End Cookie Consent plugin -->
+		<meta property="og:title"         content="NA ÚŘAD Z DOMOVA | založení s.r.o. online" />
+		<meta property="og:description"   content="Obíhat úřady budou data, ne lidé. Už nebudete muset několikrát úřadům sdělovat to samé. Co může, si úředník zjistí sám. Kde nemusí být úředník, bude počítač." />
+		<meta property="og:image"         content="https://urad.pirati.cz/img/logo_napis_white.svg" />
+		<meta property="og:type"          content="website" />
+		<meta property="og:url"           content="https://urad.pirati.cz/" />	
+
+	</head>
+
+	<body>
+		{if $allowGa}
+			<!-- Matomo -->
+			<script type="text/javascript">
+				var _paq = window._paq || [];
+				/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+				_paq.push(["setCookieDomain", "*.urad.pirati.cz"]);
+				_paq.push(['trackPageView']);
+				_paq.push(['enableLinkTracking']);
+				(function() {
+				var u="//piwik.pirati.cz/";
+				_paq.push(['setTrackerUrl', u+'matomo.php']);
+				_paq.push(['setSiteId', '5']);
+				var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+				g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+				})();
+			</script>
+			<!-- End Matomo Code -->
+		{/if}
+
+		<script type="text/javascript">
+			$(document).ready(function () {
+				tt = $('[data-toggle="tooltip"]')
+				tt.tooltip();
+				tt.on('show.bs.tooltip', function (e) {
+        			console.log(e);
+    			});
+			});
+			$(function () {
+				$('[data-toggle="popover"]').popover();
+			});
+		</script> 
+		<nav class="navbar navbar-fixed-top bg-background">
+			
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a n:href="Homepage:"><img src="{$basePath}/img/logo_napis_white.svg" height="40rem" width="auto"></a>
+					</div>
+          <div class="cernenabilem"><span>NA ÚŘAD Z DOMOVA</span> </div>
+					
+						
+							<div class="social text-right">
+    <ul>
+        <li class="twitter"><a href="https://twitter.com/PiratskaStrana" target="_blank"></a></li>
+        <li class="facebook"><a href="https://www.facebook.com/ceska.piratska.strana" target="_blank"></a></li>
+    </ul>
+</div>
+						
+					
+				</div>
+		
+		</nav> 
+		{if $flashes}
+			<div class="container">
+				<div class="row">   
+					<div class="col-md-12">          
+						<div class='clear'>&nbsp;</div>
+						<div n:foreach="$flashes as $flash" class="alert alert-warning flash {$flash->type}"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> {$flash->message}</div> 
+						<div class='clear'>&nbsp;</div>
+					</div> 
+				</div>
+			</div>
+		{/if}
+		{include content}  
+
+
+
+
+
+    <footer class="footer">
+    <div class="container">
+        <div class="col-md-6"><p>Provozovatel: 1. Pirátská s.r.o. | Zpracovatel: Zakladači s.r.o. | {=date("Y")} | <a href="https://urad.pirati.cz/docs/obchodni_podminky.pdf">Obchodní podmínky</a>         
+         
+        </p></div>
+        <div class="col-md-6 text-right"><p>
+        <a href="https://www.pirati.cz/program/psp2017.html" target="_blank">Program Pirátů</a> | 
+        <a n:href="Info:jakzalozit">Zakládání firem</a> | 
+        <a href="https://www.piratskyobchod.cz/kontakty/" target="_blank">Provozovatel</a> | 
+        <a n:href="Info:Faq">FAQ</a> | 
+        <a href="https://www.facebook.com/ceska.piratska.strana/" target="_blank">FB</a> |  
+        <a n:href="Info:Kontakty">Kontakt</a>
+        </p></div>
+        
+        </div>
+    </footer>
+
+		{*<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h3 class="modal-title" id="myModalLabel">Příhlášení do administrace</h3>
+					</div>
+					<div class="modal-body">
+						<div class="row"><div class="col-md-6">
+
+								<form>
+									<fieldset>
+										<legend>Úřád piráti účet</legend>        
+
+										<div class="form-group">
+											<label for="exampleInputEmail1">Přihlašovací jméno</label>
+											<input type="email" class="form-control" id="" placeholder="email">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">Heslo</label>
+											<input type="password" class="form-control" id="" placeholder="heslo">
+										</div>
+
+										{*<div class="checkbox">
+										  <label>
+											<input type="checkbox"> Souhlasím s podmínkami
+										  </label>
+										</div>}
+										<button type="submit" class="btn btn-warning">Přihlásit</button>
+									</fieldset>
+								</form>
+
+
+
+							</div>
+							<div class="col-md-6">
+								<form>
+									<fieldset>
+										<legend>Jiný účet</legend>        
+
+										<a href="#" class="btn btn-social btn-facebook"><i class="fa fa-facebook"></i>Přihlásit přes Facebook</a>
+										<br><br>
+										<a href="#" class="btn btn-social btn-google"><i class="fa fa-google"></i>Přihlásit přes Google+</a>
+									</fieldset>
+								</form>
+
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>*}
+
+		<div
+			class="fb-like"
+			data-share="true"
+			data-width="450"
+			data-show-faces="true">
+		</div>
+
+		{block scripts}	
+		<script src="{$basePath}/js/netteForms.js"></script>	
+		{/block}
+	</body>
+	<!-- Matomo Image Tracker-->
+	<img src="https://piwik.pirati.cz/matomo.php?idsite=5&amp;rec=1&amp;action_name=urad.pirati.cz" style="border:0" alt="" />
+	<!-- End Matomo -->
+</html>

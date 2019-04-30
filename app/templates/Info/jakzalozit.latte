@@ -1,0 +1,354 @@
+{* This is the welcome page, you can delete it *}
+{block fbpixel}
+fbq('track', 'ViewContent');              
+{/block}
+
+{define title}Krok za krokem postup založení firmy{/define}
+
+{define description}Zde najdete ucelený, podrobný návod, jak svépomocí založit společnost s ručením omezeným. Zároveň si můžete prohlédnout srovnání se založením přes Piráty a zjistíte, že zakládat svépomocí se nevyplatí. Proto nemáme obavu návod publikovat veřejně.{/define}
+
+
+{block navbar}
+<div class="container">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+		</button>
+		<a n:href="Homepage:"><img src="{$basePath}/img/logo.png"></a>
+	</div>
+	<div id="navbar" class="navbar-collapse collapse">
+
+		<div class="btn-group navbar-right">
+            <ul class="nav navbar-nav">
+				<li><a n:href="Homepage:">domů</a></li>
+				<li><a href="#contact">kontakt</a></li>
+
+				<li>{if !$user->isLoggedIn()}
+					<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#login">
+						<span class="glyphicon glyphicon-user" aria-hidden="true" ></span> Přihlásit se 
+					</button>
+					{else}
+						<button type="button" class="btn btn-primary"  data-toggle="modal">
+							{if $user->getIdentity()->getImage()}<img height="30px" width="30px" src="{$user->getIdentity()->getImage()}">
+							{else}<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							{/if}
+							{$user->getIdentity()->getName()}
+						</button>
+						{/if}
+						</li>
+					</ul>
+				</div> 
+			</div><!--/.navbar-collapse -->
+		</div>
+		{/block}
+
+
+		{block content}
+
+		<div class="">
+			<div class="container text-center">
+				<div class="container text-center">
+					<div class="row">
+
+						<div class="panel">
+							<div class="panel-body">
+								<div class="container">
+									<div class="row">   
+									
+										<div class="col-md-offset-1 col-md-3 col-sm-offset-0 col-md-3 col-xs-offset-0 col-xs-12">
+											<div class="panel">
+												<div class="panel-heading">
+																										<h3 class="text-primary">1. Vyplňte online formulář</h3>
+												</div>
+												<div class="panel-body">
+
+													<table class="table  text-left">
+
+														<tr class="active">
+															<td>
+																<span class="glyphicon glyphicon-list-alt text-muted" aria-hidden="true"></span>  &nbsp;Je intuitivní, provede vás procesem zakládání.
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span class="glyphicon glyphicon-pencil text-muted" aria-hidden="true"></span>  &nbsp;Zadáte údaje nutné k založení firmy. 
+															</td>
+														</tr>
+														<tr class="active">
+															<td>
+																<span class="glyphicon glyphicon-briefcase text-muted" aria-hidden="true"></span>  &nbsp;Formulář vytvoří společnost na míru přesně dle vašich požadavků.
+															</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-4 col-md-4 col-xs-12">
+											<div class="panel">
+												<div class="panel-heading">
+													
+													<h3 class="text-primary">2. Podepište a odešlete dokumenty</h3>
+												</div>
+												<div class="panel-body">
+
+													<table class="table  text-left">
+
+														<tr class="active">
+															<td>
+																<span class="glyphicon glyphicon-print text-muted" aria-hidden="true"></span>  &nbsp;Formulář vygeneruje veškerou dokumentaci potřebnou k založení společnosti.
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span class="glyphicon glyphicon-usd text-muted" aria-hidden="true"></span>  &nbsp;V tomto kroku uhradíte poplatky pro založení firmy. 
+															</td>
+														</tr>
+														<tr class="active">
+															<td>
+																<span class="glyphicon glyphicon-home text-muted" aria-hidden="true"></span>  &nbsp;Po podpisu dokumentů již nikam nemusíte osobně <b>(a po změně zákona už nebudete muset ani nic tisknout)</b>.
+															</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-md-3 col-md-3 col-xs-12">
+											<div class="panel">
+												<div class="panel-heading">
+												
+													<h3 class="text-primary text-muted">3. Změny online jedině s Piráty</h3>
+												</div>
+												<div class="panel-body">
+
+													<table class="table  text-left">
+
+														<tr class="active">
+															<td>
+																<span class="glyphicon glyphicon-cloud text-muted" aria-hidden="true"></span>  &nbsp;Po založení by také mělo jít měnit údaje online.
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<span class="glyphicon glyphicon-cog text-muted" aria-hidden="true"></span>  &nbsp;Všechna administrativa jedním klikem.
+															</td>
+														</tr>
+														<tr class="active">
+															<td>
+																<span class="glyphicon glyphicon-heart text-muted" aria-hidden="true"></span>  &nbsp;<b>V další fázi půjde i změny dělat online a zbavíme vás byrokracie úplně. K tomu ale musíme porazit Andreje Babiše.</b> <br>
+															</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+
+
+									</div>
+								</div>
+
+							</div></div>
+
+						<div class="panel">
+							<div class="panel-body">
+								<div class="container">
+									<div class="row">   
+										<h2>
+											Změny v zakládání s.r.o. v roce 2016
+										</h2>
+										<br>
+										<div class="col-xs-12 col-sm-10 col-sm-offset-1 text-left">
+											<p>
+												Od roku 2014 lze založit firmu (údajně) snadněji. Základní kapitál už může být 1 Kč, ale stále musíte chodit do banky. Proč? Vždyť hodnota základního kapitálu stejně o ničem nevypovídá. Proč jste nuceni si otvírat účet? Banky jako soukromé subjekty navíc na rozdíl od státní správy nepřijímají elektronicky podepsané listiny, takže tam musíte pokaždé osobně.
+											</p>
+											
+											<p>
+												Proces založení firmy lze teoreticky stihnout za pouhých 5 dní, když vám všichni vyjdou vstříc. Najděte však notáře, který si na vás udělá okamžitě čas a vyjde vám absolutně vstříc. Takové spočítáte na prstech jedné ruky.
+											</p>
+											
+											<p>
+												EU požaduje, aby firmu šlo založit do 100 EUR. Ministr spravedlnosti za ANO Robert Pelikán proto prosadil paskvil, aby vyšel vstříc lobby, kdy “zjednodušený” (čtěte “osekaný a téměř nepoužitelný”) zápis s.r.o. vyjde levněji. Abychom obešli požadavek EU, nepočítáme však jako výdaje různé nezbytné poplatky, které podnikatelé při procesu založení stejně zaplatí (živnostenské oprávnění, další nezbytné stejnopisy notářského zápisu a další poplatky). Takže ve skutečnosti založení s.r.o. stejně stojí neúměrně víc, než by mělo.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						
+						<div class="panel">
+							<div class="panel-body">
+								<div class="container">
+									<div class="row">   
+										<h2>
+											Navrhované změny v roce 2018 podle Pirátů
+										</h2>
+										<br>
+										<div class="col-xs-12 col-sm-10 col-sm-offset-1 text-left">
+											<p>
+												Vyplníte formulář a ověříte totožnost - buď přes login do datové schránky, pomocí certifikátu, občanky s čipem nebo osobně na poště. To je vše! Už nebudete muset do banky (základní kapitál do 200 tisíc korun půjde složit až po vzniku společnosti) ani na živnostenský úřad, pokud má vaše společnost volnou živnost (data se zapíší automaticky, už nebudete muset říkat státu stejné věci dvakrát). Vlastně to bude vypadat skoro jako teď přes naši aplikaci, akorát nebudete nic tisknout a nebude to muset za vás vyběhávat člověk. A bude to levnější! Celé založení bude stát jen 500 korun a půjde zaplatit kartou, namísto 5-10 tisíc korun dnes.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="panel">
+							<div class="panel-body">
+								<div class="container">
+									<div class="row">   
+										<h2>
+											Založení s.r.o. přes Piráty</h2>
+										<br>
+										<div class="col-xs-12 col-sm-10 col-sm-offset-1 text-left">
+											<p>Toto je krok za krokem návod, jak založit firmu přes Piráty:</p>
+											<h3>1)	Vyplňte intuitivní online formulář</h3>
+											
+											<p>Vyplníte náležitosti firmy, formulář pak vygeneruje příslušné dokumenty. Náš software Vám během vyplňování poradí a také za Vás pohlídá, že Vám nic nechybí a že vše vyplňujete správně. Vše je koncipováno tak, aby proces zvládl svépomocí laik.</p>
+											<h3>2)	Podepište a odešlete vygenerované dokumenty</h3>
+											
+											<p>Máte hotovo, odtud až po zápis do OR to zařídíme.</p>
+
+								
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="panel">
+							<div class="panel-body">
+								<div class="container">
+									<div class="row">   
+										<h2>
+											Založení s.r.o. svépomocí</h2>
+										<br>
+										<div class="col-xs-12 col-sm-10 col-sm-offset-1 text-left">
+											<p>Toto je krok za krokem návod, jak založit stejnou s.r.o. konvenčním způsobem:</p>
+											
+											<h3>1)	Sjednejte si schůzku s notářem</h3>
+											<p>Jako první musí společníci sepsat společenskou smlouvu u notáře. Notář by Vám měl již po telefonu říci, co si máte vzít s sebou (především doklad totožnosti), popřípadě co si promyslet, zejména pak toto: předmět podnikání, sídlo, počet společníků, počet jednatelů a způsob jednání za společnost, výši základního kapitálu, rozdělení a typy podílů. Čekací doby na schůzku se pohybují v průměru okolo dvou týdnů (můžete mít štěstí a schůzku domluvit třeba již za 2 dny, avšak také za měsíc). </p>
+											
+											<br>
+											<p>Co s sebou: občanský průkaz  <br>
+											Časová náročnost: 30 minut hovor a komunikace mailem, 14 dní čekání <br>
+											Finanční náročnost: 0 Kč <br>
+											</p>
+											
+											<h3>2)	Dostavte se k notáři a vyhotovte notářský zápis </h3>
+											<p>K notáři musí dorazit všichni společníci a jednatelé, nedomluvíte-li se notářem na zastoupení formou plných mocí. Zjistěte si předem vše, co potřebujete vědět. Riziko je, že na místě nebudete vědět vše, na co se notář bude ptát nebo si budete chtít některé nově zjištěné aspekty ještě promyslet, což by znamenalo domluvit následnou schůzku, a tedy zdržení. Notář ideálně připraví návrh společenské smlouvy a pošle Vám ho emailem k nahlédnutí předem, aby k tomuto zdržení nedocházelo. </p>
+											<br>
+											
+											<p>Co s sebou: občanský průkaz<br>
+											Časová náročnost: 2 hodiny       <br>
+											Finanční náročnost: 4,000 Kč za notářský zápis + DPH<br>
+											
+											<h3>3)	Jednatel zajde na živnostenský úřad a zaregistrujte živnosti  </h3>
+											<p>Zaregistrujte živnosti, které společnost bude vykonávat. Hodláte-li provozovat řemeslné, koncesované nebo vázané živnosti, nezapomeňte s sebou vzít také odpovědnou osobu a dokumenty prokazující její kvalifikaci. Nezapomeňte také souhlas s umístěním sídla podepsaný úředně ověřeným podpisem majitele nemovitosti. Na zapsání volných živností má ŽÚ 5 dní. Někdy to jde rychleji, ale zejména ve větších městech zpravidla dříve než za 5 dní živnost zapsána nebude. A hlavně, zjistěte si, kdy má ŽÚ úřední dny, abyste nechodili zbytečně. </p>
+											<br>
+
+											<p>Co s sebou: notářský zápis, souhlas s umístěním sídla, popř. odpovědná osoba    <br>
+											Časová náročnost: 1-2 hodiny na úřadě, 5 dní čekání           <br>
+											Finanční náročnost: 1,000 Kč za správní poplatek (DPH zde není)    <br>
+											</p>
+											
+											<h3>4)	Jednatel zajde na živnostenský úřad a vyzvedne živnostenské oprávnění. </h3>
+											<p>Až ŽÚ vydá živnostenské oprávnění (zpravidla za 5 dní), musíte na ŽÚ opět dojít a vyzvednout jej. Budete ho potřebovat později. I když úřad oprávnění vydá rychle, přijít opět můžete až v úřední den. </p>
+											<br>
+											
+											<p>Co s sebou: občanský průkaz                                          <br>
+											Časová náročnost: 20 minut na úřadě, není-li fronta    <br>
+											Finanční náročnost: 0 Kč                                  <br>
+											</p>
+											
+											<h3>5)	Správce vkladu zajde do banky a vytvoří účet pro složení základního kapitálu </h3>
+											<p>Správce vkladu je určen ve společenské smlouvě, obvykle je jím jeden ze společníků.</p>
+											<br>
+											
+											<p>Co s sebou: notářský zápis  <br>
+											Časová náročnost: když si domluvíte schůzku předem, v bance strávíte zhruba 30 minut <br>
+											Finanční náročnost: obvykle nic, některé banky však zřízení tohoto účtu mohou zpoplatňovat   <br>
+											</p>
+											
+											<h3>6)	Složte základní kapitál </h3>
+											Co s sebou: notářský zápis, souhlas s umístěním sídla, popř. odpovědná osoba
+											<br>
+											
+											<p>Co s sebou: občanský průkaz                           <br>
+											Časová náročnost: složíte-li jej hned na místě v bance, máte hotovo do 20 minut<br>
+											Finanční náročnost: výše základního kapitálu         <br>
+											</p>
+											
+											<h3>7)	Vyžádejte si v bance potvrzení o splacení kapitálu</h3>
+											<p>Jakmile složíte kapitál, zajde správce vkladu do banky a požádá o potvrzení o složení kapitálu. Pokud už máte kapitál složený, vydá banka potvrzení ihned. </p>
+											<br>
+											
+											<p>Co s sebou: občanský průkaz                  <br>
+											Časová náročnost: 10 minut  <br>
+											Finanční náročnost: 0 Kč      <br>
+											</p>
+											
+											<h3>8)	Sjednejte si schůzku s notářem</h3>
+											<p>Bravo, máte vše! Nyní již stačí jen firmu zapsat do Obchodního rejstříku a proces založení je dokončen. Zápis probíhá opět u notáře. </p>
+											<br>
+											
+											<p>Co s sebou: občanský průkaz                      <br>
+											Časová náročnost: 14 dní<br>
+											Finanční náročnost: 0 Kč          <br>
+											</p>
+											
+											<h3>9)	Notář zapíše firmu do Obchodního rejstříku</h3>
+											<p>S notářem vyřídíte zbylé formality. Notář pak nahraje potřebné dokumenty do Obchodního rejstříku. Firma je připravena. Nezapomeňte ještě do dvou týdnů zajít na finanční úřad a registrovat firmu k dani z příjmu. </p>
+											<br>
+											
+											<p>Co s sebou: notářský zápis, výpis z živnostenského rejstříku, potvrzení o splacení základního kapitálu, prohlášení správce vkladu<br>
+											Časová náročnost: 1 hodina <br>
+											Finanční náročnost: 2,700 Kč soudní poplatek za zápis do Obchodního rejstříku (DPH se neúčtuje), 300Kč bez DPH notáři za zápis do OR a osvědčovací notářský zápis za 1000Kč bez DPH<br>
+											</p>
+											<br>
+											<p>Rychlost založení: reálně alespoň tři týdny<br>
+											Náklady: teoreticky 9,000 Kč bez DPH (10,113 Kč vč. DPH)<br>
+											Čistý čas celkem: 6 hodin a 30 minut čistého času, plus doprava k notáři (2x), do banky (1-2x), na ŽÚ (2x) a čas na získávání informací<br>
+											</p>
+											<br>
+											<br>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>  
+
+		<!-- /container -->
+		{/block}
+
+		{block scripts}
+		{include parent}
+		<script type="text/javascript" n:syntax="double">
+			Nette.validators.dateValidator = function (elem, args, val) {
+				return val % 11 === 0;
+			};
+		</script>
+		<script type="text/javascript" n:syntax="double">
+			$(function () {
+				$.nette.init();
+				$.nette.ext('spinner');
+			});
+		</script>
+		{/block}
+
+		{block head}
+		{/block}
+
+		{block forms}
+		{/block}

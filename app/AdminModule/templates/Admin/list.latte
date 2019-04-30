@@ -1,0 +1,28 @@
+{block content}
+<div class="col-sm-9">
+    {ifset $id}
+        <h3>{$id}</h3> <br>
+        <table class="table">
+            <tr><td><i>id</i></td><td><i>název</i></td><td><i>datum editace</i></td><td><i>smazat</i></td><td><i>edit</i></td></tr>
+            {foreach $list as $item}
+                <tr>
+                    <td>{$item->id}</td>
+                    <td>{$item->name}</td>
+                    <td>{$item->date|date:'%d.%m.%Y %H:%M'}</td>                    
+                    <td><span class="glyphicon glyphicon-remove"></span> <a n:href="Admin:delete $type, $item->id">smazat</a></td>
+                    <td><span class="glyphicon glyphicon-pencil"></span> <a n:href="Admin:edit $type, $item->id">editovat</a></td></tr>
+            {/foreach}
+        </table>
+    {/ifset}
+</div>  
+{/block}
+
+{block scripts}
+{include parent}
+{/block}
+
+{block head}
+{/block}
+
+{block forms}
+{/block}

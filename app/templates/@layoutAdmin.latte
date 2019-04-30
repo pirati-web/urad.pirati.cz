@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="cs">  
+  <head>    
+    <meta charset="utf-8">    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->    
+    <meta name="description" content="">    
+    <meta name="author" content="">    
+    <link rel="icon" href="{$basePath}/img/favicon-admin.ico">   
+    <title>1. Pirátská - Administrace
+    </title>    
+    <!-- Bootstrap core CSS -->  
+    <link href="{$basePath}/css/bootstrap.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="{$basePath}/css/bootstrap-select.css">   
+    <script src="{$basePath}/js/jquery.min.js"></script>      
+    <script src="{$basePath}/js/bootstrap.min.js"></script>  
+    <script src="{$basePath}/js/bootstrap-select.js"></script>   
+    <script type="text/javascript" src="{$basePath}/js/jquery.YAPSM.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->     
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->   
+  </head>  
+  <body class="admin">   
+    <nav class="navbar navbar-fixed-top">  
+    
+        
+      <div class="container-fluid">        
+        <div class="navbar-header">          
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">            
+            <span class="sr-only">Toggle navigation
+            </span>            
+            <span class="icon-bar">
+            </span>            
+            <span class="icon-bar">
+            </span>            
+            <span class="icon-bar">
+            </span>          
+          </button>          
+          <a n:href="Admin:">
+            <img src="{$basePath}/img/logo-admin.png" ></a>        
+        </div>        
+        <div id="navbar" class="navbar-collapse collapse">
+        
+                               
+          <div class="btn-group navbar-right">            
+            <ul class="nav navbar-nav">            
+             
+              <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {$user->getIdentity()->getData()["name"]} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            {*<li><a n:href="Sign:profile"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span> účet</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true" ></span> osobní údaje </a></li>
+            <li role="separator" class="divider"></li>*}
+            <li><a n:href="Sign:out"><span class="glyphicon glyphicon-share-alt" aria-hidden="true" ></span> odhlásit</a></li>
+          </ul>
+        </li>           
+              <li>
+              <a href="#">Nápověda</a>
+              </li>                        
+              <li>
+              <a n:href="Sign:out" class="btn btn-primary"  >    
+                <span class="glyphicon glyphicon-share-alt" aria-hidden="true" >
+                </span> Odhlásit se    
+              </a>  
+              </li>  
+            </ul> 
+            
+                                    
+          </div>          
+        </div>
+        <!--/.navbar-collapse -->   
+           
+      </div>    
+    </nav>    
+    <div class="container-fluid"> 
+        {if $flashes}
+        <div class="row">   
+            <div class="col-md-12">          
+            <div class='clear'>&nbsp;</div>
+                <div n:foreach="$flashes as $flash" class="alert alert-{$flash->type} flash {$flash->type}"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> {$flash->message}</div> 
+            <div class='clear'>&nbsp;</div>
+        </div> 
+        </div>
+        {/if}
+      <div class="row">        
+        <div class="col-sm-3 col-md-2 sidebar">          
+          
+          <ul class="nav nav-sidebar">          
+            <li>
+            {*<select id="basic" class="selectpicker show-tick form-control">
+                {foreach $companies as $company}
+                     <option>{$company->name}</option>
+                {/foreach}
+          {*<option selected="selected">První dřevařská Znojmo s.r.o.</option>
+          <option>Chemospol s.r.o.</option>}
+                    
+        </select>*}
+            </li>
+            <li>
+            <br>
+            </li>            
+            <li>
+            <a n:href="Admin:">
+              <span class="glyphicon glyphicon-home active" aria-hidden="true" >
+              </span> &nbsp;Domů</a>
+            </li>            
+            <li class="disabled">
+            {*<a href="#">
+              <span class="glyphicon glyphicon-wrench" aria-hidden="true" >
+              </span> &nbsp;Nastavení společnosti</a>
+            </li>            *}
+            {*<li>
+            <a href="#">
+              <span class="glyphicon glyphicon-user" aria-hidden="true" >
+              </span> &nbsp;Zaměstnanci</a>
+            </li>
+            <li>
+            <a href="#">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true" >
+              </span> &nbsp;Regulace</a>
+            </li>            
+            <li class="disabled">
+            <a href="#">
+              <span class="glyphicon glyphicon-list-alt" aria-hidden="true" >
+              </span> &nbsp;Generátor faktur</a>
+            </li> 
+            <li>
+            <a href="#">
+              <span class="glyphicon glyphicon-eur" aria-hidden="true" >
+              </span> &nbsp;Daně</a>
+            </li>            
+            <li>
+            <a href="#">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true" >
+              </span> &nbsp;Založit novou společnost</a>
+            </li>
+            <li class="divider"><br></li>
+            <li>
+            <a href="#">
+              <span class="glyphicon glyphicon-fire" aria-hidden="true" >
+              </span> &nbsp;Další funkce</a>
+            </li>       *}   
+          </ul>                  
+        </div>        
+        <div class="col-sm-9 col-md-10 main">          
+                    
+          <div class="col-sm-12 col-md-8 ">     
+              <div class="panel"  >
+<div class="panel-body">    
+                  <h3>Pirátská administrace je nyní ve verzi beta. Tato část webu není zatím k dispozici. Online administraci spustíme již brzy!</h3>
+                <br>   
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-6 "> 
+                    </div>
+                  </div>
+            </div>
+</div>
+            {*include content*}   
+          </div>
+          
+          <div class="col-sm-12 col-md-4 ">          
+            <div class="panel"> 
+            <div class="panel-heading">
+    <span class="glyphicon glyphicon-send" aria-hidden="true" >
+              </span> &nbsp;Aktuální informace
+  </div>   
+              <div class="panel-body">
+              {*<div class="alert alert-warning" role="alert"><b>Upozornění:</b> změna prováděcí vyhlášky <a href="">více</a></div>*}
+                {foreach $news as $n}
+                <div class="alert alert-warning">             
+                    <h4>{$n->date|date:'n.d.Y'} - {$n->name}</h4>
+                    <p>{$n->text|noescape}</p>        
+                </div>  
+                {/foreach}
+              </div>
+            </div>    
+          </div>        
+        </div>      
+      </div>    
+    </div>    
+    <!-- Bootstrap core JavaScript
+        ================================================== -->    
+    <!-- Placed at the end of the document so the pages load faster -->    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>    
+<script src="../../dist/js/bootstrap.min.js"></script>    
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->    
+<script src="../../assets/js/vendor/holder.min.js"></script>    
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->    
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>  
+  </body>
+</html>

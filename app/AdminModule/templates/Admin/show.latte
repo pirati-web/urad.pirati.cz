@@ -1,0 +1,183 @@
+{block content}
+    <div class="panel"> 
+              <div class="panel-body">
+               {if $company}
+                  <h2>{$company->getName()}</h2>
+                <br>   
+
+                <br>  
+                 <h3>Dokumenty</h3>
+                <br>  
+                  <div class="row">	
+                        <div class="col-xs-12 col-sm-12"> 
+                                <table class="table table-striped">
+                                    <tr><td><strong>Dokument</strong></td>
+                                        <td><strong>Typ</strong></td>
+                                        <td><strong>Odkaz</strong></td>                                        
+                                        {foreach $docs as $d}
+                                        <tr class="company-info">
+                                            <td><span class="cname">{$d->name}</span></td>
+                                            <td><span class="cname">{$docstype[$d->doc_type]}</span></td>
+                                            <td>
+                                                <a n:href="getDoc! $d->filename,$d->name" target="_blank">
+                                                <span class="glyphicon glyphicon-download-alt" aria-hidden="true">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {/foreach}
+                                </table>
+                       </div>
+				   </div> 
+                <br>  
+                 <h3>Status zakládání</h3>
+                <br>  
+                 <div class="row">
+                <div class="col-xs-12 col-sm-12 ">       
+                <ul style="list-style-type: none;">
+                     {if $progress}                        
+                        {foreach $progress_names as $progress_step}
+                        <li>
+                            {if $progress_step->id <= $progress->progress_id}
+                                <div class="checkbox">
+					                <label>
+                                        <input class="type-chkb progress" type="checkbox" data="{$progress_step->id}" checked="checked" disabled>
+                                    {$progress_step->name}</label></br>
+				                </div>
+                            {else}
+                                <div class="checkbox">
+					                <label><input class="type-chkb progress" type="checkbox" data="{$progress_step->id}" >{$progress_step->name} </label>
+				                </div>
+                            {/if}
+                        </li>
+                        {/foreach}
+                     {/if}
+                     {if $progress->progress_id < 9}
+                        {control nextStepForm}
+                     {/if}
+                 </ul>   
+              </div>            
+              </div>
+                
+                <br>  
+                 <h3>Sídlo</h3>
+                <br>  
+                 <div class="row">
+                <div class="col-xs-12 col-sm-12 "> 
+                           
+                 <ul>
+                     {if $company->getSeat()->getStreetNumber()}
+                        <li>{$company->getSeat()->getStreet()} {$company->getSeat()->getStreetNumber()}</li>
+                        <li>{$company->getSeat()->getZipCode()} {$company->getSeat()->getCity()}</li>
+                     {else}
+                        <li>{$company->getSeat()->getStreet()}</li>    
+                     {/if}
+                 </ul>
+              </div>
+              </div>
+              
+              <h3>Základní kapitál</h3>
+                <br>  
+                <div class="row">
+                    
+                <div class="col-xs-12 col-sm-6 "> 
+                    {$company->getCapital()} Kč
+                </div>
+              </div>
+              
+              <h3>Společníci</h3>
+                <br>  
+                 <div class="row">
+                <div class="col-xs-12 col-sm-6 "> 
+                           
+                 <ul>
+                    {foreach $company->getPersons() as $s}
+                        <li><a n:href="Admin:showUser $s->getDbId()">{$s->getFullName()}, {if $s->getDate()}{$s->getDate()|date:'j.n.Y'}{/if}</a></li>
+                        <ul>
+                            <li>podíl v procentech: {$company->getShares()[$iterator->counter-1]*100} %</li>
+                            <li>podíl v korunách: {$company->getShares()[$iterator->counter-1]*$company->getCapital()} Kč</li>
+                        </ul>
+                    {/foreach}
+                 </ul>                                          
+              </div>
+              </div>                 
+                 
+              <h3>Jednatelé</h3>
+                <br>  
+                 <div class="row">
+                <div class="col-xs-12 col-sm-6 "> 
+                 <ul>
+                     <li>{$company->getActions()["name"]}
+                    <ul>
+                    {foreach $company->getActingPersons() as $s}
+                        <li><a n:href="Admin:showUser $s->getDbId()">{$s->getFullName()}, {if $s->getDate()}{$s->getDate()|date:'j.n.Y'}{/if}</a></li>                       
+                    {/foreach}
+                    </ul>  
+                    </li>
+                 </ul>
+                         
+              </div>
+              </div>
+                    
+              <h3>Banka</h3>
+                <br>  
+                <div class="row">
+                    
+                <div class="col-xs-12 col-sm-6 "> 
+                    <ul>
+                        <li>{$company->getBank() ["name"]}</li>
+                    </ul>
+                </div>
+              </div>     
+                    
+              {if $company->getUser()}
+              <h2>Uživatel</h2>
+                <br>  
+                 <div class="row">
+                <div class="col-xs-12 col-sm-6 "> 
+                 <ul>
+                    <li><a n:href="Admin:showUser $company->getUser()->getDbId()">{$company->getUser()->getFullName()}</a></li> 
+                 </ul>                           
+              </div>
+              </div>
+              {/if}              
+                 {else}
+                  <h2>Je nám líto...</h2>
+                    <br>   
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 "> 
+                        ale požadovaná společnost neexistuje nebo nemáte právo ji zobrazit.
+                        </div>
+                    </div>
+                {/if}
+              </div>
+    </div> 
+
+<script>
+$(".progress").prop("onclick", null);
+$(".progress").on('click', function(){
+        progress_id = $(this).attr('data');
+        console.log(progress_id);
+        enable = $(".progress").filter(value => value < (progress_id-1))
+        disable = $(".progress").filter(value => value >= progress_id)
+        enable.prop( "checked", true );
+        disable.prop( "checked", false );
+        last_checked = Math.max.apply(null, $(".progress:checked").map(function(){ return parseInt($(this).attr('data'))}).toArray())
+        $("[name='pId']").val(last_checked)
+    }
+)
+
+$("#frm-nextStepForm").on('submit',function (e) {
+    return confirm("Opravdu chcete potvrdit kroky?")    
+});
+</script>
+{/block}
+
+{block scripts}
+{include parent}
+{/block}
+
+{block head}
+{/block}
+
+{block forms}
+{/block}

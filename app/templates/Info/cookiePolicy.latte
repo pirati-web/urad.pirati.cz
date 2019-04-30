@@ -1,0 +1,171 @@
+{define title}Cookie policy{/define}
+
+
+{* This is the welcome page, you can delete it *}
+{block navbar}
+<div class="container">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+		</button>
+		<a n:href="Homepage:"><img src="{$basePath}/img/logo.png"></a>
+	</div>
+	<div id="navbar" class="navbar-collapse collapse">
+
+		<div class="btn-group navbar-right">
+            <ul class="nav navbar-nav">
+				<li><a n:href="Homepage:">domů</a></li>
+				<li><a href="#contact">kontakt</a></li>
+
+				<li>{if !$user->isLoggedIn()}
+					<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#login">
+						<span class="glyphicon glyphicon-user" aria-hidden="true" ></span> Přihlásit se 
+					</button>
+					{else}
+						<button type="button" class="btn btn-primary"  data-toggle="modal">
+							{if $user->getIdentity()->getImage()}<img height="30px" width="30px" src="{$user->getIdentity()->getImage()}">
+							{else}<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							{/if}
+							{$user->getIdentity()->getName()}
+						</button>
+						{/if}
+						</li>
+					</ul>
+				</div> 
+			</div><!--/.navbar-collapse -->
+		</div>
+		{/block}
+
+
+		{block content}
+
+		<!-- Main jumbotron for a primary marketing message or call to action -->
+		<div class="cookiesContent">
+			<div class="container">
+
+				
+					<div class="row">
+						<div class="panel">
+							<div class="panel-body">
+								<div class="container">
+									<div class="row">  
+										<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+
+
+											<h2>Co jsou „cookies“?</h2>
+											<p>„Cookies“ jsou malé textové soubory, které jsou uloženy v prohlížeči, nebo na pevném disku uživatelova počítače. Pokud je webová stránka navštívena znovu, „cookies“ povolí identifikaci zařízení uživatele a přizpůsobí stránku jeho preferencím, tedy např. zobrazí data, která uživatel dříve uložil.</p>
+											
+											<h2>Proč používáme „cookies“?</h2>
+											
+											<p>„Cookies“ jsou na urad.pirati.cz používány pro následující účely:</p>
+											<ul>
+												<li>Povolují nastavit vlastnosti a služby na stránce.</li>
+												<li>Poskytují informaci, že uživatel je on-line, takže webová stránka může zobrazit informace a vlastnosti již dříve uživatelem zadané.</li>
+												<li>Analýzy a studie chování uživatele (např. demografické funkce Google Analytics) – umožňují nahlédnout do preferencí uživatele a prostřednictvím jejich analýzy je možné zlepšovat a rozvíjet produkty a služby. Informace jsou sbírány anonymně, bez osobních dat jednotlivých uživatelů.</li>
+											</ul>
+											
+											<h2>Jak mohu odstranit nebo zablokovat „cookies“?</h2>
+											<p>Dle zákona č. 127/2005 Sb. o elektronických komunikacích s účinností od 1. ledna 2012 má uživatel právo se rozhodnout, zda povolí „cookies“ na svém zařízení, a to prostřednictvím nastavení svého prohlížeče. Zákazník, který nezměnil nastavení nainstalovaného programového vybavení ve svém počítači, souhlasí s ukládáním „cookies“ ve svém zařízení. Google umožňuje instalovat do běžných prohlížečů addon na vypnutí cookies, je k dispozici zde. Pod textem je také uvedeno několik odkazů, které vám mohou pomoci při konfiguraci „cookies“ v nejčastěji používaných prohlížečích:</p>
+											<ul>
+												<li><a href="https://support.google.com/chrome/answer/95647?hl=cs">Google Chrome</a></li>
+												<li><a href="https://support.microsoft.com/kb/278835/cs">Internet Explorer</a></li>
+												<li><a href="https://support.mozilla.org/cs/kb/cookies-information-websites-store-on-your-computer">Mozilla Firefox</a></li>
+												<li><a href="https://translate.google.com/translate?sl=en&tl=cs&u=http%3A%2F%2Fsafari.helpmax.net%2Fen%2Fprivacy-and-security%2Fmanaging-cookies%2F">Safari</a></li>
+												<li><a href="http://help.opera.com/Linux/9.22/cs/cookies.html">Opera</a></li>
+											</ul>
+											
+											<p>Provozovatelem webu <a href="http://urad.pirati.cz">urad.pirati.cz</a> je společnost 1. Pirátská s.r.o., IČ 06194559, DIČ CZ06194559, Řehořova 943/19, Žižkov, 130 00 Praha 3, poskytující služby pod značkou 1. Pirátská. Firma je registrována u Městského soudu v Praze pod spisovou značkou C 277877 u Úřadu pro ochranu osobních údajů.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div></div>
+
+				</div>
+
+		</div>
+
+
+		<!-- /container -->
+
+		<!-- Modal -->
+		{*<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h3 class="modal-title" id="myModalLabel">Příhlášení do administrace</h3>
+					</div>
+					<div class="modal-body">
+						<div class="row"><div class="col-md-6">
+
+								<form>
+									<fieldset>
+										<legend>Firma POINT účet</legend>        
+
+										<div class="form-group">
+											<label for="exampleInputEmail1">Přihlašovací jméno</label>
+											<input type="email" class="form-control" id="" placeholder="email">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">Heslo</label>
+											<input type="password" class="form-control" id="" placeholder="heslo">
+										</div>
+
+										{*<div class="checkbox">
+										  <label>
+											<input type="checkbox"> Souhlasím s podmínkami
+										  </label>
+										</div>
+										<button type="submit" class="btn btn-warning">Přihlásit</button>
+									</fieldset>
+								</form>
+
+
+
+							</div>
+							<div class="col-md-6">
+								<form>
+									<fieldset>
+										<legend>Jiný účet</legend>        
+
+										<a href="{plink OPAuth:facebook}" class="btn btn-social btn-facebook"><i class="fa fa-facebook"></i>Přihlásit přes Facebook</a>
+										<br><br>
+										<a href="{plink OPAuth:google}" class="btn btn-social btn-google"><i class="fa fa-google"></i>Přihlásit přes Google+</a>
+									</fieldset>
+								</form>
+
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>*}
+
+		{/block}
+
+		{block scripts}
+		{include parent}
+		<script type="text/javascript" n:syntax="double">
+			Nette.validators.dateValidator = function (elem, args, val) {
+				return val % 11 === 0;
+			};
+		</script>
+		<script type="text/javascript" n:syntax="double">
+			$(function () {
+				$.nette.init();
+				$.nette.ext('spinner');
+			});
+		</script>
+		{/block}
+
+		{block head}
+		{/block}
+
+		{block forms}
+		{/block}

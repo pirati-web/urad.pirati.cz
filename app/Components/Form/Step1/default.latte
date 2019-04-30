@@ -1,0 +1,81 @@
+{form form role=>"form",class=>"form-horizontal ajax"}
+	<style>
+		.my-group .form-control{
+			width:50%;
+		}
+	</style>
+	<div class="form-group">
+		<div class="col-md-12">
+			<div class="input-group my-group">
+				<input type="text" class="form-control input-lg" placeholder="název společnosti*" n:name="company" id="frm-userForm-company" value="">
+				<select class="selectpicker form-control input-lg" n:name="name_suf" data-live-search="true" title="Vyberte povinnou součást jména ...">
+					{foreach $form[name_suf]->items as $key => $label}
+						<option n:name="name_suf:$key"> {$label}</option>
+					{/foreach}
+				</select>
+				{*<span class="input-group-btn">
+					<button id="back" class="btn btn-warning btn-lg" type="submit" n:name="search" value="hledat" formnovalidate><span class="numglyph glyphicon glyphicon-search" aria-hidden="true"></span> prověřit</button>
+				</span>*}
+			</div>
+		</div>
+	</div>
+	<br><br>
+	{snippet new_name}
+		{ifset $companyName}
+			{if !$companyName}
+				<div class="row">
+					<h3>Gratulujeme, nenašli jsme existující společnosti s podobným názvem</h3>
+				</div>
+			{else}
+				<div class="row">
+					<h3>Existující společnosti s podobným názvem <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Upozornění" data-content="Soud může odmítnout registraci firmy, pokud je název zaměnitelný s již existující společností nebo pokud působí klamavě. Ujistěte se, že Váš název není zaměnitelný a nepůsobí klamavě."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></h3>
+					<table class="table table-striped">
+						<tr><td><strong>Název společnosti</strong></td>
+							<td><strong>IČO</strong></td>
+							<td><strong>adresa</strong></td></tr>
+							{foreach $companyName as $c}
+							<tr class="company-info">
+								<td><span class="cname">{$c["name"]}</span></td>
+								<td><span class="ico" >{$c["ico"]}</span></td>
+								<td>{$c["seat"]}</td>
+							</tr>
+						{/foreach}
+					</table>
+				</div>                                
+			{/if}
+			<div class="row">
+				<br>                                
+				<div class="form-group"> 
+					<div class="col-sm-12">Prohlašuji, že název této firmy není klamavý ani zaměnitelný s již existující společností a chci pokračovat k dalšímu kroku. Přestože soud odmítne registraci pouze ve vzácných případech, beru na vědomí, že 1. Pirátská s.r.o nezodpovídá za škody, které mi vzniknou, pokud soud odmítne registraci na základě nevhodného názvu.
+					</div>                                 
+					<br>
+					<div class="col-sm-12"> <br>
+						<ul class="list-group">
+							<li class="list-group-item"><div class="checkbox">
+									<label><input id="responsibility" type="checkbox">Souhlasím</label>
+								</div></li>
+						</ul>                                       
+						{*<label><input id="responsibility" type="checkbox" >Souhlasím</label>*}
+					</div>
+				</div>
+			</div>
+		{/ifset}                                    
+	{/snippet} 
+	<div class="row">
+		<hr>
+		<div class="form-group"> 
+			<div class="col-sm-6">
+			</div>
+			<div class="col-sm-6 text-right">
+				<button id="checkbutton" class="btn btn-warning btn-lg" type="submit" n:name="search" value="další">Další krok <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>
+				<button style="display:none" id="submitbutton" class="btn btn-warning btn-lg" type="submit" n:name="next" value="další">Další krok <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>
+			</div>
+		</div>
+		<!-- Save Button -->
+		{*<div class="col-sm-12 text-right">
+			<br><a href="" data-toggle="modal" data-target="#login">
+				<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" ></span> Uložit a pokračovat jindy 
+			</a>
+		</div>*}
+	</div>
+{/form}

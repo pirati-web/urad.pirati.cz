@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<style type="text/css">
+		@page { size: 21cm 29.7cm; margin: 2.5cm }
+		p { margin-bottom: 0.25cm; direction: ltr; line-height: 120%; text-align: left; orphans: 2; widows: 2 }
+	</style>
+</head>
+<body lang="cs-CZ" dir="ltr">
+<p align="center" style="margin-bottom: 0cm; line-height: 108%"><a name="_GoBack"></a>
+{var more = count($company->getPersons())>1}
+{var moreActingPersons = count($company->getActingPersons())>1}
+<span><font face="Times New Roman, serif"><font size="5" style="font-size: 18pt"><b>{if !$more}ZAKLADATELSKÁ
+LISTINA{else}SPOLEČENSKÁ SMLOUVA{/if}<!-- Zakomponovat:
+ Možnosti (1 jednatel, x jednatelů…, samostatně, společně)
+ Asisto do smlouvy (správce vkladu, seznam společníků)
+ Oznámení valné hromady --></b></font></font></span></p>
+<p align="center" style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{$company->getName()}</font></font></p>
+<p align="center" style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">
+Práva a povinnosti vyplývající z této smlouvy se řídí příslušnými ustanoveními zák. č. 89/2012 Sb., 
+občanský zákoník (dále jen „občanský zákoník“) a zákona č. 90/2012 Sb., 
+zákon o obchodních společnostech a družstvech (dále jen „zákon o obchodních korporacích“). 
+</font></font></p>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Společníci</font></font></p>
+</ol>
+<ol>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Společník{if $more}y{else}em{/if}</font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">
+	obchodní společnosti {if $more}jsou{else}je{/if}</font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">:</font></font></p>
+</ol>
+{foreach $company->getPersons() as $p}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$p->getFullName()}
+                {if $p->getSeat()->getFullAddress()}, {$p->getSeat()->getFullAddress()}{/if}{if $p->getDate()}, {$p->getPersonId()}{else}{if $p->getIco()}, IČ {$p->getIco()}{/if}{/if}</font></font></p>
+    {/foreach}
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="2">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Název
+	a sídlo obchodní korporace</font></font></p>
+</ol>
+<ol>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Název
+	korporace zní: </font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$company->getName()}</font></font></p>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Sídlo
+	korporace je v obci: </font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$company->getSeat()->getCity()}</font></font></p>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="3">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Předmět
+	podnikání</font></font></p>
+</ol>
+<ol>
+    {foreach $company->getNonFreeAreas() as $area}
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$area}</font></font></p>
+        {/foreach}
+    <li/>
+    <p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Výroba, obchod a služby neuvedené v přílohách 1 až 3 živnostenského zákona</font></font></p>   
+	<li/>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="4">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Doba
+	trvání</font></font></p>
+</ol>
+<ol>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Společnost
+	je založena na dobu neurčitou.</font></font></p>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="5">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Základní
+	kapitál</font></font></p>
+</ol>
+<ol>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Základní
+	kapitál společnosti činí: </font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{number_format($company->getCapital(),0,",",".")},-
+	Kč</font></font></p>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="6">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Vklady
+	a podíly společníků</font></font></p>
+</ol>
+<ol>
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Vklady
+	společníků společnosti činí:</font></font></p>
+</ol>
+{foreach $company->getPersons() as $p}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%">
+<font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$p->getFullName()}
+                {if $p->getSeat()->getFullAddress()}, {$p->getSeat()->getFullAddress()}{/if}{if $p->getDate()}, {$p->getBirthDate()}{else}{if $p->getIco()}, IČ {$p->getIco()}{/if}{/if}</font></font></p>
+
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%">
+<font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">vklad
+ve výši {number_format($company->getCapital()*$company->getShares()[$iterator->counter-1],0,",",".")},- Kč</font></font></p>
+{/foreach}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%">
+<br/>
+
+</p>
+<ol start="2">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Společníci
+	mají pouze základní podíl. Se základním podílem nejsou
+	spojena žádná zvláštní práva a povinnosti.</font></font></p>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol start="3">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Výše
+	podílů jednotlivých společníků:</font></font></p>
+</ol>
+{foreach $company->getPersons() as $p}
+<p style="margin-left: 1.27cm; margin-bottom: 0.28cm; line-height: 108%">
+<font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$p->getFullName()}
+                {if $p->getSeat()->getFullAddress()}, {$p->getSeat()->getFullAddress()}{/if}{if $p->getDate()}, {$p->getBirthDate()}{else}{if $p->getIco()}, IČ {$p->getIco()}{/if}{/if}</font></font></p>
+<p style="margin-left: 1.27cm; margin-bottom: 0.28cm; line-height: 108%">
+<font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">na
+jeho vklad ve výši </font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{number_format($company->getCapital()*$company->getShares()[$iterator->counter-1],0,",",".")},-Kč</font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">
+připadá základní podíl označený </font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">č. {$iterator->counter}</font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">
+ve výši </font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$company->getShares()[$iterator->counter-1]*100}%</font></font></p>
+{/foreach}
+<p style="margin-left: 1.27cm; margin-bottom: 0.28cm; line-height: 108%">
+<br/>
+<br/>
+</p>
+<ol type="I" start="7">
+
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Jednatelé,
+	počet jednatelů a způsob jednání za společnost</font></font></p>
+</ol>
+
+<ol start="1">
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Statutárním
+	orgánem společnosti </font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{if $moreActingPersons}jsou{else}je{/if}
+	{count($company->getActingPersons())} jednatel{if $moreActingPersons}{if count($company->getActingPersons())>4}ů{else}é{/if}{/if}<!-- jsou dva jednatelé. / etc. --></span></font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">.</font></font></p>
+</ol>
+<ol start="2">
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{if $company->getActions()["desc"]}{$company->getActions()["desc"]|firstUpper}{else}{$company->getActions()["name"]|firstUpper}{/if}.</font></font></p>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 108%"><br/>
+
+</p>
+<ol type="I" start="8">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Závěrečná
+	ustanovení</font></font></p>
+</ol>
+<ol start="1">
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Vkladová
+	povinnost zakladatelů:</font></font></p>
+</ol>
+{foreach $company->getPersons() as $p}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 100%">
+<font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$p->getFullName()}
+                {if $p->getSeat()->getFullAddress()}, {$p->getSeat()->getFullAddress()}{/if}{if $p->getDate()}, {$p->getBirthDate()}{else}{if $p->getIco()}, IČ {$p->getIco()}{/if}{/if} má vkladovou povinnost ve výši {number_format($company->getCapital()*$company->getShares()[$iterator->counter-1],0,",",".")},-
+Kč</font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">,
+jenž se zavazuje splnit před podáním návrhu na zápis místně
+příslušnému rejstříkovému soudu, nejpozději však do 4 týdnů
+ode dne uzavření této společenské smlouvy.</font></font></p>
+{/foreach}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 100%">
+<br/>
+
+</p>
+<ol start="2">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Správcem
+	vkladů se určuje Zakladači s.r.o., IČ 05622701.</font></font></p>
+</ol>
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 100%">
+<br/>
+
+</p>
+<ol start="3">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Prvními
+	jednateli společnosti byli zakladateli určeni:</font></font></p>
+</ol>
+{foreach $company->getActingPersons() as $p}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%">
+<br/>
+
+</p>
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%">
+<font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$p->getFullName()}
+                {if $p->getSeat()->getFullAddress()}, {$p->getSeat()->getFullAddress()}{/if}{if $p->getDate()}, {$p->getBirthDate()}{else}{if $p->getIco()}, IČ {$p->getIco()}{/if}{/if}</font></font></p>
+{/foreach}
+<p style="margin-left: 1.27cm; margin-bottom: 0cm; line-height: 108%">
+<br/>
+
+</p>
+<ol start="4">
+	<li/>
+<p style="margin-bottom: 0cm; line-height: 108%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Zakladatelé
+	souhlasí se zápisem svých údajů do obchodního rejstříku jako
+	společníci této společnosti.</font></font></p>
+</ol>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+</body>
+</html>

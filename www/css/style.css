@@ -1,0 +1,94 @@
+.offer h3 { 
+	margin-top: 5px;
+}
+
+.offer ul { 
+	padding-left: 25px;
+}
+
+.offer .nav-tabs { 
+	padding-left: 0px;
+}
+
+.nav-tabs a.active{ 
+	background-color: #f5f5f5;
+}
+
+#accountancyServices {
+	display: none;
+}
+
+.accountancy-package-fee .panel-body {
+	min-height: 250px;
+}
+
+.accountancy-package-nonfee .panel-body {
+	min-height: 220px;
+}
+
+.accountancy-package-nonfee .detail-button, .accountancy-package-fee .detail-button{
+	padding: 15px;
+	padding-top: 0;
+}
+
+.modal .tarifContent {
+	margin-top: 0px;
+	margin-bottom: 30px;
+}
+
+.rightColumn {
+	padding-top: 83px;
+}
+
+#costs td.text-left {
+	max-width: 160px;
+}
+
+.well {
+	padding-bottom:0;
+}
+
+.noppading {
+	padding: 0;
+}
+
+.nomargin {
+	margin: 0;
+}
+
+.faq p, .faq li, .cookiesContent p , .cookiesContent li{
+    color: #666;
+    font-size: 18px;
+	font-weight: 200;
+}
+
+.faq p, .cookiesContent p  {
+    margin-bottom: 15px;
+}
+
+.cookiesContent h2 {
+	color: #337ab7;
+    font-size: 24px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }
+ 
+ .teamPhoto {
+	 margin-top: 20px;
+ }
+ 
+ .margin-top-20 {
+	 margin-top: 20px;
+ }
+ 
+ form .error {
+	color: #D00;
+	font-weight: bold;
+}
+
+.bg-background{
+	background-color: #000;
+}

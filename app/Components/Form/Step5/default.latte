@@ -1,0 +1,67 @@
+{*<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>*}
+{form form role=>"form",class=>"form-horizontal"}
+	<fieldset>
+		<div class="form-group">
+			<label class="col-md-3 control-label" for="">Základní kapitál*</label>  
+			<div class="col-md-6">
+				<input id="" n:name="value" type="text" placeholder="" class="form-control input-md" required="">
+			</div>
+			<div id="capital-warn" style="display: none">
+				<div class="col-md-3">
+					<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Upozornění" data-content="Doporučujeme základní kapitál alespoň 1000Kč. Každý společník musí mít minimálně 1Kč - tuto částku nelze dále dělit, tedy nelze mít podíl v haléřích. Pokud například v budoucnu do společnosti bude přistupovat další osoba, hrozí u nízkého vkladu, že by společnost musela zvyšovat základní kapitál."><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span></a>
+				</div>
+			</div>
+		</div>
+		{var usersCount=($users) ? count($users) : 1;}
+		{for $i=0;$i<$usersCount;$i++}
+
+			<div class="form-group">
+				<label class="col-md-3 control-label" for="">{if (array_key_exists($i,$persons))}{$persons[$i]->getFullName()}{/if}</label>  
+				<div class="col-md-3">
+					<div class="input-group">
+						<input value="{if $company->getShares() && count($company->getShares())==$usersCount}{$company->getShares()[$i]*100}{else}{100/$usersCount}{/if}" id="share{$i}" type="text" placeholder="" class="form-control input-md share-input" required="">
+						<span class="input-group-addon">%</span>                                
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="input-group">
+						<input value="{if $company->getShares() && count($company->getShares())==$usersCount}{$company->getShares()[$i]*$company->getCapital()}{else}{$company->getCapital()/$usersCount}{/if}" id="money{$i}" type="text" placeholder="" class="form-control input-md" required="" readonly>
+						<span class="input-group-addon">Kč</span>                                
+					</div>
+				</div>
+			</div>
+		{/for}                            
+		{input fractions id=>"fractions"}
+		{input errorCheck id=>"errorCheck"}
+		<div style="display:none" id="share-money-error" class="alert alert-warning" role="alert">
+			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+			<b>Chyba!</b> Podíly musí být celé koruny!
+		</div>
+		<div style="display:none" id="sum-money-error" class="alert alert-warning" role="alert">
+			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+			<b>Chyba!</b> Součet podílů se nerovná základnímu kapitálu!
+		</div>
+		<div style="display:none" id="sum-error" class="alert alert-warning" role="alert">
+			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+			<b>Chyba!</b> Součet podílů se nerovná 100%!
+		</div>
+		<div class="form-group hide"> 
+			<label class="col-md-3 control-label" for="" >Podíly nebudou odpovídat finančním vkladům</label>
+			<div class="col-md-6">
+				<div class="checkbox">
+					<label name=""><input type="checkbox" n:name="messFractions"> ano</label>
+				</div>
+				{if $company->getType() == "simple"}
+					<p><b>Toto ustanovení je nad rámec zjednodušeného rozsahu dle zákona. Přejete-li si nastavit jiné druhy podílů, je třeba založit s.r.o. ve <a href="{plink setType! "type" => "full"}">standardním rozsahu</a>.</b></p>
+				{/if}
+			</div>
+			<div class="col-md-3">
+				<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Upozornění!" data-content="Zákon umožňuje, aby finanční účast ve společnosti neodpovídala procentuálním obchodním podílům. Jeden společník může vložit například 1.000Kč za podíl 90%, zatímco další společník může vložit 100,000Kč za podíl 10%."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+			</div>
+		</div>
+		{*<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>*}
+		<!-- Button -->
+		{include '../buttons.latte', "_form" => $form}                           
+	</fieldset>
+{/form}

@@ -1,0 +1,449 @@
+{block fbpixel}
+fbq('track', 'ViewContent');              
+{/block}
+
+{define title}Účetnictví s Piráty{/define}
+
+{block navbar}
+
+<div class="container">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+		</button>
+		<a n:href="Homepage:"><img src="{$basePath}/img/logo.png"></a>
+	</div>
+	<div id="navbar" class="navbar-collapse collapse">
+
+		<div class="btn-group navbar-right">
+            <ul class="nav navbar-nav">
+				<li><a n:href="Homepage:">domů</a></li>
+				<li><a href="#contact">kontakt</a></li>
+
+				<li>{if !$user->isLoggedIn()}
+					<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#login">
+						<span class="glyphicon glyphicon-user" aria-hidden="true" ></span> Přihlásit se 
+					</button>
+					{else}
+						<button type="button" class="btn btn-primary"  data-toggle="modal">
+							{if $user->getIdentity()->getImage()}<img height="30px" width="30px" src="{$user->getIdentity()->getImage()}">
+							{else}<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							{/if}
+							{$user->getIdentity()->getName()}
+						</button>
+						{/if}
+						</li>
+					</ul>
+				</div> 
+			</div><!--/.navbar-collapse -->
+		</div>
+		{/block}
+
+
+		{block content}
+		<script>
+			window.accountancy = new Array();
+		</script>
+		<!-- Main jumbotron for a primary marketing message or call to action -->
+		<div class="jumbotron faq">
+			<div class="container text-center">
+				<div class="container text-center">
+					<div class="row">
+						<div class="panel">
+							<div class="panel-body">
+								<div class="container">
+									<div class="row">  
+										<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+											<h2>Účetnictví s Piráty</h2>
+											<div class="text-left">
+												<p>Vyberte si <strong>nejpohodlnější účetnictví</strong> v České republice za <strong>nejnižší cenu na trhu</strong>. Váš tarif můžete kdykoliv změnit. Pro začátek odpovězte na několik otázek:</p>
+
+												{form taxForm}	
+													<fieldset>
+														<!-- Multiple Radios (inline) -->
+														<div class="form-group col-md-12">
+															<label class="col-md-6 control-label" for="radios">Bude firma plátcem DPH? <a tabindex="0" data-placement="bottom" role="button" data-toggle="popover" data-trigger="focus" data-content="Myšleno ihned, pokud zatím firmu nebudete registrovat, zvolte ne. Plátce DPH platí o 2 Kč za položku více."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></label>
+															<div class="col-md-6">
+																<label class="radio-inline" n:name="vat:1">
+																	<input n:name="vat:1">
+																	Ano
+																</label>
+																<label class="radio-inline" n:name="vat:0">
+																	<input n:name="vat:0">
+																	Ne
+																</label>
+															</div>
+														</div>
+														<!-- Text input-->
+														<div class="form-group col-md-12">
+															<label class="col-md-6 control-label" for="">Kolik bude mít firma vozidel? <a tabindex="0" data-placement="bottom" role="button" data-toggle="popover" data-trigger="focus" data-content="První vozidlo je za 400 Kč měsíčně, každé další za 100 Kč."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></label>
+															<div class="col-md-3">
+																<input id="number-cars" n:name="number_cars" class="form-control input-md">
+															</div>
+														</div>
+
+														<!-- Text input-->
+														<div class="form-group col-md-12">
+															<label class="col-md-6 control-label" for="">Kolik bude mít firma zaměstnanců?  <a tabindex="0" data-placement="bottom" role="button" data-toggle="popover" data-trigger="focus" data-content="Počítejte zaměstnance na dohody i v pracovním poměru. Každý zaměstnanec stojí 200 Kč měsíčně, cena zahrnuje veškerou administrativu a výpočty mezd a odvodů."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></label>
+															<div class="col-md-3">
+																<input id="number-employees" n:name="number_employees"  class="form-control input-md" >
+															</div>
+														</div>
+													</fieldset>
+
+													<div>
+														<div class="well offer">
+															<!-- Nav tabs -->
+															<ul class="nav nav-tabs" role="tablist">
+																<li role="presentation" class="active"><a href="#bezzavazku" aria-controls="bezzavazku" role="tab" data-toggle="tab">Bez závazku <span class="label label-warning">50% sleva</span></a></li>
+																<li role="presentation"><a href="#pausal" aria-controls="pausal" role="tab" data-toggle="tab">Paušálové balíčky </a></li>
+																	{*<li role="presentation"><a href="#bezucetnictvi" aria-controls="#bezucetnictvi" role="tab" data-toggle="tab">Nechci účetnictví</a></li>*}
+															</ul>
+
+															<!-- Tab panes -->
+															<div class="tab-content">
+																<div role="tabpanel" class="tab-pane active" id="bezzavazku">
+																	<br>
+																	<div class="alert alert-warning" role="alert"><b>Pozor! 50% sleva</b> na první rok!
+																		Pouze při založení firmy.</div>
+
+																	{include accountancy, "data" => $accountancy1}
+																</div>
+
+																<div role="tabpanel" class="tab-pane" id="pausal"> <!-- paušály -->
+																	<br>
+																	{include accountancy, "data" => $accountancy2}
+																</div>
+
+																{*<div role="tabpanel" class="tab-pane" id="bezucetnictvi"> <!-- bezucetnictvi -->
+																	<br>
+																	<div class="row">
+																		<div class="col-sm-6">
+																			<div class="panel panel-default ">
+																				<div class="panel-body">
+																					<h4>Nechci účetnictví</h4>
+																					<br>
+																					Neláká vás pohodlí ani <strong>garance nejnižší ceny</strong>? Běžné minimální roční ceny bývají 7-10 tisíc Kč. I ty nejnižší ceny zpravidla nejdou pod 20 Kč za položku.
+																				</div>
+																				<div class="panel-footer">
+																					<div class="row">
+																						<div class="col-xs-12 text-right hidden package-button-selected"><button class="btn btn-warning btn-md active" type="button" value="Vybráno">Vybráno <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button></div>
+																						<div class="col-xs-12 text-right package-button-select"><button id="package-x" class="btn btn-warning btn-md select-package" type="button" name="" value="bez účetnictví">bez účetnictví<span class="glyphicon" aria-hidden="true"></span></button></div>
+
+																						{*<div class="col-xs-12 text-right"><button id="no-accountancy" class="btn btn-warning btn-md" type="button" name="" value="bez účetnictví">bez účetnictví<span class="glyphicon" aria-hidden="true"></span></button></div>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>*}
+															</div>
+														</div>
+													</div>
+												{/form}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /container -->
+
+		<!-- Modal -->
+		{*<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h3 class="modal-title" id="myModalLabel">Příhlášení do administrace</h3>
+					</div>
+					<div class="modal-body">
+						<div class="row"><div class="col-md-6">
+
+								<form>
+									<fieldset>
+										<legend>Firma POINT účet</legend>        
+
+										<div class="form-group">
+											<label for="exampleInputEmail1">Přihlašovací jméno</label>
+											<input type="email" class="form-control" id="" placeholder="email">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">Heslo</label>
+											<input type="password" class="form-control" id="" placeholder="heslo">
+										</div>
+
+										{*<div class="checkbox">
+										  <label>
+											<input type="checkbox"> Souhlasím s podmínkami
+										  </label>
+										</div>
+										<button type="submit" class="btn btn-warning">Přihlásit</button>
+									</fieldset>
+								</form>
+
+							</div>
+							<div class="col-md-6">
+								<form>
+									<fieldset>
+										<legend>Jiný účet</legend>        
+										<a href="{plink OPAuth:facebook}" class="btn btn-social btn-facebook"><i class="fa fa-facebook"></i>Přihlásit přes Facebook</a>
+										<br><br>
+										<a href="{plink OPAuth:google}" class="btn btn-social btn-google"><i class="fa fa-google"></i>Přihlásit přes Google+</a>
+									</fieldset>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>*}
+
+		{include '../NewCompany/include/modalAccountancy.latte'}
+
+
+		<script n:syntax="off">
+			$(function () {
+				$("input[name=vat]").change(function () {
+					recalculatePackages();
+				});
+
+				$("#number-employees, #number-cars").keyup(function () {
+					recalculatePackages();
+				});
+				recalculatePackages();
+
+				$(".select-package").click(function () {
+					$('input:radio[name=accountancyServices]').each(function () {
+						$(this).prop("checked", false);
+					});
+					$('input:radio[name=accountancyServices][value=' + $(this).attr("id").replace("package-", "") + ']').prop('checked', true);
+					$(".package-button-select").removeClass("hidden");
+					$(".package-button-selected").addClass("hidden");
+					$(this).parent().addClass("hidden");
+					$(this).parent().parent().find(".package-button-selected").removeClass("hidden");
+				});
+
+				$("#no-accountancy").click(function () {
+					$(".package-button-select").removeClass("hidden");
+					$(".package-button-selected").addClass("hidden");
+					$('input:radio[name=accountancyServices]').each(function () {
+						$(this).prop("checked", false);
+					});
+				});
+
+				$(".package-button-select").removeClass("hidden");
+				$(".package-button-selected").addClass("hidden");
+				$('input:radio[name=accountancyServices]').each(function () {
+					if ($(this).is(":checked")) {
+						$("#package-" + $(this).val()).parent().addClass("hidden");
+						$("#package-" + $(this).val()).parent().parent().find(".package-button-selected").removeClass("hidden");
+					}
+				});
+
+				$('#detailtarifuOnline').on('show.bs.modal', function (e) {
+					var target = $(e.relatedTarget);
+					$(this).find(".tarif-content").html(target.parent().parent().find(".panel-body").html());
+					$(this).find(".tarif-price").html("<big>" + target.parent().parent().find(".monthly-price").html() + "</big>");
+				});
+				$('#detailtarifu').on('show.bs.modal', function (e) {
+					var target = $(e.relatedTarget);
+					$(this).find(".tarif-content").html(target.parent().parent().find(".panel-body").html());
+					$(this).find(".tarif-price").html("<big>" + target.parent().parent().find(".monthly-price").html() + "</big>");
+				});
+			});
+
+			function recalculatePackages()
+			{
+				for (var i in window.accountancy) {
+					var vat = parseInt($('input[name=vat]:checked').val());
+					var cars = parseInt($("#number-cars").val());
+					var employees = parseInt($("#number-employees").val());
+					if (isNaN(vat) || isNaN(cars) || isNaN(employees)) {
+						continue;
+					}
+					window.accountancy[i].recalculate(vat, cars, employees);
+				}
+			}
+		</script>
+
+		{/block}
+
+		{block scripts}
+		{include parent}
+		<script type="text/javascript" n:syntax="double" src="{{$basePath}}/js/new-company/7.js"></script>
+		<script type="text/javascript" n:syntax="double">
+			Nette.validators.dateValidator = function (elem, args, val) {
+				return val % 11 === 0;
+			};
+		</script>
+		<script type="text/javascript" n:syntax="double">
+			$(function () {
+				$.nette.init();
+				$.nette.ext('spinner');
+			});
+		</script>
+		{/block}
+
+		{block head}
+		{/block}
+
+		{block forms}
+		{/block}
+
+
+
+
+		{define accountancy}
+		{var count = $data->count()}
+		{var half = (int)ceil($count/2)}
+		<div class="row">
+			{foreach $data as $item}
+				{if $iterator->counter == $half+1 || $iterator->isFirst()}
+					<div class="col-sm-6">
+					{/if}
+					<div class="panel panel-default accountancy-package-{if $item->fee}fee{else}nonfee{/if}">
+						<div class="panel-body">
+							<h4>{$item->name}</h4>
+							<ul style="margin-bottom: 0">
+								{if $item->fee}
+									{var monthlyPrice = $item->item_price*$item->items_month}
+									<li><span class="is-vat-{$item->id}">neplátce DPH</span></li>
+									<li>{$item->items_month} položek</li>
+									<li><span class="item-price-{$item->id}">{$item->item_price}</span> Kč za položku</li>
+									<li>počet vozidel: <span class="cars-{$item->id}">0</span></li>
+									<li>počet zaměstnanců: <span class="employees-{$item->id}">0</span></li>
+									<li>{$item->items_month*12} položek, <span class="price-year-{$item->id}">{$monthlyPrice*12}</span> Kč ročně</li>
+
+									<script>
+										$(function () {
+											window.accountancy.push({
+												id: {$item->id|noescape},
+												itemsPerMonth: {$item->items_month|noescape},
+												itemPrice: {$item->item_price|noescape},
+												recalculate: function (vat, cars, employees) {
+													var itemsPerMonth = this.itemsPerMonth;
+													var itemPrice = this.itemPrice;
+													if (vat) {
+														itemPrice += 2;
+														$(".is-vat-" + this.id).html("plátce DPH");
+													} else {
+														$(".is-vat-" + this.id).html("neplátce DPH");
+													}
+													var monthlyPrice = itemPrice * itemsPerMonth;
+													if (cars > 0) {
+														$(".cars-" + this.id).html(cars);
+														monthlyPrice += 400; // za prvni vozidlo 400
+														cars--;
+														if (cars > 0) { // za dalsi 100
+															monthlyPrice += cars * 100;
+														}
+													} else {
+														$(".cars-" + this.id).html("0");
+													}
+													if (employees > 0) {
+														monthlyPrice += employees * 200;
+														$(".employees-" + this.id).html(employees);
+													} else {
+														$(".employees-" + this.id).html("0");
+													}
+													var priceYear = monthlyPrice * 12;
+
+													$(".item-price-" + this.id).html(itemPrice);
+													$(".monthly-price-" + this.id).html(monthlyPrice);
+													$(".price-year-" + this.id).html(priceYear);
+												}
+											});
+										});
+									</script>
+								{else}
+									{var monthlyPrice = 0}
+									<li><span class="is-vat-{$item->id}">neplátce DPH</span></li>
+									<li><s><span class="item-price-{$item->id}">{$item->item_price}</span>Kč</s> <b><span class="item-price-discount-{$item->id}">{$item->item_price/2}</span>Kč</b> za položku</li>
+									<li>počet vozidel: <span class="cars-{$item->id}">0</span></li>
+									<li>počet zaměstnanců: <span class="employees-{$item->id}">0</span></li>
+									<script>
+										$(function () {
+											window.accountancy.push({
+												id: {$item->id|noescape},
+												itemPrice: {$item->item_price|noescape},
+												recalculate: function (vat, cars, employees) {
+													var itemPrice = this.itemPrice;
+													if (vat) {
+														itemPrice += 2;
+														$(".is-vat-" + this.id).html("plátce DPH");
+													} else {
+														$(".is-vat-" + this.id).html("neplátce DPH");
+													}
+													var monthlyPrice = 0;
+													if (cars > 0) {
+														$(".cars-" + this.id).html(cars);
+														monthlyPrice += 400; // za prvni vozidlo 400
+														cars--;
+														if (cars > 0) { // za dalsi 100
+															monthlyPrice += cars * 100;
+														}
+													} else {
+														$(".cars-" + this.id).html("0");
+													}
+													if (employees > 0) {
+														monthlyPrice += employees * 200;
+														$(".employees-" + this.id).html(employees);
+													} else {
+														$(".employees-" + this.id).html("0");
+													}
+
+													$(".item-price-" + this.id).html(itemPrice);
+													$(".monthly-price-" + this.id).html(monthlyPrice);
+													$(".item-price-discount-" + this.id).html(itemPrice / 2);
+												}
+											});
+										});
+									</script>
+								{/if}
+							</ul>
+							{$item->description|noescape}
+
+						</div>
+						<div class="text-right detail-button">
+							<a href="" data-toggle="modal" data-target="#detailtarifu{if stripos($item->name,"online") !== FALSE}Online{/if}">detail tarifu</a>  
+						</div>
+						<div class="panel-footer">
+							<div class="row">
+								<div class="col-xs-7  text-left"><h3><span class="monthly-price monthly-price-{$item->id}">{$monthlyPrice}</span> Kč<small> / měsíc<br> (bez DPH)</small></h3></div>
+											{*<div class="col-xs-5 text-right hidden package-button-selected"><button class="btn btn-warning btn-md active" type="button" value="Vybráno">Vybráno <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button></div>
+											<div class="col-xs-5 text-right package-button-select"><button id="package-{$item->id}" class="btn btn-warning btn-md select-package" type="button" name="" value="Vybrat tarif">Vybrat tarif<span class="glyphicon" aria-hidden="true"></span></button></div>*}
+							</div>
+						</div>
+					</div>
+					{if $iterator->counter == $half || $iterator->isLast()}
+					</div>
+				{/if}
+			{/foreach}
+			{*<div class="col-sm-6">
+				<div class="panel panel-default ">
+					<div class="panel-body">
+						<h4>Standard bez závazku</h4>
+						<ul>
+							<li><s>36 Kč</s> <b>18 Kč</b> za položku</li>
+							<li>Minimum 2500 Kč za rok</li>
+						</ul>
+					</div>
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-xs-7  text-left"><h3>0 Kč<small> / měsíc</small></h3></div>
+							<div class="col-xs-5 text-right"><button id="singlebutton" class="btn btn-warning btn-md" type="submit" name="next" value="další">Vybrat tarif <span class="glyphicon" aria-hidden="true"></span></button></div>
+						</div>
+					</div>
+				</div>
+			</div>*}
+		</div>
+
+		{/define}

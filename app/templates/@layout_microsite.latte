@@ -1,0 +1,492 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+*}
+
+<!DOCTYPE html>
+<html lang="cz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Na úřad z domova</title>
+    <link rel="icon" href="{$basePath}/img/favicon.ico">
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{$basePath}/css/index.css?version=9" />    
+  </head>
+
+  <body>
+    <!-- HEADER SECTION -->
+    <header>
+      <nav class="bg-black">
+        <div
+          class="d-flex p-3 justify-content-between align-items-center container"
+        >
+          <a href="https://www.pirati.cz/"
+            ><img src="{$basePath}/img/logo_napis_white.svg" height="40rem" width="auto"
+          /></a>
+          <div>
+              <a
+              class="mr-3 nav-social-icon"
+              href="https://www.facebook.com/ceska.piratska.strana"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+              class="nav-social-icon"
+              href="https://twitter.com/piratskastrana"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- /HEADER SECTION -->
+
+    <!-- MAIN SECTION -->
+    <section id="main" class="sectionOdd">
+      <div class="container py-4">
+        <h1
+          class="header-primary text-uppercase text-center m-0 p-0 mb-4 mb-lg-3"
+        >
+          Na úřad z domova
+        </h1>
+        <div class="row pb-3">
+          <div class="col-lg-8 h-100 my-auto">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe
+                class="embed-responsive-item"
+                src="https://www.youtube.com/embed/J7qCpQPFmog?autoplay=1&mute=1"
+                allowfullscreen="allowfullscreen"
+                mozallowfullscreen="mozallowfullscreen"
+                msallowfullscreen="msallowfullscreen"
+                oallowfullscreen="oallowfullscreen"
+                webkitallowfullscreen="webkitallowfullscreen"
+              >
+              </iframe>
+            </div>
+          </div>
+          <div class="col-lg-4 my-auto">
+            <h2
+              class="header-secondary mt-4 mt-lg-0"
+            >
+              Vyzkoušejte si založení s.r.o. online
+            </h2>
+            <div class="d-flex justify-content-center">
+              <ul class="list">
+                <li>
+                  Založíme vám firmu online <strong>do pěti dní</strong> pouze
+                  <strong>za zákonné poplatky.</strong>
+                </li>
+                <li>Vyplníte formulář, odešlete dokumenty... a to je vše.</li>
+                <li class="special-text">
+                  Když projde náš
+                  <a class="special-link scroll-link" href="#ourGoal"
+                    >návrh zákona</a
+                  >, půjde to do 24 h a poplatek 500 Kč zaplatíte online.
+                </li>
+              </ul>
+            </div>
+            <a
+              class="site-button btn btn-lg btn-block rounded-0"
+              n:href="NewCompany:default"
+              >Založit s.r.o.</a
+            >
+          </div>
+        </div>
+        <div class="row text-center">
+          <a class="text-dark mx-auto scroll-link" href="#ourGoal"
+            ><i class="fas fa-angle-down fa-3x"></i
+          ></a>
+        </div>
+      </div>
+    </section>
+    <!-- /MAIN SECTION -->
+
+    <!-- OUR GOAL SECTION -->
+    <section id="ourGoal" class="sectionEven">
+      <div class="container py-4">
+        <h2 class="header-secondary">Náš cíl</h2>
+        <p class="text-center">
+          Před volbami jsme vám slíbili, že vás zbavíme byrokracie...
+          <strong>A tak jsme navrhli novelu:</strong>
+        </p>
+        <div class="d-flex justify-content-center">
+          <ul class="list m-0">
+            <li>
+              Živnostníkem se stanete jedním klikem &mdash; jednoduše online.
+            </li>
+            <li>Firmu založíte online za jeden den s náklady do 500 Kč.</li>
+            <li>I Andrej Babiš o tom před volbami snil, když spal.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- /OUR GOAL SECTION -->
+
+    <!-- AS WE PROMISED SECTION -->
+    <section id="asWePromised" class="sectionOdd">
+      <div class="container py-4">
+        <h2 class="header-secondary">Jak jsme slíbili, tak jsme udělali</h2>
+        <p class="text-center">
+          Obíhat úřady budou data, ne lidé. Už nebudete muset několikrát úřadům
+          sdělovat to samé. Co může, si úředník zjistí sám. Kde nemusí být
+          úředník, bude počítač.
+        </p>
+        <div class="row">
+          <div class="comparison-law col-lg-8">
+            <div class="h-100 d-flex flex-column">
+              <div class="row">
+                <div class="col-lg-6">
+                  <h3 class="header-tertiary">Dnes</h3>
+                  <div class="d-flex justify-content-center pb-3 m-0">
+                    <ol class="list m-0 py-0">
+                      <li><strong>Notář</strong> &mdash; sepsat dokumenty</li>
+                      <li>
+                        <strong>Banka</strong> &mdash; založit účet pro základní
+                        kapitál
+                      </li>
+                      <li>
+                        <strong>Banka</strong> &mdash; složit základní kapitál
+                      </li>
+                      <li>
+                        <strong>Živnostenský úřad</strong> &mdash; ohlásit
+                        živnosti
+                      </li>
+                      <li>
+                        <strong>Živnostenský úřad</strong> &mdash; vyzvednout
+                        oprávnění
+                      </li>
+                      <li>
+                        <strong>Notář</strong> &mdash; zapsat do obchodního
+                        rejstříku
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <h3 class="header-tertiary">Po pirátské novele</h3>
+                  <div class="d-flex justify-content-center">
+                    <ol class="list">
+                      <li><strong>Vyplnit formulář</strong> &mdash; online</li>
+                      <li>
+                        <strong>Ověřit identitu</strong> &mdash; online nebo
+                        Czechpoint
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <form
+                action="https://pirati.us19.list-manage.com/subscribe/post?u=6f1b754167a9610ef8bbdd1e9&amp;id=a33bdfc28a"
+                method="post"
+                id="mc-embedded-subscribe-form"
+                name="mc-embedded-subscribe-form"
+                class="validate w-100 mt-auto mb-lg-3"
+                target="_blank"
+              >
+                <div class="input-group">
+                  <input
+                    class="form-control form-control-lg"
+                    type="email"
+                    placeholder="Dejte nám email a dozvíte se vše hned z první ruky."
+                    name="EMAIL"
+                    required
+                  />
+                  <div class="input-group-append">
+                    <input
+                      class="site-button btn bg-blue px-4"
+                      type="submit"
+                      value="Odeslat"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-3 mt-lg-0">
+            <div class="comparison-in-our-app card rounded-0 h-100">
+              <div
+                class="comparison-in-our-app-header card-header rounded-0 border-0"
+              >
+                <h3
+                  class="header-tertiary m-0 p-0 comparison-in-our-app-header-h"
+                >
+                  V naší aplikaci už dnes
+                </h3>
+              </div>
+
+              <div class="mt-auto p-0">
+                <table class="mx-auto my-3 m-lg-3 mt-lg-0 p-0">
+                  <tbody>
+                    <tr>
+                      <td><i class="fas fa-file-alt fa-2x"></i></td>
+                      <td class="pl-2 text-left my-auto">
+                        <strong>Vyplňte formulář online</strong>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="py-3">
+                        <i class="fas fa-file-export fa-2x py-3"></i>
+                      </td>
+                      <td class="pl-2 text-left">
+                        <strong>Podepište a odešlete dokumenty</strong>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><i class="fas fa-stopwatch fa-2x"></i></td>
+                      <td class="pl-2 text-left">
+                        <strong>Počkejte, až bude firma založena</strong>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="mt-auto mb-2 mx-2 mb-lg-3 mx-lg-3">
+                <a
+                  class="site-button btn btn-lg btn-block rounded-0"
+                  href="https://urad.pirati.cz/zalozeni-firmy/"
+                  >Založit s.r.o.
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /COMPARISON SECTION -->
+
+    <!-- SO FAR SECTION -->
+    <section id="soFar" class="sectionEven">
+      <div class="container py-4">
+        <h2 class="header-secondary m-0">
+          Co Piráti pro podnikatele zatím udělali?
+        </h2>
+        <div class="row">
+          <div
+            class="col-md-6 pt-4 order-md-1 d-flex align-items-end justify-content-center"
+          >
+            <h3 class="header-tertiary">Držíme kurz.</h3>
+          </div>
+          <div class="col-md-6 order-md-3">
+            <p class="text-center">I v opozici děláme to, co jsme slíbili.</p>
+            <ul class="list">
+              <li>
+                Navrhli jsme novelu zákona, která umožní stát se živnostníkem a
+                založit si s.r.o. po internetu.
+              </li>
+              <li>
+                Navíc jsme dodali aplikaci, která to zvládne, a ušetřili státu
+                za vývoj. Můžete si ji
+                <a href="https://urad.pirati.cz/zalozeni-firmy/">zkusit</a>. Je
+                ve
+                <a
+                  class="text-primary"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  data-html="true"
+                  title="
+                <div class='p-3'>
+                  Původními autory software jsou Štěpán Štrébl, Tomáš Trnka a Jakub Kalista. Jakákoliv osoba, která získá kopii tohoto softwaru a související dokumentace (dále jen „software“) získává bezplatně povolení se softwarem nakládat bez omezení a získává právo užívat, kopírovat, upravovat, slučovat, zveřejňovat, distribuovat, dále poskytovat licenci třetím stranám a/nebo prodávat kopie softwaru a umožnit to samé osobám, kterým je software poskytnut, v případě splnění následujících podmínek:
+                  <br />
+                  <br />
+                  Výše uvedené upozornění o autorských právech a toto oznámení o oprávnění budou součástí všech kopií nebo podstatných částí softwaru.
+                  <br />
+                  <br />
+                  Software je poskytován „tak, jak je“, bez jakékoliv záruky, výslovné nebo předpokládané, včetně, ale neomezující se na záruky obchodovatelnosti, vhodnosti pro určitý účel a neporušení práv jiných osob. Autoři nebo nositelé práva nenesou odpovědnost za žádné nároky, škody nebo jiné závazky vyplývající ze smlouvy, občanského deliktu nebo jinak, v souvislosti se softwarem nebo jeho využitím či nakládáním s ním.                  
+                </div>"
+                  >svobodné&nbsp;licenci</a
+                >, takže nehrozí
+                <a
+                  class="text-primary"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  data-html="true"
+                  title="Závislost na produktech a službách konkrétního subjektu. Omezuje konkurenci a zvedá ceny"
+                  >vendor lock-in</a
+                >
+                jako třeba v případě OpenCard a nestane se z ní jen další státní
+                IT tunel.
+              </li>
+              <li>
+                Naše novela a aplikace ušetří podnikatelům 170 milionů ročně a
+                státu 160 milionů korun ročně. Uvolníme pracovní sílu pro
+                soukromý sektor v době, kdy stát nabírá úředníky a soukromým
+                firmám chybí lidé.
+              </li>
+              <li>
+                Chceme, aby Česká republika byla v podnikání na světové úrovni.
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6 pt-4 order-md-2">
+            <h3 class="header-tertiary">
+              Žebříček Doing Business Světové banky Pozice v kategorii Zahájení
+              podnikání
+            </h3>
+          </div>
+          <div class="col-md-6 order-md-4">
+            <table class="site-table w-100 table table-responsive table-hover">
+              <thead>
+                <tr>
+                  <th>Země</th>
+                  <th>Pozice: zahájení podnikání</th>
+                  <th>Celková pozice v indexu</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Estonsko</td>
+                  <td>12.</td>
+                  <td>12.</td>
+                </tr>
+                <tr>
+                  <td>Velká Británie</td>
+                  <td>14.</td>
+                  <td>7.</td>
+                </tr>
+                <tr>
+                  <td>Ghana</td>
+                  <td>108.</td>
+                  <td>114.</td>
+                </tr>
+                <tr>
+                  <td>Egypt</td>
+                  <td>109.</td>
+                  <td>128.</td>
+                </tr>
+                <tr>
+                  <td>Mali</td>
+                  <td>110.</td>
+                  <td>145.</td>
+                </tr>
+                <tr>
+                  <td>Rumunsko</td>
+                  <td>111.</td>
+                  <td>52.</td>
+                </tr>
+                <tr>
+                  <td>Guinea</td>
+                  <td>112.</td>
+                  <td>152.</td>
+                </tr>
+                <tr>
+                  <td>San Marino</td>
+                  <td>113.</td>
+                  <td>80.</td>
+                </tr>
+                <tr>
+                  <td>Německo</td>
+                  <td>114.</td>
+                  <td>24.</td>
+                </tr>
+                <tr>
+                  <td><strong>Česká republika</strong></td>
+                  <td><strong>115.</strong></td>
+                  <td><strong>35.</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <a
+          class="site-button btn btn-lg btn-block rounded-0"
+          href="https://urad.pirati.cz/zalozeni-firmy/"
+          >Založit s.r.o.</a
+        >
+      </div>
+    </section>
+    <!-- SO FAR SECTION -->
+
+    <!-- NEWSLETTER FOOTER -->
+    <footer id="newsletter" class="footer">
+      <div class="container py-5">
+        <div class="my-auto">
+          <h3 class="header-tertiary">
+            Zajímá vás, co děláme pro podnikatele?
+          </h3>
+          <p class="text-center">
+            Dejte nám email a dozvíte se vše hned z první ruky.
+          </p>
+
+          <form
+            action="https://pirati.us19.list-manage.com/subscribe/post?u=6f1b754167a9610ef8bbdd1e9&amp;id=a33bdfc28a"
+            method="post"
+            id="mc-embedded-subscribe-form"
+            name="mc-embedded-subscribe-form"
+            class="validate"
+            target="_blank"
+          >
+            <div class="input-group col-lg-8 offset-lg-2">
+              <input
+                class="form-control form-control-lg"
+                type="email"
+                placeholder="Email"
+                name="EMAIL"
+                required
+              />
+              <div class="input-group-append">
+                <input
+                  class="site-button btn bg-blue px-4"
+                  type="submit"
+                  value="Odeslat"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="text-center mt-4">
+          Zakládáte firmy a chcete s námi spolupracovat?
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSccteOocadCfWRjUGtPxG7j4GkzZH9Q4putz7g6bQkL_t4ILQ/viewform"
+            >Zapojit se taky</a
+          >
+        </div>
+        <div class="text-center mt-2">Náš software je open source.</div>
+      </div>
+    </footer>
+    <!-- /NEWSLETTER SECTION -->
+
+    <!-- SCRIPTS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{$basePath}/js/index.js?version=9"></script>
+    <!-- /SCRIPTS -->
+  </body>
+</html>

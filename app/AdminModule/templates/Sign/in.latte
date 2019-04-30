@@ -1,0 +1,61 @@
+{block fbpixel}
+    {if  $flashes}
+        {foreach $flashes as $flash}
+            {if stristr($flash->message,"Vaše žádost byla úspěšně vytvořena!")}
+                fbq('track', 'CompleteRegistration');
+            {/if}
+        {/foreach}
+    {/if}
+{/block}
+{block content}
+<div class="row">
+  
+  <div class="col-sm-6 col-sm-offset-3">
+  {*  <div class="alert alert-warning" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign"></span> Špatně zadáno heslo nebo jméno!
+    </div>*}
+<h3>Přihlášení</h3> <br>
+{form signInForm class=>"form-horizontal", role=>"form"}
+  <div class="form-group">
+    <label for="frm-username" class="col-sm-2 control-label">login</label>
+    <div class="col-sm-10">
+      <input n:name="username" type="text" class="form-control" id="nazev" placeholder="login">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="frm-password" class="col-sm-2 control-label">heslo</label>
+    <div class="col-sm-10">
+      <input n:name="password" type="password" class="form-control" id="nazev" placeholder="heslo">
+    </div>
+  </div>    
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button n:name="send" type="submit" class="btn btn-warning">potvrdit</button>
+    </div>
+  </div>
+{/form}
+  </div>
+  </div>
+  <div class="row">
+  
+  <div class="col-sm-6 col-sm-offset-3">
+      <a n:href="Sign:reset">Zapomněli jste heslo?</a>
+  </div>
+
+  <a href="#" class="btn btn-social btn-google"><i class="fa fa-google"></i>Přihlásit přes Google+</a>
+  </div>
+ {* </div>*}
+  
+{/block}
+{*<h1 n:block=title>Přihlášení</h1>*}
+
+{*control signInForm*}
+
+{* or use {include '../components/form.latte', form => signInForm} *}
+{block head}
+{/block}
+
+{block forms}
+{/block}

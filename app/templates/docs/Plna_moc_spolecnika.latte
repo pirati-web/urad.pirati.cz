@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<style type="text/css">
+		@page { size: 21cm 29.7cm; margin: 2.5cm }
+		p { margin-bottom: 0.25cm; direction: ltr; line-height: 120%; text-align: left; orphans: 2; widows: 2 }
+                li { margin-left: 1.25cm; }
+	</style>
+</head>
+<body lang="cs-CZ" dir="ltr">
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><span><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><b>PLNÁ
+MOC SPOLEČNÍKA</b></font></font></span></p>
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$spolecnik->getFullName()}{if $spolecnik->getSeat()->getFullAddress()}, {$spolecnik->getSeat()->getFullAddress()}{/if}{if $spolecnik->getDate()}, RČ {$spolecnik->getPersonId()}{/if}</font></font></p>
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">jednající
+jako zakladatel společnosti</font></font></p>
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$company->getName()}</font></font></p>
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">zmocňuji
+tímto,</font></font></p>
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Zakladači 
+s.r.o., IČ: 05622701,</font></font></p>
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">aby
+za mě jednala ve všech věcech týkajících se založení níže
+specifikované společnosti:</font></font></p>
+<p style="margin-bottom: 0cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Název
+společnosti: </font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$company->getName()}</font></font></p>
+<p style="margin-bottom: 0cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Sídlo:
+</font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$company->getSeat()->getFullAddress()}</font></font></p>
+<p style="margin-bottom: 0cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Předmět
+podnikání:</font></font></p>
+<ul>
+        {foreach $company->getNonFreeAreas() as $area}
+	<li/>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$area}</font></font></p>
+        {/foreach}
+        <li/>
+        <p style="margin-left: 1.25cm; margin-bottom: 0cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Výroba, obchod a služby neuvedené v přílohách 1 až 3 živnostenského zákona</font></font></p>        
+</ul>
+<p style="margin-bottom: 0cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Základní
+kapitál: </font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$company->getCapital()},-
+Kč</font></font></p>
+<p style="margin-bottom: 0cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Společníci:</font></font></p>
+<ul>
+    {foreach $company->getPersons() as $p}
+	<li/>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$p->getFullName()}
+                {if $p->getSeat()->getFullAddress()}, {$p->getSeat()->getFullAddress()}{/if}{if $p->getDate()}, {$p->getPersonId()}{else}{if $p->getIco()}, IČ {$p->getIco()}{/if}{/if}</font></font></p>
+<ul><li/>
+    <p style="margin-left: 1.25cm; margin-bottom: 0cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">
+                se vkladem ve výši: {$company->getCapital()*$company->getShares()[$iterator->counter-1]},- Kč</font></font></p>
+    <li/>
+      <p style="margin-left: 1.25cm; margin-bottom: 0cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"> 
+                na základní podíl ve výši: {$company->getShares()[$iterator->counter-1]*100}%</font></font></p>
+</ul>
+    {/foreach}
+</ul>
+<p style="margin-bottom: 0cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Jednatelé:</font></font></p>
+<ul>
+    {foreach $company->getActingPersons() as $p}
+	<li/>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$p->getFullName()}
+                {if $p->getSeat()->getFullAddress()}, {$p->getSeat()->getFullAddress()}{/if}{if $p->getDate()}, {$p->getPersonId()}{else}{if $p->getIco()}, IČ {$p->getIco()}{/if}{/if}</font></font></p>
+    {/foreach}
+</ul>
+<p style="margin-bottom: 0cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Způsob
+jednání za společnost: </font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{if $company->getActions()["desc"]}{$company->getActions()["desc"]}{else}{$company->getActions()["name"]}{/if}</font></font></p>
+<p align="justify" style="margin-bottom: 0cm; line-height: 115%"><br/>
+
+</p>
+<p align="justify" style="margin-bottom: 0.35cm; line-height: 115%">
+<font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Zakladači 
+s.r.o., IČ: 05622701 je zejména zmocněna, aby za mě vyhotovila a
+podepsala </font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">
+        {if count($company->getPersons())>1}společenskou smlouvu{else}zakladatelskou listinu{/if}</font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">
+ve formě veřejné listiny, založila účet firmy včetně účtu
+pro složení základního kapitálu, obstarala výpis z českého
+rejstříku trestů a zahraničního rejstříku trestů, zastupovala
+společnost před místně příslušným rejstříkovým soudem
+ohledně zápisu do obchodního rejstříku.</font></font></p>
+<p style="margin-bottom: 0.35cm; line-height: 115%"><table dir="ltr" align="left" width="290" hspace="9" cellpadding="7" cellspacing="3">
+	<col width="264">
+	<tr>
+		<td width="264" height="98" valign="top" style="border: 6.75pt double #00000a; padding: 0cm 0.19cm">
+			<p><br/>
+
+			</p>
+		</td>
+	</tr>
+</table>
+
+</p>
+<p style="text-indent: 1.25cm; margin-bottom: 0.35cm; line-height: 115%">
+<span style="text-transform: uppercase"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Úředně ověřený podpis:
+</font></font></span><span style="text-transform: uppercase"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$spolecnik->getFullName()}</font></font></span><span style="text-transform: uppercase"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">	</font></font></span></p>
+</body>
+</html>

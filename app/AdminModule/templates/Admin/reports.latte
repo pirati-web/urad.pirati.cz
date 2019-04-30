@@ -1,0 +1,58 @@
+
+{block content}
+
+    <div class="panel"> 
+        
+        
+              <div class="panel-body">
+                  <h2>{if $superadmin}Superadmin{/if}</h2>
+                <br>                        
+                <div class="row">
+                <div class="col-xs-12 col-sm-6 "> 
+                <h3>Reporty</h3>
+                    {if $superadmin}
+                        <table class="table table-striped">
+                            <tr>
+                                <td colspan="2"><strong>Co se stalo?</strong></td>
+                            </tr>  
+                            <tr>
+                                <td>Za posledních 30 dní bylo založeno</td>
+                                <td>{$last_month->cnt}</td>
+                            </tr>
+                            <tr>
+                                <td>Celkově bylo založeno</td>
+                                <td>{$overall->cnt}</td>
+                            </tr>
+                            <tr>
+                                <td>Firmu trvá průměrně založit (dny)</td>
+                                <td>{$averagetime->avg_time}</td>
+                            </tr>
+                        </table>                        
+                    {else}
+                        Je nám líto, nemáte oprávnění k reportům.
+                    {/if}                
+                 </div>
+                </div>
+               <h4 class="page-header"><span class="glyphicon glyphicon-user" aria-hidden="true" >
+              </span> Uživatelský účet</h4>
+                 <ul>
+                 <li>{$user->getIdentity()->getData()["name"]}</li>
+                 <li>registrace: {$user->getIdentity()->getData()["register"]|date:'n.d.Y'}</li>
+              </div>
+    </div> 
+    <script type="text/javascript" n:syntax="double">
+        $(function () {
+            $.nette.init();
+        });
+    </script>
+{/block}
+
+{block scripts}
+{include parent}
+{/block}
+
+{block head}
+{/block}
+
+{block forms}
+{/block}

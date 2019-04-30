@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	
+	<!--{*<style type="text/css">
+		body,div,table,thead,tbody,tfoot,tr,th,td,p { font-family:"Times New Roman"; font-size:x-small }
+	</style>*}-->
+	
+</head>
+
+<body>
+    <table align="center" cellspacing="0" border="0" style="border-spacing:0;border-collapse: collapse;width: 100%;">
+	<tr>
+		<td style="width: 50%;vertical-align: top"></td>
+		<td style="border: 1px solid #212121;width: 50%;vertical-align: top;">
+			<table style="width: 100%">
+				<tr>
+					<td style="padding-left: 15px;width: 65%;"><font face="Times New Roman" size=3><b>FAKTURA - DAŇOVÝ DOKLAD</b></font></td>
+					<td style="text-align: right;width: 35%;"><font face="Times New Roman" size=3>{date('mdy')}{str_pad($invNumber, 4, '0', STR_PAD_LEFT)}</font></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="border: 1px solid #212121;width: 50%;vertical-align: top">
+			<table style="width: 100%;font-size: 11px">
+				<tr>
+					<td style="padding-left: 15px"><br></td>
+				</tr>
+				<tr>
+					<td style="padding-left: 15px">Dodavatel</td>
+				</tr>
+				<tr>
+					<td style="padding-left: 15px"><br></td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px"><b>Zakladači s.r.o.</b></td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px">Gutova 3317/15</td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px">100 00 Praha 10 - Strašnice</td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px"><br></td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px">IČ: 05622701</td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px">DIČ: CZ05622701</td>
+				</tr>
+				<tr>
+					<td style="padding-left: 15px"><br></td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px">Společnost je zapsána u Městského soudu v Praze pod spisovou značkou C 277877.</td>
+				</tr>
+				<tr>
+					<td style="padding-left: 15px"><br></td>
+				</tr>
+			</table>
+		</td>
+		<td style="border: 1px solid #212121;width: 50%;vertical-align: top">
+			<table style="width: 100%;font-size: 11px">
+				<tr>
+					<td style="padding-left: 15px"><br></td>
+				</tr>
+				<tr>
+					<td style="padding-left: 15px">Odběratel</td>
+				</tr>
+				<tr>
+					<td style="padding-left: 15px"><br></td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px"><b>{$company->getName()}</b></td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px">{$company->getSeat()->getStreet()." ".$company->getSeat()->getStreetNumber()}</td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px">{$company->getSeat()->getZipCode()." ".$company->getSeat()->getCity()}</td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px"><br></td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px">IČ: </td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px"></td>
+				</tr>
+				<tr>
+					<td style="padding-left: 15px"><br></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding-left: 15px;border-left: 1px solid #212121;border-right: 1px solid #212121" colspan="2"><br></td>
+	</tr>
+	<tr>
+		<td style="padding-left: 15px;border-left: 1px solid #212121;border-right: 1px solid #212121;font-size: 13px" colspan="2"><b>Platební podmínky:</b></td>
+	</tr>
+	<tr>
+		<td style="border-left: 1px solid #212121;border-bottom: 1px solid #212121;width: 50%;vertical-align: top">
+			<table style="width: 100%">
+				<tr>
+					<td style="padding-left: 15px"><br></td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px">Forma úhrady:</td>
+					<td style="padding-left: 15px">Převodem</td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px">Bankovní spojení:</td>
+					<td style="padding-left: 15px">-----</td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px">Číslo účtu:</td>
+					<td style="padding-left: 15px"><b>--- SLUŽBA JE DEMO ---</b></td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px">Variabilní symbol:</td>
+					<td style="padding-left: 15px">{date('mdy')}{str_pad($invNumber, 4, '0', STR_PAD_LEFT)}</td>
+				</tr>
+				<tr>
+					<td style="padding-left: 15px"><br></td>
+				</tr>
+			</table>
+		</td>
+		<td style="border-right: 1px solid #212121;border-bottom: 1px solid #212121;width: 50%;vertical-align: top;text-align: right;padding-right: 30px">
+			<table style="width: 100%">
+				<tr>
+					<td style="padding-left: 15px"><br></td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px;width: 50%">Datum vystavení:</td>
+					<td style="width: 50%;text-align: right;padding-left: 30px">{*date('d/m/Y')*}</td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px;width: 50%">Datum zdanit. plnění:</td>
+					<td style="width: 50%;text-align: right;padding-left: 30px">{*date('d/m/Y')*}</td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px;width: 50%"><br></td>
+					<td style="width: 50%;text-align: right;padding-left: 30px"><br></td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px;width: 50%"><b>Datum splatnosti:</b></td>
+					<td style="border: 2px solid #212121;width: 50%;text-align: right;padding-left: 30px">{*date('d/m/Y',strtotime('+ 14 days'))*}</td>
+				</tr>
+				<tr>
+					<td style="padding-left: 15px"><br></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding-left: 15px;border-left: 1px solid #212121;border-right: 1px solid #212121" colspan="2"><br></td>
+	</tr>
+	<tr>
+		<td style="padding-left: 15px;border-left: 1px solid #212121;border-right: 1px solid #212121;font-size: 13px" colspan="2"><b>Fakturujeme Vám náklady a služby spojené se založením {$company->getName()}</b></td>
+	</tr>
+	<tr>
+		<td style="padding-left: 15px;border-left: 1px solid #212121;border-right: 1px solid #212121" colspan="2"><br></td>
+	</tr>
+	<tr>
+		<td style="border-left: 1px solid #212121;border-right: 1px solid #212121;width: 100%;vertical-align: top;padding-left: 30px;padding-right: 30px;font-size: 11px" colspan="2">
+			{*var $sum=0;}
+			{var $dph=0;}
+			{var $sumA=0;}
+			{var $sumNotVat=0;*}
+			<table style="width: 100%;font-size: 11px">
+				<tr>
+					<th></th>
+					<th style="width: 30%;text-align: right">Cena bez DPH</th>
+					<th style="width: 25%;text-align: right">DPH</th>
+					<th style="width: 30%;text-align: right">Cena s DPH</th>
+				</tr>
+				{foreach $charges->getAll() as $p}        
+					<tr>
+						<td style="width: 50%;">{$p->getName("invoice")}</td>
+						<td style="width: 30%;text-align: right">{number_format($p->priceWithoutVat,2,",",".")}</td>
+						<td style="width: 20%;text-align: right">{if $p->hasVat()}{number_format($p->price-$p->priceWithoutVat,2,",",".")}{else}{number_format(0,2,",",".")}{/if}</td>
+						<td style="width: 30%;text-align: right">{number_format($p->price,2,",",".")} Kč</td>
+					</tr>
+				{/foreach}
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding-left: 15px;border-left: 1px solid #212121;border-right: 1px solid #212121" colspan="2"><br></td>
+	</tr>
+	<tr>
+		<td style="padding-left: 15px;border-left: 1px solid #212121;border-right: 1px solid #212121" colspan="2"><br></td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #212121;border-bottom: 1px solid #212121;border-left: 1px solid #212121;width: 50%;padding-top: 0;vertical-align: top">
+			&nbsp;
+		</td>
+		<td style="border-top: 1px solid #212121;border-bottom: 1px solid #212121;border-right: 1px solid #212121;width: 50%;padding: 0;vertical-align: top;padding-left: 68px">
+			<table style="width: 100%;border-spacing: 0;font-size: 11px">
+				<tr>
+					<td style="border-left: 1px solid #212121;border-bottom: 1px solid #212121;width: 60%">
+						Položky nepodléhající DPH
+					</td>
+					<td style="border-left: 1px solid #212121;border-bottom: 1px solid #212121;text-align: right;width: 40%;padding-right: 30px">
+						{number_format($charges->getSumNotVat(),2,",",".")} Kč
+					</td>
+				</tr>
+				<tr>
+					<td style="border-left: 1px solid #212121;border-bottom: 1px solid #212121;;width: 60%">
+						Základ DPH
+					</td>
+					<td style="border-left: 1px solid #212121;border-bottom: 1px solid #212121;text-align: right;width: 40%;padding-right: 30px">
+						{number_format($charges->getSumWithoutVat(),2,",",".")} Kč
+					</td>
+				</tr>
+				<tr>
+					<td style="border-left: 1px solid #212121;border-bottom: 1px solid #212121;;width: 60%">
+						DPH 21%
+					</td>
+					<td style="border-left: 1px solid #212121;border-bottom: 1px solid #212121;text-align: right;width: 40%;padding-right: 30px">
+						{number_format($charges->getSumVat(),2,",",".")} Kč
+					</td>
+				</tr>
+				<tr>
+					<td style="border-left: 1px solid #212121;border-bottom: 1px solid #212121;;width: 60%">
+						<b>Celkem k úhradě</b>
+					</td>
+					<td style="border-left: 1px solid #212121;border-bottom: 1px solid #212121;text-align: right;width: 40%;padding-right: 30px">
+						<b>{number_format($charges->getTotalSum(),2,",",".")} Kč</b>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><br></td>
+				</tr>
+				<tr>
+					<td colspan="2"><br></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<!-- ************************************************************************** -->
+</body>
+
+</html>

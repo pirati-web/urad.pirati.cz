@@ -1,0 +1,48 @@
+{block content}
+    <div class="panel"> 
+              <div class="panel-body">
+               {if $userA}
+                  <h2>{$userA->getFullName()}</h2>
+                  <ul>
+                      {if $userA->getDate()}
+                          <li>{$userA->getDate()|date:'j.n.Y'}</li>            
+                          {if $userA->getTel()}<li>{$userA->getTel()}</li>{/if}
+                      {else}
+                          {if $userA->getIco()}<li>IČO: {$userA->getIco()}</li>{/if}                      
+                      {/if}
+                      <li>Sídlo
+                          <ul>
+                            <li>{$userA->getSeat()->getFullAddress()}</li>
+                            </ul>
+                      </li>                                  
+                      <li>společnosti
+                        <ul>
+                        {foreach $companies as $c}
+                            <li><a n:href="Admin:show $c->id">{$c->name}</a></li>
+                        {/foreach}
+                        </ul>
+                      </li>
+                      
+                  </ul>
+                 {else}
+                  <h2>Je nám líto...</h2>
+                    <br>   
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 "> 
+                        ale požadaovaná společnost neexistuje nebo nemáte právo ji zobrazit.
+                        </div>
+                    </div>
+                {/if}
+              </div>
+    </div> 
+{/block}
+
+{block scripts}
+{include parent}
+{/block}
+
+{block head}
+{/block}
+
+{block forms}
+{/block}

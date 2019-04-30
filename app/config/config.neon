@@ -1,0 +1,81 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+parameters:
+
+
+php:
+    date.timezone: Europe/Prague
+
+
+
+application:
+    errorPresenter: Error
+    mapping:
+        *: App\*Module\Presenters\*Presenter
+session:
+    expiration: 7 days
+    debugger: true
+database:
+    reflection: \MyReflection # nebo static nebo název třídy
+
+extensions:
+    console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+    scheduler: Contributte\Scheduler\DI\SchedulerExtension
+
+services:
+    stask: App\Utils\ScheduledTasks
+    - App\Model\Acting
+    - App\Model\Banks
+    - App\Model\City
+    - App\Model\Company
+    - App\Model\CompanyDocs
+    - App\Model\CompanyPerson
+    - App\Model\CompanyProgress
+    - App\Model\CompanySeat
+    - App\Model\Fields
+    - App\Model\FieldsCategory
+    - App\Model\FieldsCompany
+    - App\Model\Invoice
+    - App\Model\News
+    - App\Model\Payments    
+    - App\Model\Person
+    - App\Model\Progress
+    - App\Model\Reports    
+    - App\Model\Seat
+    - App\Model\Taxes
+    - App\Model\UserManager
+    - App\Model\Users
+    - App\Model\AccountancyService
+    - App\Model\AccountancyServiceCategory
+    - App\Model\CompanyAccountancyService
+    - App\Model\Facade\CompanyFacade
+    - App\Model\Facade\DiscountFacade
+    - App\Model\Service\DocumentService
+    - App\Model\Helper\PaymentHelper
+    - App\Model\JusticeLimit
+    - App\RouterFactory
+    - App\Transaction
+    router: @App\RouterFactory::createRouter    
+    - \App\Components\Form\Step8\IStep8FormFactory
+    - \App\Components\Form\Step3\IStep3FormFactory
+    - \App\Components\Form\Step2\IStep2FormFactory
+    - \App\Components\Form\Step1\IStep1FormFactory
+    -
+        implement: \App\Components\Form\Step5\IStep5FormFactory
+        parameters: [company]
+        arguments: [%company%]
+
+    - \App\Model\SeatService
+    - \App\Model\SeatServiceTarif
+    - \App\Model\PostService
+    - \App\Model\PhoneService
+    - \App\Model\Facade\CompanyProccessFacade
+
+
+scheduler:
+    jobs:
+        - {cron: '0 8 1 * *', callback: [@stask, emailMonthlyReport]}

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<style type="text/css">
+		@page { size: 21cm 29.7cm; margin: 2.5cm }
+		p { margin-bottom: 0.25cm; direction: ltr; line-height: 120%; text-align: left; orphans: 2; widows: 2 }
+	</style>
+</head>
+<body lang="cs-CZ" dir="ltr">
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><span><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><b>PROHLÁŠENÍ
+SPRÁVCE VKLADU</b></font></font></span></p>
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">dle
+ust. § 24 odst. 1 zák. č. 90/2012 Sb.</font></font></p>
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Zakladači s.r.o., Gutova 3317/15, Strašnice, 100 00 Praha 10, IČ 05622701</font></font></p>
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">jako
+správce vkladu společnosti</font></font></p>
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$company->getName()}</font></font></p>
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">tímto
+čestně prohlašuje, že zakladatelé společnosti</font></font></p>
+{foreach $company->getPersons() as $p}
+<p align="center" style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$p->getFullName()}{if $p->getSeat()->getFullAddress()}, {$p->getSeat()->getFullAddress()}{/if}{if $p->getDate()}, datum narození 
+            {$p->getDate()|date:'j.n.Y'}{else}{if $p->getIco()}IČ {$p->getIco()}{/if}{/if} (vklad {$company->getCapital()*$company->getShares()[$iterator->counter-1]},-Kč)</font></font></p>
+{/foreach}
+<p style="margin-bottom: 0.35cm; line-height: 115%"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">na
+zvláštní účet zřízený za účelem složení základního
+kapitálu složili finanční prostředky v&nbsp;souhrnné výši
+</font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">{$company->getCapital()}</font></font><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">,-Kč,
+které odpovídají 100% jejich vkladové povinnosti jakožto
+společníků. Tímto tedy byl splacen základní kapitál v&nbsp;plné
+výši před podáním návrhu na zápis do obchodního rejstříku.</font></font></p>
+<p style="margin-bottom: 0.35cm; line-height: 115%"><table dir="ltr" align="left" width="290" hspace="9" cellpadding="7" cellspacing="3">
+	<col width="264">
+	<tr>
+		<td width="264" height="98" valign="top" style="border: 6.75pt double #00000a; padding: 0cm 0.19cm">
+			<p><br/>
+
+			</p>
+		</td>
+	</tr>
+</table>
+
+</p>
+<p style="text-indent: 1.25cm; margin-bottom: 0.35cm; line-height: 115%">
+<span style="text-transform: uppercase"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Podpis:
+</font></font></span><span style="text-transform: uppercase"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">osoba oprávněná jednat za správce vkladu.</font></font></span><span style="text-transform: uppercase"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">	</font></font></span></p>
+<p style="margin-bottom: 0.35cm; line-height: 115%"><br/>
+<br/>
+
+</p>
+</body>
+</html>

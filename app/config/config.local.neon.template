@@ -1,0 +1,13 @@
+parameters:
+	ga: false # true/false - vypsat do kodu google analytics
+
+services:
+	docsStorage: DocsStorage(%wwwDir%/../data)
+
+
+database:
+	dsn: 'mysql:host=mysql;dbname=test'
+	user:
+	password:
+	options:
+		lazy: yes

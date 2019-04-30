@@ -1,0 +1,20 @@
+version: "3"
+services:
+  db:
+    build:
+      context: "."
+      dockerfile: "Dockerfile.db"
+    ports:
+    - "3306:3306"
+  web:
+    build:
+      context: "."
+      dockerfile: "Dockerfile.web"
+    ports:
+    - "8000:8000"
+    volumes:
+    - .:/opt/asisto
+    depends_on:
+      - "db"
+    links:
+      - "db:mysql"

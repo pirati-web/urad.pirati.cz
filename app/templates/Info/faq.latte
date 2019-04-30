@@ -1,0 +1,198 @@
+{block fbpixel}
+fbq('track', 'ViewContent');              
+{/block}
+
+{define title}Často kladené dotazy o zakládání firem{/define}
+
+{define description}Máte dotazy ohledně založení s.r.o. nebo přímo ohledně postupu založení firmy přes Piráty? Pokud zde nenajdete odpověď, napište nám na info@pirati.cz.cz{/define}
+
+
+{block navbar}
+<div class="container">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+		</button>
+		<a n:href="Homepage:"><img src="{$basePath}/img/logo.png"></a>
+	</div>
+	<div id="navbar" class="navbar-collapse collapse">
+
+		<div class="btn-group navbar-right">
+            <ul class="nav navbar-nav">
+				<li><a n:href="Homepage:">domů</a></li>
+				<li><a href="#contact">kontakt</a></li>
+
+				<li>{if !$user->isLoggedIn()}
+					<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#login">
+						<span class="glyphicon glyphicon-user" aria-hidden="true" ></span> Přihlásit se 
+					</button>
+					{else}
+						<button type="button" class="btn btn-primary"  data-toggle="modal">
+							{if $user->getIdentity()->getImage()}<img height="30px" width="30px" src="{$user->getIdentity()->getImage()}">
+							{else}<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							{/if}
+							{$user->getIdentity()->getName()}
+						</button>
+						{/if}
+						</li>
+					</ul>
+				</div> 
+			</div><!--/.navbar-collapse -->
+		</div>
+		{/block}
+
+
+		{block content}
+
+		<!-- Main jumbotron for a primary marketing message or call to action -->
+		<div class="">
+			<div class="container text-center">
+				<div class="container text-center">
+					<div class="row">
+						<div class="panel">
+							<div class="panel-body">
+								<div class="container">
+									<div class="row">  
+										<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+											<h2>Často kladené dotazy</h2>
+											<div class="text-left">
+												<h3>To mi Piráti fakt založí s.r.o.? To myslíte vážně?</h3>
+												<p>Jo. Úplně vážně. Když stát nedokáže zjednodušit byrokracii, uděláme to my. Protože úřady mají obíhat data, ne lidi. Zeptejte se ANO, proč zakládání firem skutečně nezjednodušili, když to měli ve své gesci. Sliby ANO jsou skutečně jen sliby. Tento web je důkaz černé na bílém, že my na to máme.</p>
+
+												<h3>Je tohle legální?</h3>
+												<p>Ano. Pokud náš servis vypadá „až příliš dobře“, je to kvůli tomu, že inovujeme. Všechny námi generované dokumenty i služba jako taková jsou právně v pořádku stejně tak jako služby ostatních firem, které nabízí společnosti na klíč nebo ready-made společnosti. Tyto společnosti jsou transakčním nákladem - existují jen proto, že stát nedokázal zakládání udělat dostatečně jednoduché.</p>
+																						
+												<h3>Jak může být služba tak levná? V čem je háček?</h3>
+												<p>Háček není žádný, služba funguje tak, jak se na první pohled tváří. Máme automatizovaný systém, dokumenty se nám generují automaticky. A pak to akorát nějaký náš ověřený partner vyběhá za vás. Ze založení přes nás Vám neplynou žádné závazky ani vícenáklady později. Nepožadujeme ani nákup žádných dalších služeb.</p>
+												
+												<h3>Kolik platím při založení přes Piráty?</h3>
+												<p>Zaplatíte stejně, jako při založení firmy přes notáře bez jakékoli pomoci (tedy když vám vyjde vstříc, nebude si účtovat poplatky navíc, které nemusí… když jsme zakládali 1. Pirátská s.r.o., platili jsme o 2000 Kč víc, než bylo nutné) plus administrativní poplatek. Když zakládáte svépomocí, často se stane, že notář si i podle standardního notářského tarifu vyfakturuje víc, než je nutné.</p>
+												<p>Třeba když jsme zakládali 1. Pirátská s.r.o., tak si notář zbytečně nafakturoval navíc několik položek, takže ve finále nás to vyšlo ještě dráž, než kdybychom to dělali online sami přes nás! Ne každý notář je totiž stejně vzdělán a ne každý vám totiž dá stejnou zákaznickou zkušenost.</p>
+												
+												<h3>Když založím přes vás, můžu hned prodávat?</h3>
+												<p>Ano, hned po registraci firmy. Pokud máte volnou živnost, tak nejpozději za 5 dní je vaše firma založena a připravena k prodeji Vašich výrobků či služeb.</p>
+												
+												<h3>Jak dlouho to trvá?</h3>
+												<p>Běžnou firmu s volnou živností zvládneme založit do 24 hodin od obdržení správných dokumentů a platby. Ovšem standard je do pěti dnů. Pokud by součástí zakládání byla například žádost o koncesi nebo jiný administrativně náročnější úkon, může se založení protáhnout i přes jeden měsíc - protože veřejná správa pracuje jiným tempem než my. Založení je však obvykle rychlejší, než při zakládání svépomocí, protože nemusíme čekat, až bude mít notář volno.</p>
+												
+												<h3>Nehrozí riziko ztráty osobních údajů?</h3>
+												<p>Jsme registrováni u Úřadu pro ochranu osobních údajů. Vaše údaje chráníme a zacházíme s nimi dle zákona. Nikdy je nepředáváme třetím stranám bez Vašeho informovaného souhlasu. Údaje obdrží pouze subjekty, které jsou potřeba k založení Vaší firmy.</p>
+												
+												<h3>Jaký je rozdíl mezi ready-made společností, společností na klíč, a společností založenou přes Piráty?</h3>
+												<p>Ready-made společnost už někdo vytvořil, má hotové dokumenty apod. U nás si můžete veškeré aspekty nastavit tak, jak potřebujete, stejně jako když zakládáte společnost na klíč. Nicméně u nás neplatíte vysoké poplatky za vytvoření společnosti na klíč a vše můžete zařídit z pohodlí vašeho domova či kanceláře.</p>
+												
+												<h3>Jsem v zahraničí, co dělat?</h3>
+												<p>Prosím ověřte podpisy na pobočce CzechPOINT u zastupitelského úřadu ČR (generální konzulát, ambasáda) a dokumenty pošlete podle instrukcí, které obdržíte po vyplnění formuláře založení firmy. Pokud nemáte možnost využít zastupitelský úřad, prosím napište nám na urad@pirati.cz a my dodáme přesné instrukce, jak postupovat.</p>
+												
+												<h3>Kolik platím navíc, pokud od vás koupím služby od třetích stran? (účet v bance a pod.)</h3>
+												<p>Neplatíte nic navíc. Prodáváme za stejnou cenu jako firmy, jejichž služby nabízíme. Pokud je služba zpoplatněna, zpoplatňuje jí sám její provozovatel.</p>
+												
+												<h3>Je nutná registrace?</h3>
+												<p>Ano kvůli komunikaci, nicméně formulář lze celý vyplnit bez registrace a můžete se registrovat až těsně před založením firmy. Vyžádáme si jméno, email, kam budeme zasílat veškerou komunikaci, a korespondenční adresu, kam zašleme firemní dokumentaci.</p>
+												
+												<h3>Jak probíhá založení s.r.o.?</h3>
+												<p>Vyplníte náš intuitivní formulář, který vás provede založením krok za krokem. Na konci náš systém vygeneruje potřebné dokumenty, které stačí podepsat a odeslat našemu partnerovi. Zbytek on zařídí, přičemž o procesu vás budeme průběžně informovat.</p>
+												
+												<h3>Co když uděláte chybu?</h3>
+												<p>Neděláme chyby. Jednak je náš software dobře testovaný, jednak správnost údajů ověří v notář. Garantujeme spokojenost – jakékoli případně chyby odstraníme na naše náklady.</p>
+												
+											    <h3>Můžu pak dělat i změny online?</h3>
+												<p>Rádi bychom, ale nejde to provést v rámci současné právní úpravy . Novela a technické prostředky, které by to umožnily, jsou komplexnější. Budeme radši, když nám dáte hlas ve volbách, abychom online správu Vaší firmy mohli zavést. Pak to bude otázka chvilky.</p>
+												
+												<h3>Co se stane po založení firmy?</h3>
+												<p>Až bude firma založena, obdržíte její dokumentaci přímo od našeho partnera.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div></div>
+
+				</div></div>
+
+		</div>
+
+
+		<!-- /container -->
+
+		<!-- Modal -->
+		{*<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h3 class="modal-title" id="myModalLabel">Příhlášení do administrace</h3>
+					</div>
+					<div class="modal-body">
+						<div class="row"><div class="col-md-6">
+
+								<form>
+									<fieldset>
+										<legend>Firma POINT účet</legend>        
+
+										<div class="form-group">
+											<label for="exampleInputEmail1">Přihlašovací jméno</label>
+											<input type="email" class="form-control" id="" placeholder="email">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">Heslo</label>
+											<input type="password" class="form-control" id="" placeholder="heslo">
+										</div>
+
+										{*<div class="checkbox">
+										  <label>
+											<input type="checkbox"> Souhlasím s podmínkami
+										  </label>
+										</div>
+										<button type="submit" class="btn btn-warning">Přihlásit</button>
+									</fieldset>
+								</form>
+
+
+
+							</div>
+							<div class="col-md-6">
+								<form>
+									<fieldset>
+										<legend>Jiný účet</legend>        
+
+										<a href="{plink OPAuth:facebook}" class="btn btn-social btn-facebook"><i class="fa fa-facebook"></i>Přihlásit přes Facebook</a>
+										<br><br>
+										<a href="{plink OPAuth:google}" class="btn btn-social btn-google"><i class="fa fa-google"></i>Přihlásit přes Google+</a>
+									</fieldset>
+								</form>
+
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>*}
+
+		{/block}
+
+		{block scripts}
+		{include parent}
+		<script type="text/javascript" n:syntax="double">
+			Nette.validators.dateValidator = function (elem, args, val) {
+				return val % 11 === 0;
+			};
+		</script>
+		<script type="text/javascript" n:syntax="double">
+			$(function () {
+				$.nette.init();
+				$.nette.ext('spinner');
+			});
+		</script>
+		{/block}
+
+		{block head}
+		{/block}
+
+		{block forms}
+		{/block}

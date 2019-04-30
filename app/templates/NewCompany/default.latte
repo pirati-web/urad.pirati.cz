@@ -1,0 +1,1092 @@
+| 1. Pirátská{block fbpixel}
+    {ifset $formToRender}
+                {if $formToRender == 1}
+                    fbq('track', 'Lead');
+                {/if}
+    {/ifset}
+{/block}
+{define buttons}
+		<!-- Button -->
+		<div class="form-group">
+			{*<label class="col-md-3 control-label" for="back"></label>*}
+			<div class="col-sm-6">
+				<button id="back" n:name="cancel" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Předchozí krok</button>
+			</div>
+			{*<label class="col-md-3 control-label" for="singlebutton"></label>*}
+			<div class="col-sm-6 text-right">
+				<button id="singlebutton" n:name="next" class="btn btn-warning btn-lg">Další krok <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>
+			</div>
+		</div>
+		<!-- Save Button -->
+		{*<div class="col-sm-12 text-right">
+			<br><a href="" data-toggle="modal" data-target="#login">
+				<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" ></span> Uložit a pokračovat jindy 
+			</a>
+		</div>*}
+{/define}
+{block content}
+<nav class="navbar navbar2 navbar-fixed-top">
+    <div class="container">
+        {var counter=1;}
+        {foreach $formNames as $item}
+            <div class="col-xs-2 col-sm-1">
+                <span class="num {if $counter>$formToRender}off{/if}">{$counter}</span>
+                {*if $formToRender<=$counter}
+                    <a href="{link NewCompany:default $counter}" role="button"
+                {else*}
+                    <button type="button"
+                {*/if*}
+                        class="btn btn-numform btn-lg {if $formToRender==$counter}active{elseif $formToRender<$counter}off{/if}"
+                        data-toggle="tooltip" data-placement="bottom"
+                        title="{$item}">
+                    <span class="num2">{$counter}</span>
+                    <span class="numglyph glyphicon glyphicon-{$formSymbols[$counter++]}" aria-hidden="true"></span>
+                {*if $formToRender<=$counter}
+                    </a>
+                {else*}
+                    </button>
+                {*/if*}
+            </div>
+        {/foreach}
+    </div>
+</nav> 
+<div class="container">
+    {*<div class="row">*}
+        <div class="col-md-8">
+            <h2>Krok {$formToRender}/10 - {ifset $formName}{$formName}{/ifset}</h2>
+            <br>
+            {ifset $names}
+                {foreach $names as $n}
+                    {$n}<br/>
+                {/foreach}
+            {/ifset}
+
+            {ifset $formToRender}
+                {if $formToRender == 1}
+					{control step1Form}
+                {elseif $formToRender == 2}
+					{control step2Form}
+                {elseif $formToRender == 3}
+					{control seatForm}
+                {elseif $formToRender==4}
+                    {form userForm role=>"form",class=>"form-horizontal ajax"}
+                        {block userFormBlock}
+						{snippet userFormError}
+							{var $form = $presenter['userForm']}
+                            <div n:foreach="$form->errors as $error" class="alert alert-danger flash error"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>{$error}</div>
+						{/snippet}
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="" >{if $formToRender==4}Společníkem{else}Jednatelem{/if} je*</label>
+                                <div class="col-md-6">
+                                    {*input choice class=>"form-control", id=>""*}
+                                    {foreach $form[choice]->items as $key => $label}
+                                    <div class="radio">
+                                        <label n:name="choice:$key"><input n:name="choice:$key"> {$label}</label>
+                                    </div>
+                                    {/foreach}
+									<div class="radio">
+                                        <label n:name="choice:$key"><input type="radio" disabled="disabled"> zahraniční osoba nebo právnická osoba nezapsaná v OR</label>
+                                    </div>
+									
+                                </div>
+                            </div>   
+                            <div id="other">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="">Jméno a příjmení nebo název a identifikační údaje* </label>  
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <textarea n:name="foreign" class="form-control input-lg" placeholder="např. John Smith nebo MyCompany LLC a identifikační údaje" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Příplatek {$foreignPeopleCost->w_vat}Kč bez DPH" data-content="Po vygenerování formuláře vyčkejte na podrobné instrukce."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                <div class="col-md-3 col-md-offset-3">
+                                    <button id="back" n:name="another" class="btn btn-warning btn-md"><span class="numglyph glyphicon glyphicon-user" aria-hidden="true"></span> Uložit tohoto a přidat dalšího společníka </button>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                                
+                            <div id="company-name">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="">Jméno společnosti</label>  
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                        <input n:name="company" type="text" class="form-control input-md" placeholder="Hledat jméno nebo IČO...">
+                                        <span class="input-group-btn">
+                                            <button id="back" n:name="search" class="btn btn-warning"><span class="numglyph glyphicon glyphicon-search" aria-hidden="true" autofocus></span> Hledat</button>
+                                        </span>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {*<div class="form-group">
+                                <label class="col-md-3 control-label" for="">Jméno společnosti</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="company" type="text" placeholder="jméno" class="form-control input-md" required="">
+                                </div>
+                                <div class="col-md-3">
+                                    <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Nadpis nápovědy" data-content="Zde napište jméno."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <button id="back" n:name="search" class="btn btn-warning btn-md"><span class="numglyph glyphicon glyphicon-search" aria-hidden="true"></span> Hledat </button>
+                                </div>
+                            </div>*}
+                            {snippet name}
+                                    {ifset $companyName}
+                                        <div class="text-center"><a href=""></a>
+                                            <h3>Výsledky hledání</h3><br>
+                                        </div>
+                                        <table class="table table-striped">
+                                            <tr><td><strong>Název společnosti</strong></td><td><strong>IČO</strong></td><td><strong>Adresa</strong></td><td></td></tr>
+                                            {foreach $companyName as $c}
+                                                <tr class="company-info">
+                                                    <td><span class="cname">{$c["name"]}</span></td>
+                                                    <td><span class="ico" >{$c["ico"]}</span></td>
+                                                    <td><span class="seat" >{$c["seat"]}</span></td>
+                                                    <td>
+                                                    <button id="back" class="btn btn-warning btn-md" type="submit" name="another" value="přidat společníka">
+                                                      <span class="numglyph glyphicon glyphicon-user" aria-hidden="true">
+                                                      </span> vybrat </button></td>
+                                                </tr>
+                                            {/foreach}
+                                        </table>
+                                    {/ifset}                                    
+                            {/snippet}
+                            <div class="form-group" style="display:none">
+                                <label class="col-md-3 control-label" for="">Jméno společnosti</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="company_name" type="text" placeholder="jméno" class="form-control input-md" required="">
+                                </div>
+                            </div>
+                            <div class="form-group" style="display:none">
+                                <label class="col-md-3 control-label" for="">IČO</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="ico" type="text" placeholder="jméno" class="form-control input-md" required="">
+                                </div>
+                            </div>
+                            <div class="form-group" style="display:none">
+                                <label class="col-md-3 control-label" for="">Sídlo</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="seat" type="text" placeholder="jméno" class="form-control input-md" required="">
+                                </div>
+                            </div>
+                            </div> <!-- id="company-name" -->
+                            <div id="os">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="">Jméno*</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="name" type="text" placeholder="jméno" class="form-control input-md" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="">Příjmení*</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="surname" type="text" placeholder="příjmení" class="form-control input-md" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="">Rodné číslo*</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="person_id" type="text" placeholder="rodné číslo" class="form-control input-md" required="">
+                                </div>
+                                <div class="col-md-3">
+                                    <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Proč chceme tento údaj?" data-content="Rodné číslo je vyžadováno pro zápis do obchodního rejstříku, není však veřejně přístupné."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+                                </div>
+                            </div>                            
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="">Titul před jménem</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="title_pre" type="text" placeholder="Ing./Mgr." class="form-control input-md" required="">
+                                </div>
+                                <div class="col-md-3">
+                                    <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Upozornění k titulu." data-content="Titul musí být uveden v občanském průkazu. Pokud titul není v občanském průkazu zapsán, nechte pole volné."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="">Titul za jménem</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="title_suf" type="text" placeholder="PhD." class="form-control input-md" required="">
+                                </div>
+                                <div class="col-md-3">
+                                    <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Upozornění k titulu." data-content="Titul musí být uveden v občanském průkazu. Pokud titul není v občanském průkazu zapsán, nechte pole volné."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="">Ulice*</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="street" type="text" placeholder="ulice" class="form-control input-md" required="">
+                                </div>
+                                {*<div class="col-md-3">
+                                    <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Nadpis nápovědy" data-content="Zde napište název ulice."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+                                </div>*}
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="">Číslo popisné/číslo orientační*</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="street_number" type="text" placeholder="cislo ulice" class="form-control input-md" required="">
+                                </div>
+                                {*<div class="col-md-3">
+                                    <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Nadpis nápovědy" data-content="Zde napište číslo ulice."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+                                </div>*}
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="">Město*</label>  
+                                <div class="col-md-6">
+                                    <input id="" list="city" n:name="city" type="text" placeholder="mesto" class="form-control input-md" required="">
+                                    <datalist id="city">
+                                        <option n:foreach="$city as $c" value="{$c->name}"></option>
+                                    </datalist>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="">PSČ*</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="zip_code" type="text" placeholder="psc" class="form-control input-md" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="">Stát</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="state" type="text" placeholder="stat" class="form-control input-md" required="" readonly value="Česká republika">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-3 col-md-offset-3">
+                                    <button id="back" n:name="another" class="btn btn-warning btn-md"><span class="numglyph glyphicon glyphicon-user" aria-hidden="true"></span> Uložit tohoto a přidat dalšího společníka </button>
+                                </div>
+                            </div>                            
+                            </div>
+                        {/block}
+                            {include buttons}
+                        </fieldset>
+                    {/form}
+                {elseif $formToRender==5}
+					{control shareForm}
+                {elseif $formToRender == 6}
+					<div class="modal fade" id="step6-navyseni-ceny" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+						  <div class="modal-content">
+							<div class="modal-header">
+							  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							  <h4 class="modal-title" id="">Navýšení ceny</h4>
+							</div>
+							<div class="modal-body">
+							 <p>Přestože zákon je poměrně flexibilní ohledně určení způsobu jednání, nedoporučujeme alternativní způsoby jednání než společné jednání, samostatné jednání nebo výše uvedený příklad samostatného jednání s finančním omezením (rozhodnete-li se pro tento způsob, formulaci zkopírujte do textového pole a pouze upravte částku). Ačkoli zákon mluví jasně, státní i soukromé subjekty ne vždy mají pochopení pro jiné než tyto tři ustálené formulace. Pokud se rozhodnete zvolit jinou formulaci, můžete ve výsledku značně limitovat schopnost jednatelů fakticky jednat za společnost.</p>
+							</div>
+
+						  </div>
+						</div>
+					  </div>
+                    {form representantsActions role=>"form",class=>"form-horizontal"}
+                        {if $form->getErrors()}<div class="error">{$form->render('errors')}</div>{/if}
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="" >Jednatelé*</label>
+                                <div class="col-md-6">
+                                    <ul class="list-group" id="all-fields">
+                                    {foreach $form[actingPersons]->items as $key => $label}
+                                        <li class="list-group-item fields-item">
+                                            <div class="checkbox">
+                                                <label n:name="actingPersons:$key"><input n:name="actingPersons:$key"> {$label}</label>
+                                            </div>
+                                        </li>
+                                    {/foreach}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="another">Přidat jednatele</label>
+                                <div class="col-md-4">
+                                    <a href="#" data-toggle="modal" data-target="#actingPersonModal" class="btn btn-warning btn-md"><span class="numglyph glyphicon glyphicon-user" aria-hidden="true"></span> Přidat jednatele, který není společníkem </a>
+                                </div>
+                            </div>                            
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="" >Možnosti jednatelů*</label>
+                                <div class="col-md-6">
+                                    {*input actions class=>"form-control"*}
+                                    {foreach $form[actions]->items as $key => $label}
+                                    <div class="radio">
+                                        <label n:name="actions:$key"><input n:name="actions:$key"> {$label}</label>
+                                    </div>                                    
+                                    {/foreach}
+                                </div>
+                            </div>
+                            <div id="other_option">
+                             <div class="form-group">
+                                <label class="col-md-3 control-label" for="">Vlastní popis</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="other_option" type="text" placeholder="Například „Jednatelé zastupují společnost samostatně, pokud hodnota jednání nepřevyšuje 200.000Kč. " class="form-control input-md" required="">
+                                </div>
+                                <div class="col-md-3">
+                                    <a tabindex="0" role="button" title="Navýšení ceny" data-toggle="modal" data-target="#step6-navyseni-ceny" data-content=""><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+                                </div>
+                             </div>
+                            </div>
+                            {include buttons}
+                        </fieldset>
+                    {/form}
+                    <!-- Modal -->
+                    <div class="modal fade" id="actingPersonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h3 class="modal-title" id="myModalLabel">Přidání jednatele</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            {form userForm role=>"form",class=>"form-horizontal ajax"}
+                                                {include userFormBlock}
+                                            {/form}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {elseif $formToRender == 7}
+					<div class="modal fade" id="step7-upozorneni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+						  <div class="modal-content">
+							<div class="modal-header">
+							  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							  <h4 class="modal-title" id="">Důvody registrace</h4>
+							</div>
+							<div class="modal-body">
+							 <p>Důvody dobrovolné registrace mohou být např.: dovoz a vývoz, obchod s plátci DPH, pronájem prostor plátci a další situace, kdy registrace k DPH dává smysl. Upozorňujeme, že finanční úřad může požadovat (a často požaduje) další materiály dokládající důvody pro registraci, např. nájemní smlouvu s plátcem DPH (je-li důvodem žádosti pronájem plátci) nebo výčet obchodních partnerů. Zákon umožňuje získat vratku DPH z nákladů hrazených až 12 měsíců zpětně ode dne registrace k DPH. Proto doporučujeme s registrací k DPH počkat, než bude skutečně nezbytná.</p>
+							</div>
+
+						  </div>
+						</div>
+					  </div>
+                    {form taxForm role=>"form",class=>"form-horizontal"}
+						{*<p>Vyberte si <strong>nejpohodlnější účetnictví</strong> v České republice za <strong>nejnižší cenu na trhu</strong>. Váš tarif můžete kdykoliv změnit. Pro začátek odpovězte na několik otázek:</p>
+
+
+						<fieldset>
+							<!-- Multiple Radios (inline) -->
+							<div class="form-group">
+								<label class="col-md-6 control-label" for="radios">Bude firma plátcem DPH? <a tabindex="0" data-placement="bottom" role="button" data-toggle="popover" data-trigger="focus" data-content="Myšleno ihned, pokud zatím firmu nebudete registrovat, zvolte ne. Plátce DPH platí o 2 Kč za položku více."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></label>
+								<div class="col-md-6">
+									<label class="radio-inline" n:name="vat:1">
+										<input n:name="vat:1">
+										Ano
+									</label>
+									<label class="radio-inline" n:name="vat:0">
+										<input n:name="vat:0">
+										Ne
+									</label>
+								</div>
+							</div>
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="col-md-6 control-label" for="">Kolik bude mít firma vozidel? <a tabindex="0" data-placement="bottom" role="button" data-toggle="popover" data-trigger="focus" data-content="První vozidlo je za 400 Kč měsíčně, každé další za 100 Kč."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></label>
+								<div class="col-md-3">
+									<input id="number-cars" n:name="number_cars" class="form-control input-md">
+								</div>
+							</div>
+
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="col-md-6 control-label" for="">Kolik bude mít firma zaměstnanců?  <a tabindex="0" data-placement="bottom" role="button" data-toggle="popover" data-trigger="focus" data-content="Počítejte zaměstnance na dohody i v pracovním poměru. Každý zaměstnanec stojí 200 Kč měsíčně, cena zahrnuje veškerou administrativu a výpočty mezd a odvodů."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></label>
+								<div class="col-md-3">
+									<input id="number-employees" n:name="number_employees"  class="form-control input-md" >
+								</div>
+							</div>
+						</fieldset>
+
+					<div>
+						<div class="well offer">
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#bezzavazku" aria-controls="bezzavazku" role="tab" data-toggle="tab">Bez závazku <span class="label label-warning">50% sleva</span></a></li>
+								<li role="presentation"><a href="#pausal" aria-controls="pausal" role="tab" data-toggle="tab">Paušálové balíčky </a></li>
+								<li role="presentation"><a href="#bezucetnictvi" aria-controls="#bezucetnictvi" role="tab" data-toggle="tab">Nechci účetnictví</a></li>
+							</ul>
+
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane active" id="bezzavazku">
+									<br>
+									<div class="alert alert-warning" role="alert"><b>Pozor! 50% sleva</b> na první rok!
+										Pouze při založení firmy.</div>
+
+									{include accountancy, "data" => $accountancy1}
+								</div>
+
+								<div role="tabpanel" class="tab-pane" id="pausal"> <!-- paušály -->
+									<br>
+									{include accountancy, "data" => $accountancy2}
+								</div>
+
+								<div role="tabpanel" class="tab-pane" id="bezucetnictvi"> <!-- bezucetnictvi -->
+									<br>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="panel panel-default ">
+												<div class="panel-body">
+													<h4>Nechci účetnictví</h4>
+													<br>
+													Neláká vás pohodlí ani <strong>garance nejnižší ceny</strong>? Běžné minimální roční ceny bývají 7-10 tisíc Kč. I ty nejnižší ceny zpravidla nejdou pod 20 Kč za položku.
+												</div>
+												<div class="panel-footer">
+													<div class="row">
+														<div class="col-xs-12 text-right hidden package-button-selected"><button class="btn btn-warning btn-md active" type="button" value="Vybráno">Vybráno <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button></div>
+														<div class="col-xs-12 text-right package-button-select"><button id="package-x" class="btn btn-warning btn-md select-package" type="button" name="" value="bez účetnictví">bez účetnictví<span class="glyphicon" aria-hidden="true"></span></button></div>
+
+														{*<div class="col-xs-12 text-right"><button id="no-accountancy" class="btn btn-warning btn-md" type="button" name="" value="bez účetnictví">bez účetnictví<span class="glyphicon" aria-hidden="true"></span></button></div>}
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+									<div id="accountancyServices">
+										{$form[accountancyServices]->control}
+									</div>*}
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="" >Registrace k dani</label>
+                                <div class="col-md-6">
+                                    {if $form[taxes]->errors}
+										<div class="form-errors">
+											{foreach $form[taxes]->errors as $er}
+												{$er}
+											{/foreach}
+										</div>
+									{/if}
+                                    {foreach $form[taxes2]->items as $key => $label}
+                                        <div class="checkbox">
+                                            <label n:name="taxes2:$key"><input n:name="taxes2:$key"> {$label}</label>
+                                        </div>                                        
+                                    {/foreach}
+                                </div>
+                                <div class="col-md-3">
+                                    <a tabindex="0" role="button" data-toggle="popover" title="Upozornění"  data-content="Každá společnost se musí do dvou týdnů od založení zaregistrovat k dani z příjmů. Zatím k daním neregistrujeme. Musíte to oběhat sami."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+                                </div>
+                            </div>
+                            {input dph}
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="">Důvody registrace</label>  
+                                <div class="col-md-6">
+                                    <textarea n:name="tax_reason" placeholder="" class="form-control input-md"></textarea>
+                                </div>
+                                <div class="col-md-3">
+                                    <a tabindex="0" role="button" data-toggle="modal" data-target="#step7-upozorneni"  data-trigger="focus" title="Důvody registrace"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+                                </div>
+                            </div>    
+                            {*<div class="form-group"> 
+                            <label class="col-md-3 control-label" for="" >Chci zaslat nezávaznou nabídku na vedení účetnictví</label>
+                                <div class="col-md-6">
+                                    <div class="checkbox">
+                                        <label name=""><input n:name="accountance"> ano</label>
+                                    </div>
+                                </div>
+                            {*<div class="col-md-3">
+                                <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Upozornění!" data-content=""><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
+                            </div>}
+                        </div>*}
+                            {include buttons}
+                        </fieldset>
+                    {/form}
+                {elseif $formToRender == 8}
+                    {control bankAccountForm}
+                {elseif $formToRender == 9}
+                    <a id="uHelp" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Proč chceme všechny tyto údaje?" data-content="Potřebujeme kontaktní údaje (email, telefon, adresu) kvůli komunikaci, fakturaci a zasílání dokumentace. Zálohovou fakturu vystavíme na administrátora. Konečnou fakturu vystavíme na zakládanou firmu."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>                      
+                    <script type="text/javascript">
+                        $("#uHelp").appendTo($("h2:contains('uživatele')"));                        
+                    </script>
+                    {if !$user->isLoggedIn()}
+                    {form newUserForm role=>"form",class=>"form-horizontal"}
+                        <div n:foreach="$form->errors as $error" class="alert alert-danger flash"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> {$error}</div>                        
+                    <div class="row">
+                        <div class="col-md-7">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="">Emailová adresa*</label>  
+                                <div class="col-md-6">
+                                    <input n:name="mail" type="text" placeholder="" class="form-control input-md" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-right"><p id="snipp"></p></div>
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="">Jméno*</label>  
+                                <div class="col-md-6">
+                                    <input n:name="name" type="text" placeholder="" class="form-control input-md" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="">Příjmení*</label>  
+                                <div class="col-md-6">
+                                    <input n:name="surname" type="text" placeholder="" class="form-control input-md" required="">
+                                </div>
+                            </div>
+                            {*<div class="form-group">
+                                <label class="col-md-6 control-label" for="">Heslo (min. 8 znaků)*</label>  
+                                <div class="col-md-6">
+                                    <input n:name="password" type="password" placeholder="" class="form-control input-md" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 text-right"><p class="inline-hints sidetip" id="password_complexity"></p></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="">Heslo pro kontrolu*</label>  
+                                <div class="col-md-6">
+                                    <input n:name="password2" type="password" placeholder="" class="form-control input-md" required="">
+                                </div>
+                            </div>          *}                      
+                            {*<div class="form-group">
+                            <label class="col-md-5 control-label" for="" >Fakturační údaje</label>
+                                <div class="col-md-7">
+                                    <ul class="list-group" id="all-fields">
+                                    {foreach $form[persons]->items as $key => $label}
+                                        <li class="list-group-item fields-item">
+                                            <div class="checkbox">
+                                                <label n:name="persons:$key"><input n:name="persons:$key"> {$label}</label>
+                                            </div>
+                                        </li>
+                                    {/foreach}
+                                    </ul>
+                                </div>
+                            </div>*}
+                            <div id="fakturacniUdaje">
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="">Ulice*</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="street" type="text" placeholder="ulice" class="form-control input-md" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="">Číslo popisné/číslo orientační*</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="street_number" type="text" placeholder="cislo ulice" class="form-control input-md" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="">Město*</label>  
+                                <div class="col-md-6">
+                                    <input id="" list="city" n:name="city" type="text" placeholder="mesto" class="form-control input-md" required="">
+                                    <datalist id="city">
+                                        <option n:foreach="$city as $c" value="{$c->name}"></option>
+                                    </datalist>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="">PSČ*</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="zip_code" type="text" placeholder="psc" class="form-control input-md" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="">Telefon*</label>  
+                                <div class="col-md-6">
+                                    <input id="" n:name="tel" type="text" placeholder="telefon" class="form-control input-md" required="">
+                                </div>
+                            </div>  
+                            </div>
+                        </div>
+                        
+                        {include #js}
+                        </div>
+                        {snippet checkU}
+                            {ifset $message2}
+                                <div style="bottom:0" class="{$messType2}">{$message2|noescape}</div>
+                            {else}
+                                <div style="bottom:0"  class="{$messType}">{$message|noescape}</div>
+                            {/ifset}
+                        {/snippet}
+                    <script type="text/javascript" n:syntax="latte">
+                        //$('input[name="password"]').closest("td").after('<td><p id="password_complexity" class="inline-hints sidetip"></p></td>');
+                        //$('input[name="mail"]').closest("td").after('<td id="snipp"></td>');
+                        $(document).on("change", "#snipp", function(){                        
+                            if ($(this).empty()){
+                                $(this).parent().hide();
+                            }else{                                
+                                $(this).parent().show();
+                            }
+                        });                        
+                        $("#snippet--checkU").detach().appendTo("#snipp");
+                        $('input[name="password"]').yapsm({
+                            dictionary: function() {
+                                            return ["admin", "test"];
+                                        }
+                            }).on('input', function() {
+                                            $("#password_complexity").html(this.complexity);
+                                        });
+                    </script>
+
+                    {define #js}
+                    <script type="text/javascript" n:syntax="double">
+                        {{*include #jsCallback, input => mail, link => checkUser*}}
+                    </script>
+                    {/define}
+                    {define #jsCallback}
+                    $('#{$control["newUserForm"][$input]->htmlId}').on('input', function() {
+                        $.nette.ajax({
+                            type: 'GET',
+                            url: '{link {$link}!}',
+                            data: {
+                                //'value': $(this).val(),
+                                'mail': $('#{$control["newUserForm"][$input]->htmlId}').val()
+                            }
+                        });
+                        var message = $("#snippet--checkU").find("div").prop("class");
+                    });
+                    {/define}
+					
+					
+                    {*<div class="col-md-4 col-md-offset-1 text-right well">
+                    {*<form>}
+                        <fieldset>
+                        {*<br><br>}
+                        <legend>Mám existující účet</legend>        
+                        <a n:href="Sign:in backlink=>$presenter->storeRequest()" type="button" class="btn btn-warning btn-social"><i class=""><img height="22px" width="22px"  src="{$basePath}/favicon.ico"></i>Přihlásit přes Firma POINT</a>
+                        <br><br>
+                        <a href="{plink OpAuth:facebook backlink=>$presenter->storeRequest()}" class="btn btn-social btn-facebook"><i class="fa fa-facebook"></i>Přihlásit přes Facebook</a>
+                        <br><br>
+                        <a href="{plink OpAuth:google backlink=>$presenter->storeRequest()}" class="btn btn-social btn-google"><i class="fa fa-google"></i>Přihlásit přes Google+</a>
+                        </fieldset>
+                        {*</form>}
+                    </div>*}
+                    </div>
+                        <fieldset>
+                        <!-- Button -->
+                        <div class="form-group">
+                            {*<label class="col-md-3 control-label" for="back"></label>*}
+                            <div class="col-sm-6">
+                                <button id="back" n:name="back" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Předchozí krok</button>
+                            </div>
+                            {*<label class="col-md-3 control-label" for="singlebutton"></label>*}
+                            <div class="col-sm-6 text-right">
+                                <button id="singlebutton" n:name="send" class="btn btn-warning btn-lg">Další krok <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                        <!-- Save Button -->
+                        {*<div class="col-sm-12 text-right">
+                            <br><a href="" data-toggle="modal" data-target="#login">
+                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" ></span> Uložit a pokračovat jindy 
+                            </a>
+                        </div>*}
+                        </fieldset>
+                    {/form}
+                            {else}
+                                <div>
+                                    Jste přihlášeni jako 
+                            {if (method_exists($user->getIdentity(),"getImage") && $user->getIdentity()->getImage())}<img height="30px" width="30px" src="{$user->getIdentity()->getImage()}">
+                                    {else}<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                {/if}
+                                {$user->getIdentity()->getData()["name"]}
+                                {form nextForm}
+                                <fieldset>
+                                    {include buttons}
+                                </fieldset>
+                                {/form}
+                            </div>
+                            {/if}
+                {elseif  $formToRender == 10}
+					{form confirmForm role=>"form",class=>"form-horizontal"} 
+					<div class="well">
+						<div class="panel panel-default">
+						  <div class="panel-heading">Název firmy</div>
+						  <div class="panel-body">
+							{$company->getName()}
+						  </div>
+						</div>
+						<div class="panel panel-default">
+						  <div class="panel-heading">Předmět podnikání</div>
+						  {foreach $company->getAreas() as $area}
+						  <div class="panel-body">
+							{$area}
+						  </div>
+						  {/foreach}
+						</div>
+						<div class="panel panel-default">
+						  <div class="panel-heading">Sídlo</div>
+						  <div class="panel-body">
+							{if $company->getSeat()->hasOwnSeat()}
+								{$company->getSeat()->getFullAddress()}
+							{else}
+								{$company->getSeat()->getName()} (+ {number_format($company->getSeat()->getPrice(),0,",","")},- bez DPH za {$company->getSeat()->getMonths()} měsíců)
+							{/if}
+						  </div>
+						</div>
+						<div class="panel panel-default">
+						  <div class="panel-heading">Společníci</div>
+						  {foreach $company->getPersons() as $p}
+						  <div class="panel-body">
+							<span>{$p->getFullName()}</span>
+							<span class="pull-right">{$company->getShares()[$iterator->counter-1]*100}%</span>
+						  </div>
+						  {/foreach}
+						</div>
+						<div class="panel panel-default">
+						  <div class="panel-heading">Základní kapitál</div>
+						  <div class="panel-body">
+							{number_format($company->getCapital(),0,",",".")} Kč
+						  </div>
+						</div>
+						<div class="panel panel-default">
+						  <div class="panel-heading">Jednatelé</div>
+						  {foreach $company->getActingPersons() as $p}
+						  <div class="panel-body">
+							{$p->getFullName()}
+						  </div>
+						  {/foreach}
+						</div>
+						<div class="panel panel-default">
+						  <div class="panel-heading">Daně</div>
+						  {foreach $company->getTaxes() as $id=>$tax}
+								<div class="panel-body">
+								  {if $id==2}{$tax["source"]->name}: {$tax["tax_reason"]}{else}{$tax["source"]->name}{/if}
+								</div>
+						  {/foreach}
+						  {if !$company->getTaxes()}
+							  <div class="panel-body">
+								  Na finanční úřad zajde sám zakladatel
+							  </div>
+						  {/if}
+						  <div class="panel-body">
+							  <i>Piráti zařídí, aby se šlo zaregistrovat k daním rovnou při založení firmy. <br> Proč čekat měsíc? Proč chodit na tolik úřadů a říkat jim to samé? Po úřadech by měla obíhat data, ne lidé.</i>
+						  </div>
+						  {*if $company->getAccountancy()}
+							<div class="panel-body">
+								{$company->getAccountancy()->getName()}: {number_format($company->getAccountancy()->getPrice(),0,",","")},- bez DPH za měsíc
+							</div>
+							{else}
+								<div class="panel-body">
+									Bez účetnictví
+								</div>
+						  {/if*}
+                          {*if $accountancyConsultation}
+							<div class="panel-body">
+								Konzultace
+							</div>
+							{else}
+								<div class="panel-body">
+                                    Bez konzultace
+                                </div>
+                            {/if*}
+						</div>
+						<div class="panel panel-default">
+						  <div class="panel-heading">Banka</div>
+						  <div class="panel-body">
+							  {$company->getBank()["name"]}
+						  </div>
+						</div>
+						{*<div class="panel panel-default">
+						  <div class="panel-heading">Compliance</div>
+						  <div class="panel-body">
+							  {if $company->getCompliance()}
+								  Ano (+ {number_format($complianceCost->w_vat,0,",","")}Kč bez DPH za rok)
+						      {else}
+								  Ne
+							  {/if}
+						  </div>
+						</div>*}
+						  {if !$company->getSeat()->hasOwnSeat() && $company->getPostService()->getPrice()}
+							<div class="panel panel-default">
+							  <div class="panel-heading">Pošta</div>
+							  <div class="panel-body">
+									{$company->getPostService()->getName()} (+ {number_format($company->getPostService()->getPrice(),0,",","")},- bez DPH za {$company->getSeat()->getMonths()} měsíců)								
+							  </div>
+							</div>    
+						{/if}
+						 {if !$company->getSeat()->hasOwnSeat() && $company->getPhoneService()->getPrice()}
+							<div class="panel panel-default">
+							  <div class="panel-heading">Telefon</div>
+							  <div class="panel-body">
+									{$company->getPhoneService()->getName()} (+ {number_format($company->getPhoneService()->getPrice(),0,",","")},- bez DPH za {$company->getSeat()->getMonths()} měsíců)
+							  </div>
+							</div>  
+						  {/if}
+						  
+						  
+						  
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div class="col-md-10 noppading">
+									<b>Souhlasím s <a href="/docs/obchodni_podminky.pdf" target="_blank">obchodními podmínkami</a> a s <a href="/docs/ochrana_osobnich_udaju.pdf" target="_blank">podmínkami zpracování osobních údajů</a>.</b>
+								</div>
+								<div class="col-md-2 noppading text-right"><label n:name="conditions" class="nomargin"><input n:name="conditions"> ano</label></div>								
+							</div>
+						</div>
+				</div>
+                    
+                    <div class="row">
+                        <hr>
+                        <div class="form-group"> 
+                            <div class="col-sm-6">
+                                <button id="back" n:name="cancel" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Předchozí krok</button>
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                <button id="singlebutton" class="btn btn-warning btn-lg" type="submit" n:name="save" value="další"><span class="glyphicon glyphicon-check" aria-hidden="true" ></span> Založit firmu</button>
+                            </div>
+                        </div>                        
+                    </div>
+                    {/form}
+                {/if}
+            {/ifset}
+        </div>
+
+        <div class="col-md-4 text-right rightColumn">
+            {include "include/rightColumn.latte"}
+            
+        </div>
+    <hr>
+
+    {*<footer>
+        <div class="col-md-6"><p>&copy; 1. Pirátská s.r.o. {=date("Y")} | <a href="https://urad.pirati.cz/docs/obchodni_podminky.pdf">Obchodní podmínky</a></p></div>
+        <div class="col-md-6 text-right"><a n:href="Info:onas" target="_blank">O nás</a> <a n:href="Info:Faq" target="_blank">FAQ</a> <a target="_blank" n:href="Info:Kontakty">Kontakt</a></div>
+    </footer>*}
+</div> <!-- /container -->
+
+
+
+
+{include "include/modalLogin.latte"}
+{include "include/modalSeznam.latte"}
+{*include "include/modalAccountancy.latte"*}
+
+<div id="ajax-spinner"></div>
+
+{/block}
+
+{block scripts}
+{include parent}
+<script type="text/javascript" n:syntax="double" src="{{$basePath}}/js/new-company/utils.js"></script>
+{*<script type="text/javascript" n:syntax="double" src="{{$basePath}}/js/new-company/naklady.js"></script>*}
+{if $formToRender==1 || $formToRender==2 || $formToRender==3 || $formToRender== 4 || $formToRender==5 || $formToRender==6 || $formToRender==7}
+<script type="text/javascript" n:syntax="double" src="{{$basePath}}/js/new-company/{{$formToRender}}.js"></script>
+{/if}
+{if $formToRender==5}
+<script type="text/javascript" n:syntax="double">
+    $(function () {
+        var usersCount = {{($users) ? count($users) : 1}};
+        {{var usersCount = ($users) ? count($users) : 1;}} 
+        var stringFractions = {{($company->getShares()) ? implode(",",$company->getShares()) : implode(",",array_fill(0,$usersCount,1/$usersCount))}};
+        var persons = JSON.parse({{json_encode($pData)}});
+        renderGraph(usersCount, stringFractions, persons);
+        checkErrors(usersCount);
+    });
+</script>
+{/if}
+<script type="text/javascript" n:syntax="double">
+    $(function () {
+		/*window.onbeforeunload = function() {
+			return "Did you save your stuff?";
+		};*/
+        var payments = JSON.parse({{json_encode($possiblePayments)}});
+        //updateNaklady({{$formToRender}},payments);
+        $.nette.init();
+        $.nette.ext('spinner', { 
+            init: function () {
+                /*spinner = $('<div></div>', { id: "ajax-spinner" });
+                spinner.appendTo("body");*/
+            },
+            before: function (settings, ui, e) {
+                $("#ajax-spinner").css({
+                    display: "block"
+                    /*left: e.pageX,
+                    top: e.pageY*/
+                });
+            },
+            complete: function () {
+                $("#ajax-spinner").css({
+                    display: "none"
+                });
+            }
+        });   
+    });
+</script>
+<style>
+/*#ajax-spinner {
+    visibility: hidden;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    padding: 3px;
+    background: white url({$basePath}/images/spinner.gif) no-repeat 50% 50%;
+    z-index: 123456;
+}*/
+
+#ajax-spinner {
+	margin: 15px 0 0 15px;
+	padding: 13px;
+	background: white url('{$basePath|noescape}/images/spinner.gif') no-repeat 50% 50%;
+	font-size: 0;
+	z-index: 123456;
+	display: none;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+}
+</style>
+{/block}
+
+{block head}
+{/block}
+
+{block forms}
+{/block}
+
+
+{define accountancy}
+{var count = $data->count()}
+{var half = (int)ceil($count/2)}
+<div class="row">
+	{foreach $data as $item}
+		{if $iterator->counter == $half+1 || $iterator->isFirst()}
+			<div class="col-sm-6">
+		{/if}
+			<div class="panel panel-default accountancy-package-{if $item->fee}fee{else}nonfee{/if}">
+				<div class="panel-body">
+					<h4>{$item->name}</h4>
+					<ul style="margin-bottom: 0">
+						{if $item->fee}
+							{var monthlyPrice = $item->item_price*$item->items_month}
+							<li><span class="is-vat-{$item->id}">neplátce DPH</span></li>
+							<li>{$item->items_month} položek</li>
+							<li><span class="item-price-{$item->id}">{$item->item_price}</span> Kč za položku</li>
+							<li>počet vozidel: <span class="cars-{$item->id}">0</span></li>
+							<li>počet zaměstnanců: <span class="employees-{$item->id}">0</span></li>
+							<li>{$item->items_month*12} položek, <span class="price-year-{$item->id}">{$monthlyPrice*12}</span> Kč ročně</li>
+							
+							<script>
+								$(function(){ 
+									window.accountancy.push({ 
+										id: {$item->id|noescape},
+										itemsPerMonth: {$item->items_month|noescape},
+										itemPrice: {$item->item_price|noescape},
+										recalculate: function(vat, cars, employees) {
+											var itemsPerMonth = this.itemsPerMonth;
+											var itemPrice = this.itemPrice;
+											if (vat) {
+												itemPrice += 2;
+												$(".is-vat-"+this.id).html("plátce DPH");
+											} else {
+												$(".is-vat-"+this.id).html("neplátce DPH");
+											}
+											var monthlyPrice = itemPrice*itemsPerMonth;
+											if (cars > 0) {
+												$(".cars-"+this.id).html(cars);
+												monthlyPrice += 400; // za prvni vozidlo 400
+												cars--;
+												if (cars > 0) { // za dalsi 100
+													monthlyPrice += cars * 100;
+												}
+											} else {
+												$(".cars-"+this.id).html("0");
+											}
+											if (employees > 0) {
+												monthlyPrice += employees * 200;
+												$(".employees-"+this.id).html(employees);
+											} else {
+												$(".employees-"+this.id).html("0");
+											}
+											var priceYear = monthlyPrice*12;
+											
+											$(".item-price-"+this.id).html(itemPrice);
+											$(".monthly-price-"+this.id).html(monthlyPrice);
+											$(".price-year-"+this.id).html(priceYear);
+										}
+									});
+								});
+							</script>
+						{else}
+							{var monthlyPrice = 0}
+							<li><span class="is-vat-{$item->id}">neplátce DPH</span></li>
+							<li><s><span class="item-price-{$item->id}">{$item->item_price}</span>Kč</s> <b><span class="item-price-discount-{$item->id}">{$item->item_price/2}</span>Kč</b> za položku</li>
+							<li>počet vozidel: <span class="cars-{$item->id}">0</span></li>
+							<li>počet zaměstnanců: <span class="employees-{$item->id}">0</span></li>
+						<script>
+								$(function(){ 
+									window.accountancy.push({ 
+										id: {$item->id|noescape},
+										itemPrice: {$item->item_price|noescape},
+										recalculate: function(vat, cars, employees) { 
+											var itemPrice = this.itemPrice;
+											if (vat) {
+												itemPrice += 2;
+												$(".is-vat-"+this.id).html("plátce DPH");
+											} else {
+												$(".is-vat-"+this.id).html("neplátce DPH");
+											}
+											var monthlyPrice = 0;
+											if (cars > 0) {
+												$(".cars-"+this.id).html(cars);
+												monthlyPrice += 400; // za prvni vozidlo 400
+												cars--;
+												if (cars > 0) { // za dalsi 100
+													monthlyPrice += cars * 100;
+												}
+											} else {
+												$(".cars-"+this.id).html("0");
+											}
+											if (employees > 0) {
+												monthlyPrice += employees * 200;
+												$(".employees-"+this.id).html(employees);
+											} else {
+												$(".employees-"+this.id).html("0");
+											}
+											
+											$(".item-price-"+this.id).html(itemPrice);
+											$(".monthly-price-"+this.id).html(monthlyPrice);
+											$(".item-price-discount-"+this.id).html(itemPrice/2);
+										}
+									});
+								});
+							</script>
+						{/if}
+					</ul>
+					{$item->description|noescape}
+					
+				</div>
+				<div class="text-right detail-button">
+					<a href="" data-toggle="modal" data-target="#detailtarifu{if stripos($item->name,"online") !== FALSE}Online{/if}">detail tarifu</a>  
+				</div>
+				<div class="panel-footer">
+					<div class="row">
+						<div class="col-xs-7  text-left"><h3><span class="monthly-price monthly-price-{$item->id}">{$monthlyPrice}</span> Kč<small> / měsíc<br> (bez DPH)</small></h3></div>
+						<div class="col-xs-5 text-right hidden package-button-selected"><button class="btn btn-warning btn-md active" type="button" value="Vybráno">Vybráno <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button></div>
+						<div class="col-xs-5 text-right package-button-select"><button id="package-{$item->id}" class="btn btn-warning btn-md select-package" type="button" name="" value="Vybrat tarif">Vybrat tarif<span class="glyphicon" aria-hidden="true"></span></button></div>
+					</div>
+				</div>
+			</div>
+		{if $iterator->counter == $half || $iterator->isLast()}
+			</div>
+		{/if}
+	{/foreach}
+	{*<div class="col-sm-6">
+		<div class="panel panel-default ">
+			<div class="panel-body">
+				<h4>Standard bez závazku</h4>
+				<ul>
+					<li><s>36 Kč</s> <b>18 Kč</b> za položku</li>
+					<li>Minimum 2500 Kč za rok</li>
+				</ul>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<div class="col-xs-7  text-left"><h3>0 Kč<small> / měsíc</small></h3></div>
+					<div class="col-xs-5 text-right"><button id="singlebutton" class="btn btn-warning btn-md" type="submit" name="next" value="další">Vybrat tarif <span class="glyphicon" aria-hidden="true"></span></button></div>
+				</div>
+			</div>
+		</div>
+	</div>*}
+</div>
+
+{/define}

@@ -1,0 +1,173 @@
+{block fbpixel}
+fbq('track', 'ViewContent');              
+{/block}
+
+{define title}Kontakty{/define}
+
+{define description}Uvažujete o založení firmy? Neváhejte se nám ozvat. Zde naleznete kontakty na naši společnost, která se specializuje na zakládání firem. Založte si s.r.o. levně, na míru a komplet online.{/define}
+
+
+{block navbar}
+<div class="container">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+		</button>
+		<a n:href="Homepage:"><img src="{$basePath}/img/logo.png"></a>
+	</div>
+	<div id="navbar" class="navbar-collapse collapse">
+
+		<div class="btn-group navbar-right">
+            <ul class="nav navbar-nav">
+				<li><a n:href="Homepage:">domů</a></li>
+				<li><a href="#contact">kontakt</a></li>
+
+				<li>{if !$user->isLoggedIn()}
+					<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#login">
+						<span class="glyphicon glyphicon-user" aria-hidden="true" ></span> Přihlásit se 
+					</button>
+					{else}
+						<button type="button" class="btn btn-primary"  data-toggle="modal">
+							{if $user->getIdentity()->getImage()}<img height="30px" width="30px" src="{$user->getIdentity()->getImage()}">
+							{else}<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							{/if}
+							{$user->getIdentity()->getName()}
+						</button>
+						{/if}
+						</li>
+					</ul>
+				</div> 
+			</div><!--/.navbar-collapse -->
+		</div>
+		{/block}
+
+
+		{block content}
+
+		<!-- Main jumbotron for a primary marketing message or call to action -->
+
+		{*form newCompanyForm role=>"form"}
+		<div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-12">
+		<div class="input-group">
+		<input n:name="name" type="text" class="form-control input-lg" data-toggle="tooltip" data-placement="bottom" title="Zadejte název společnosti, co chcete založit, nebo název existující společnosti, kterou chcete registrovat na Firma POINT. Zadejte celý název včetně koncovky." placeholder="název společnosti...">
+		<span class="input-group-btn">
+		  <button n:name="search" type="submit" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+		</span>
+	  </div><!-- /input-group -->
+		</div>
+		{/form*}
+		<!-- Main jumbotron for a primary marketing message or call to action -->
+	
+			<div class="container text-center">
+				<div class="container text-center">
+					<div class="row">
+						<div class="panel">
+							<div class="panel-body">
+								<div class="container">
+									<div class="row"> 
+										<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+											<h2>Kontakty</h2>
+                      
+                      <div class="social2">
+    <ul>
+        <li class="twitter"><a href="https://twitter.com/PiratePartyCZ" target="_blank"></a></li>
+        <li class="facebook"><a href="https://www.facebook.com/ceska.piratska.strana" target="_blank"></a></li>
+        <li class="google-plus"><a href="https://plus.google.com/+piratskastrana" target="_blank"></a></li>
+    </ul>
+</div>
+                      
+											<div class="text-left">
+												<ul style="list-style-type: none;">
+													
+													<li>urad@pirati.cz</li>
+													<li><br></li>
+														{*<li>infolinka +420 602 111 111 (10 až 12h každý všední den)</li>*}
+													<li>Provozovatel:
+														1. Pirátská s.r.o., IČ 06194559, DIČ CZ06194559 </li>
+													<li>Zpracovatel:
+														Zakladači s.r.o., IČ: 05622701, DIČ: CZ05622701 </li>
+                            						<li>Zadavatel:
+														<a href="http://pirati.cz">Piráti</a></li>
+													<li><br></li>
+													{*<li>
+														<div class="container-fluid" id="map" style="min-height: 300px"></div> 
+														<script n:syntax="double">
+															function initMap() {
+																var pos = {lat: 50.243973, lng: 12.83825550000006};
+																var map = new google.maps.Map(document.getElementById('map'), {
+																	center: pos, /*{lat: 50.2440446, lng: 12.8378357},*/
+																	zoom: 16,
+																	/*mapTypeId: google.maps.MapTypeId.SATELLITE*/
+																});
+
+
+
+																var infowindow = new google.maps.InfoWindow;
+																var marker = new google.maps.Marker({
+																	map: map,
+																	position: pos//results[0].geometry.location
+																});
+																infowindow.setContent("Firma POINT, U Řempa 895/14, Karlovy Vary, 36017");
+																infowindow.open(map, marker);
+
+																/*var geocoder = new google.maps.Geocoder;
+																 geocoder.geocode({'placeId': "ChIJEUCWW7uZoEcRdItgtLDLm1Y"},
+																 function(results, status) {
+																 if (status === google.maps.GeocoderStatus.OK) {
+																 if (results[0]) {
+																 map.setZoom(15);
+																 map.setCenter(results[0].geometry.location);
+																 var marker = new google.maps.Marker({
+																 map: map,
+																 position: results[0].geometry.location
+																 });
+																 infowindow.setContent(results[0].geometry.location + "Firma POINT s.r.o., "+results[0].formatted_address);
+																 infowindow.open(map, marker);
+																 }                        
+																 }
+																 });*/
+															}
+														</script>
+														<script async defer
+														src="https://maps.googleapis.com/maps/api/js?callback=initMap" n:syntax="double"></script>
+													</li>*}
+												</ul>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+
+
+		<!-- /container -->
+		{/block}
+
+		{block scripts}
+		{include parent}
+		<script type="text/javascript" n:syntax="double">
+			Nette.validators.dateValidator = function (elem, args, val) {
+				return val % 11 === 0;
+			};
+		</script>
+		<script type="text/javascript" n:syntax="double">
+			$(function () {
+				$.nette.init();
+				$.nette.ext('spinner');
+			});
+		</script>
+		{/block}
+
+		{block head}
+		{/block}
+
+		{block forms}
+		{/block}

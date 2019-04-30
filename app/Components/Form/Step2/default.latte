@@ -1,0 +1,105 @@
+<div class="row">
+	<div class="col-md-12">
+		<input type="text" class="form-control" id="filter" placeholder="vyhledat živnost">
+	</div>
+</div>
+<br>
+<div class="row">
+	{*<div class="col-md-12">
+		<div class="well">
+			{foreach $types as $type}
+				<div class="checkbox col-sm-2">
+					<label><input class="type-chkb" type="checkbox" value="{$type->id}">{$type->name} </label>
+				</div>
+			{/foreach}
+		</div>
+	</div>
+	<div class="col-md-8">
+		<div class="well">
+			<div class="row">
+				{foreach $category as $c}
+					{if ($iterator->counter%5==1)}<div class="col-md-6">{/if}
+						<div class="checkbox ">
+							<label><input class="group-chkb" type="checkbox" value="{$c->id}">{$c->name} </label>
+						</div>
+					{if ($iterator->counter%5==0 || $iterator->last)}</div>{/if}
+				{/foreach}
+			</div>
+		</div>
+	</div>*}
+	<div class="col-md-4">
+		<div class="well">
+			{foreach $types as $type}
+				<div class="checkbox">
+					<label><input class="type-chkb" type="checkbox" value="{$type->id}">{$type->name} </label>
+				</div>
+			{/foreach}
+		</div>
+	</div>
+	<div class="col-md-8">
+		{*<div class="well">
+			<div class="row">
+				{foreach $category as $c}
+					{if ($iterator->counter%5==1)}<div class="col-md-6">{/if}
+						<div class="checkbox ">
+							<label><input class="group-chkb" type="checkbox" value="{$c->id}">{$c->name} </label>
+						</div>
+						{if ($iterator->counter%5==0 || $iterator->last)}</div>{/if}
+					{/foreach}
+			</div>
+		</div>*}
+	</div>
+</div>
+{*<form role="form" class="form-horizontal" novalidate="">*}
+<div class="form-horizontal">
+	<div class="form-group">
+		<label class="col-md-3 control-label no-hide-label" for="">Vybrané živnosti</label>  
+	</div>
+	<ul class="list-group" id="selected-items">
+	</ul>
+</div>
+{*</form>*}
+{form form role=>"form",class=>"form-horizontal"}
+	<div class="alert alert-danger alert-dismissible" role="alert" n:if="$form->getErrors()">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<p class="text-center" n:foreach="$form->getErrors() as $error">{$error}</p>
+	</div>
+	<div class="form-group">
+		<label class="col-md-3 control-label no-hide-label" for="">Seznam živností <a href="" data-toggle="modal" data-target="#seznam">(podrobnosti)</a></label>
+	</div>
+	<ul class="list-group" id="all-fields">
+		{foreach $form[cat]->items as $key => $label}
+			<li class="list-group-item fields-item">
+				{var groups=explode(",",$it[$key])}
+				<div class="checkbox t{$itemTypes[$key]["type_id"]} {foreach $groups as $g}g{$g} {/foreach}">
+					<label n:name="cat:$key"><input n:name="cat:$key"> {$label}</label>
+					<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="{if $itemTypes[$key]["type_id"]==5}{$itemTypes[$key]["type_name"]|firstUpper} povolání{else}Živnost {$itemTypes[$key]["type_name"]}{/if}" data-placement="right" data-html="true" data-content="{if array_key_exists($key,$itemTypes)}<div>{$itemTypes[$key]["desc"]|noescape}</div>{/if}">
+						<span class="glyphicon glyphicon-{if $itemTypes[$key]["type_id"]==2}info{else}warning{/if}-sign" aria-hidden="true"></span></a>
+				</div>
+
+			</li>
+		{/foreach}
+	</ul>
+
+	<!-- Button -->
+	{include '../buttons.latte', "_form" => $form}
+{/form}
+
+<div class="modal fade" id="confirm-cat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Upozornění</h4>
+			 </div>
+            <div class="modal-body text-left">
+
+				<p>V případě, že nezvolíte žádnou z běžných živností, bude Vaše firma o 1000 Kč levnější, ale budete-li chtít přidat byť jen jednu živnost v budoucnu, budete muset měnit notářský zápis a nehledě na zdržení náklady přesáhnou 6000 Kč. Doporučujeme zvolit alespoň jednu volnou živnost. V případě, že se chystáte pracovat s nemovitostmi, doporučujeme zvolit např. volnou živnost "Realitní činnost, správa a údržba nemovitostí".</p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Vybrat další živnost</button>
+                <a href="#" id="confirm-cat-send" class="btn btn-success btn-ok">Přesto pokračovat</a>
+            </div>
+        </div>
+    </div>
+</div>

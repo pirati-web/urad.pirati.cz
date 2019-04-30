@@ -1,0 +1,275 @@
+{block fbpixel}
+{if  $flashes}
+	{foreach $flashes as $flash}
+		{if stristr($flash->message,"Děkujeme za váš zájem o Compliance.")}
+			fbq('track', 'Lead');
+		{/if}
+	{/foreach}
+{/if}
+{/block}
+{block content}
+
+{define title}Na úřad z domova | Založení firmy online{/define}
+
+{define description}Založte s.r.o. online do 5 dní. Vyplňte intuitivní formulář, podepište vygenerované dokumenty – to je vše. Cena je 7,413 Kč včetně DPH a všech poplatků.{/define}
+
+<div class="jumbotron">
+
+
+	<div class="container ">
+
+		<div class="row">
+			<div class="col-xs-6">
+
+				<h2>Na úřad z domova</h2>
+				<p>Svoboda, na kterou si můžete sáhnout.</p>
+			</div>
+			<div class="col-xs-3 text-center">
+				<img src="{$basePath}/img/razitko.png" class="img-responsive" style="margin: 0 auto;">
+			</div>
+			<div class="col-xs-3 text-right" >
+
+				<h4>Státní infolinka?</h4>
+				<p>Volejte pirátskou infolinku.<br>222 703 223</p>
+			</div>	</div>
+	</div> </div>
+
+<div class="container text-center">
+
+	<div class="row">
+
+		<div class="col-xs-12 col-sm-6">      <br>
+			<img src="{$basePath}/img/zivnost.png" class="img-responsive" style="margin: 0 auto;">
+			<h3>Živnostníkem jedním klikem</h3> <br>
+			Registrace<br>
+			Změny<br>
+			Daňové přiznání<br>
+
+			<a tabindex="0" role="button" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="Máme jednu daň, jedno inkasní místo, přehledy už se po pirátské reformě odevzdávat nebudou :-)">
+				<span style="text-decoration: line-through;">Přehledy</span>
+			</a>     <br>
+
+			<br>
+			<p class="text-muted"><small><i>Toto zařídíme, když zvolíte Piráty</i></small></p>
+			<a href="https://www.cernenabilem2017.cz/experti-na-technologie" class="btn btn-default">Pusťte nás na ně!</a> <br>
+
+		</div>
+		<div class="col-xs-12 col-sm-6 "><br> <div class="well_special">    
+				<img src="{$basePath}/img/firma.png" class="img-responsive" style="margin: 0 auto;">
+				<h3>Založit firmu za jeden den</h3> <br>     
+				<a tabindex="0" role="button" data-toggle="popover" data-trigger="hover" data-placement="bottom" title="To prosadíme, bude to jako v Británii. Pusťte nás na ně!" data-content="Andrej Babiš o tom prý sní, ale jeho člověk Pelikán se nemá k tomu to zrealizovat. Dnes to za vás vyběháme my, trvá to 5 dní a bude vás to stát 5 000 až 12 000 na poplatcích (osobně by vás to vyšlo o ještě výrazně víc).">
+					Jednoduše online, do 500 Kč, zaplatíte kartou.
+				</a> 
+				<br>
+				{*if !$disableApp}<a n:href="NewCompany:">(Myslím to vážně. Chci založit s.r.o. online již dnes do 5 dní.)</a><br>{/if*}
+
+				Po úřadech mají obíhat data, ne lidé.<br>
+				{if !$disableApp}<b>Skutečné s.r.o. jsme založili jen pro 10 nejrychlejších.<br>SLUŽBA JE NYNÍ POUZE DEMO.</b>{else}<br>{/if}
+				<br>      <br>
+				<p ><small><i>Toto zařídíme, když zvolíte Piráty. Jiní o tom sní, u nás si to můžete už dnes zkusit.</i></small></p>
+				{if !$disableApp}<a n:href="NewCompany:" class="btn btn-primary" id="live">Pusťte mě založit s.r.o.!</a>{else}<a href="https://www.cernenabilem2017.cz/experti-na-technologie" class="btn btn-default">Pusťte nás na ně!</a>{/if}
+				<br><br><br> 
+			</div></div>
+
+		<div class="col-xs-12 col-sm-6">   <br>
+			<img src="{$basePath}/img/doklady.png" class="img-responsive" style="margin: 0 auto;">
+			<h3>Doklady bez čekání</h3> <br>
+			Trvalé bydliště<br>
+			Občanský průkaz<br>
+			Pas<br>
+			Řidičský průkaz <br>
+
+			<br>
+			<p class="text-muted"><small><i>Toto zařídíme, když zvolíte Piráty</i></small></p>
+			<a href="https://www.cernenabilem2017.cz/experti-na-technologie" class="btn btn-default">Pusťte nás na ně!</a> <br>
+
+
+
+
+
+		</div>
+		<div class="col-xs-12 col-sm-6"> <br>
+
+			<img src="{$basePath}/img/obcan.png" class="img-responsive" style="margin: 0 auto;">
+			<h3>Občanský komfort</h3><br>
+			Kupon na MHD<br>
+			Pes<br>
+			Auto<br>
+			Daň z nemovitosti<br>
+
+			<br>
+			<p class="text-muted"><small><i>Toto zařídíme, když zvolíte Piráty</i></small></p>
+			<a href="https://www.cernenabilem2017.cz/experti-na-technologie" class="btn btn-default">Pusťte nás na ně!</a> <br>
+
+
+
+		</div>
+
+    </div>
+
+
+	<br><br>
+
+
+</div>     
+</div>    
+
+<!-- /container -->
+<div class="modal fade" id="poplatky" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title" id="myModalLabel">Poplatky za založení společnosti</h3>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<table class="table table-striped">
+							<tr><th class="col-md-6">Položka</th><th class="col-md-3">Cena</th><th class="col-md-3">z toho DPH</th></tr>
+							<tr><td>Soudní poplatek za zápis do obchodního rejstříku</td>
+								<td>2 700 Kč</td>
+								<td>0 Kč</td>
+							</tr>
+							<tr><td>Notářský poplatek za zápis do obchodního rejstříku</td>
+								<td>363 Kč</td>
+								<td>63 Kč</td>
+							</tr>               
+							<tr><td>Osvědčovací notářský zápis</td>
+								<td>1 210 Kč</td>
+								<td>210 Kč</td>
+							</tr>
+							<tr><td>Odměna notáře (při základním kapitálu nad 266 500Kč se zvýší)</td>
+								<td>4 840 Kč</td>
+								<td>840 Kč</td>
+							</tr>
+							<tr><td>Správní poplatek za živnostenské oprávnění</td>
+								<td>1 000 Kč</td>
+								<td>0 Kč</td>
+							</tr>
+							<tr><td>Ostatní administrativní výdaje (ověřování podpisů, poštovné atd.)</td>
+								<td>847 Kč</td>
+								<td>147 Kč</td>
+							</tr>
+							<tr><td><strong>Celkem</strong></td>
+								<td><strong>10 960 Kč</strong></td>
+								<td>1 260 Kč</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title" id="myModalLabel">Příhlášení do administrace</h3>
+			</div>
+			<div class="modal-body">
+				<div class="row"><div class="col-md-6">
+
+						{*<form>*}
+						{form signInForm, role=>"form"}
+							<fieldset>
+								<legend>účet</legend>        
+
+								<div class="form-group">
+									<label for="exampleInputEmail1">Přihlašovací jméno</label>
+									<input n:name="username" type="email" class="form-control" id="" placeholder="email">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">Heslo</label>
+									<input n:name="password" type="password" class="form-control" id="" placeholder="heslo">
+								</div>
+
+								{*<div class="checkbox">
+								  <label>
+									<input type="checkbox"> Souhlasím s podmínkami
+								  </label>
+								</div>*}
+								<button n:name="send" type="submit" class="btn btn-warning">Přihlásit</button>
+							</fieldset>
+						{/form}
+						{*</form>*}
+
+
+
+					</div>
+					<div class="col-md-6">
+						<form>
+							<fieldset>
+								<legend>Jiný účet</legend>        
+
+								<a href="#" class="btn btn-social btn-facebook"><i class="fa fa-facebook"></i>Přihlásit přes Facebook</a>
+								<br><br>
+								<a href="#" class="btn btn-social btn-google"><i class="fa fa-google"></i>Přihlásit přes Google+</a>
+							</fieldset>
+						</form>
+
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{/block}
+
+{block scripts}
+{include parent}
+<script type="text/javascript" n:syntax="double">
+	Nette.validators.dateValidator = function (elem, args, val) {
+		return val % 11 === 0;
+	};
+	$(document).ready(function () {
+		var heights = $(".panel").map(function () {
+			//console.log($(this).find(".panel-heading").height()+" "+$(this).find(".panel-body").height());
+			return $(this).find(".panel-heading").height() + $(this).find(".panel-body").height();
+		}).get(),
+				maxHeight = Math.max.apply(null, heights);
+
+		$(".panel-body").each(function () {
+			$(this).height(maxHeight - $(this).parent().find(".panel-heading").height());
+		});
+	});
+</script>
+<script type="text/javascript" n:syntax="double">
+	$(function () {
+		$.nette.init();
+		$.nette.ext('spinner');
+
+		$("#live").click(function () {
+			_trackEvent("homepage", "click", "incorp");
+		});
+		$("#try").click(function () {
+			_trackEvent("homepage", "click", "tryit");
+		});
+	});
+</script>
+
+{/block}
+
+{block head}
+<style>
+    @media (max-width: 768px) {
+		body {
+			margin: 0;
+			padding-top: 140px;
+			padding-bottom: 20px;
+
+		}
+	}
+</style>
+{/block}
+
+{block forms}
+{/block}

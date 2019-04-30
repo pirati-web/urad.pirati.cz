@@ -1,0 +1,18 @@
+[
+	ChargeItem::__set_state(/* #d99b */ [
+		'name' => 'item1',
+		'price' => 2323,
+		'priceWithoutVat' => 2223,
+		'vat' => true,
+		'info' => '',
+		'priceComment' => '',
+	]),
+	ChargeItem::__set_state(/* #5f22 */ [
+		'name' => 'item1',
+		'price' => 2323,
+		'priceWithoutVat' => 2223,
+		'vat' => false,
+		'info' => '',
+		'priceComment' => '',
+	]),
+]
