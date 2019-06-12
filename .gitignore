@@ -1,10 +1,8 @@
 app/config/config.local.neon
 nbproject/
-log/
 temp/
 /app/config/config.local.neon
 nbproject
-data
 /vendor/*
 !.gitignore
 !.htaccess

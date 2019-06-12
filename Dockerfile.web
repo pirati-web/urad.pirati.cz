@@ -1,13 +1,17 @@
-#sudo docker run -it -v /home/tomas/Documents/prace/Asisto:/opt/asisto -p 8000:8000  php:7.1 /bin/bash
-from php:7.2
+# https://dockerfile.readthedocs.io/en/latest/content/DockerImages/dockerfiles/php-nginx.html
+FROM webdevops/php-nginx:7.2
 
-#RUN docker-php-ext-install mysqli
+WORKDIR /opt/asisto
+ENV WEB_DOCUMENT_ROOT=/opt/asisto/www
+
+RUN apt update
+
 RUN mkdir -p /usr/share/man/man1
-
-RUN apt update && apt install -y libtidy-dev zlib1g-dev pandoc libpng-dev default-jre pandoc
+RUN apt install -y pandoc libpng-dev default-jre
 
 RUN apt install -y --no-install-recommends --no-install-suggests libreoffice
 
-RUN docker-php-ext-install pdo_mysql tidy zip gd
-
-CMD php -S 0.0.0.0:8000 -t /opt/asisto/www
+# Install dependencies
+COPY composer.json ./
+COPY composer.lock ./
+RUN composer install

@@ -34,55 +34,6 @@ abstract class BaseAdminPresenter extends Nette\Application\UI\Presenter
 		$this->template->disableApp = $this->disableApp;
 	}
 
-	public function parseJustice($name)
-	{
-		$companyName = "";
-		$ico = "";
-		$may_be_ico = str_replace('/\s+/', '', $name);
-		if (preg_match('/\d{8}/m', $may_be_ico)) {
-			$ico = $may_be_ico;
-		} else {
-			$companyName = $name;
-		}
-		$url = "https://or.justice.cz/ias/ui/rejstrik-\$firma?nazev=" . urlencode($companyName) . "&ico=" . urlencode($ico);
-		$xml = file_get_contents($url);
-		$data = new \Maite\Web\DOM($xml);
-		$company = array();
-		$index = 0;
-		$name;
-		$ico;
-		$seat;
-		foreach ($data->xpath('//table[@class="result-details"]') as $com) {
-			$counter = 0;
-			$end = false;
-			foreach ($com->xpath('.//tr') as $row) {
-				$counter++;
-				switch ($counter % 3) {
-					case 1:
-						\Tracy\Debugger::barDump($name);
-						$name = $row->xpath('.//td', 0)->text();
-						$ico = $row->xpath('.//td', 1)->text();
-						break;
-					case 0:
-						$seat = $row->xpath('.//td', 0)->text();
-						$company[$index++] = array("name" => $name, "ico" => $ico, "seat" => $seat); //$data;
-						$end = true;
-						break;
-					default:
-						continue;
-				}
-				if ($end) {
-					break;
-				}
-				\Tracy\Debugger::barDump($counter);
-			}
-			if ($index > 20) {
-				break;
-			}
-		}
-		return $company;
-	}
-
 	public function calculateHash($password, $salt, $param = null)
 	{
 		if ($param == "md5") {

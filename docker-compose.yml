@@ -1,17 +1,23 @@
-version: "3"
+version: "3.7"
 services:
   db:
+    environment:
+      - MYSQL_DATABASE=web
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=root
     build:
       context: "."
       dockerfile: "Dockerfile.db"
     ports:
     - "3306:3306"
   web:
+    environment:
+      - APP_ENV=dev
     build:
       context: "."
       dockerfile: "Dockerfile.web"
     ports:
-    - "8000:8000"
+    - "8000:80"
     volumes:
     - .:/opt/asisto
     depends_on:

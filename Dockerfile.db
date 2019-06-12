@@ -1,8 +1,4 @@
-FROM mysql:5.5
-
-ENV MYSQL_DATABASE=web \
-    MYSQL_ROOT_PASSWORD=test_env \
-    MYSQL_USER=root
+FROM mysql:5.7
 
 ADD sql/db_structure_with_basic_data.sql /docker-entrypoint-initdb.d
 

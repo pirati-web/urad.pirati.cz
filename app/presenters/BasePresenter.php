@@ -4,6 +4,7 @@ namespace App\Presenters;
 
 use Nette,
 	App\Model,
+	DOMDocument,
 	Nette\Application\UI\Form;
 
 /**
@@ -36,7 +37,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
 	public function parseJustice($name)
 	{
-				
 		$companyName = "";
 		$ico = "";
 		$may_be_ico = str_replace('/\s+/', '', $name);
@@ -46,42 +46,29 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 			$companyName = $name;
 		}
 		$url = "https://or.justice.cz/ias/ui/rejstrik-\$firma?nazev=" . urlencode($companyName) . "&ico=" . urlencode($ico);
-		$xml = file_get_contents($url);
-		$data = new \Maite\Web\DOM($xml);
-		$company = array();
-		$index = 0;
-		$name;
-		$ico;
-		$seat;
-		foreach ($data->xpath('//table[@class="result-details"]') as $com) {
-			$counter = 0;
-			$end = false;
-			foreach ($com->xpath('.//tr') as $row) {
-				$counter++;
-				switch ($counter % 3) {
-					case 1:
-						\Tracy\Debugger::barDump($name);
-						$name = $row->xpath('.//td', 0)->text();
-						$ico = $row->xpath('.//td', 1)->text();
-						break;
-					case 0:
-						$seat = $row->xpath('.//td', 0)->text();
-						$company[$index++] = array("name" => $name, "ico" => $ico, "seat" => $seat); //$data;
-						$end = true;
-						break;
-					default:
-						continue;
-				}
-				if ($end) {
-					break;
-				}
-				\Tracy\Debugger::barDump($counter);
-			}
+		$html = file_get_contents($url);
+		$doc = new DOMDocument();
+		$doc->loadHTML($html);
+		$data = simplexml_import_dom($doc);
+		$companies = [];
+		foreach ($data->xpath('//table[@class="result-details"]') as $index => $com) {
+			$rows = $com->xpath('.//tr');
+			$firstRowColumns = $rows[0]->xpath('.//td');
+			$subjectNameElement = $firstRowColumns[0];
+			$icoElement = $firstRowColumns[1];
+			$thirdRowColumns = $rows[2]->xpath('.//td');
+			$seatElement = $thirdRowColumns[0];
+			$companies[$index] = [
+				'name' => trim(html_entity_decode(strip_tags($subjectNameElement->asXML()), ENT_QUOTES, 'utf-8')),
+				'ico' => trim(html_entity_decode(strip_tags($icoElement->asXML()), ENT_QUOTES, 'utf-8')),
+				'seat' => trim(html_entity_decode(strip_tags($seatElement->asXML()), ENT_QUOTES, 'utf-8')),
+			];
 			if ($index > 20) {
 				break;
 			}
 		}
-		return $company;
+
+		return $companies;
 	}
 
 	public function calculateHash($password, $salt, $param = null)
