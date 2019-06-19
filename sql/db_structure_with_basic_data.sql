@@ -883,7 +883,6 @@ CREATE TABLE `company_progress` (
   `last_change` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `company_id` (`company_id`),
-  KEY `user_id` (`user_id`),
   KEY `progress_id` (`progress_id`),
   CONSTRAINT `company_progress_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`),
   CONSTRAINT `company_progress_ibfk_3` FOREIGN KEY (`progress_id`) REFERENCES `progress` (`id`)
@@ -893,7 +892,7 @@ CREATE TABLE `company_progress` (
 DELIMITER ;;
 
 CREATE TRIGGER `companyProgress_OnINSERT` BEFORE INSERT ON `company_progress` FOR EACH ROW
-IF NEW.created IS NULL THEN 
+IF NEW.created IS NULL THEN
 SET NEW.created = NOW();
 END IF;;
 

@@ -6,8 +6,8 @@ services:
 
 
 database:
-	dsn: 'mysql:host=mysql;dbname=test'
-	user:
-	password:
+	dsn: 'mysql:host=db;dbname=web'
+	user: root
+	password: root
 	options:
 		lazy: yes

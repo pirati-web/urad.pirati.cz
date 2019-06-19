@@ -4,7 +4,8 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $configurator = new Nette\Configurator;
 
-$configurator->setDebugMode('172.18.0.1'); // enable for your remote IP
+$configurator->setDebugMode(getenv('APP_ENV') === 'dev');
+
 $mail = NULL;
 if (!$configurator->isDebugMode()) {
 	//$mail = "";
