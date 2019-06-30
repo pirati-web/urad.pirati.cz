@@ -35,6 +35,25 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 		$this->template->disableApp = $this->disableApp;
 	}
 
+	public function parseRUIAN($address)
+	{
+		$url = "http://ags.cuzk.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer/exts/GeocodeSOE/findAddressCandidates?SingleLine=";
+		$url .=	urlencode($address);
+		$url .= "&outSR=&maxLocations=&outFields=&searchExtent=&f=pjson";
+		$html = file_get_contents($url);
+		$parsed_json = json_decode($html);
+		$candidates = array();
+		if (array_key_exists("candidates", $parsed_json)) {
+			foreach( $parsed_json["candidates"] as $candidate){
+				$candidates[] = array("address" => $candidate["address"],
+									  "score" => $candidate["score"]);
+			}
+		}
+		$score = array_column($candidates, 'score');
+		array_multisort($score, SORT_DESC, $candidates);
+		return $candidates;		
+	}
+
 	public function parseJustice($name)
 	{
 		$companyName = "";
