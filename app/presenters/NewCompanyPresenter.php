@@ -194,6 +194,8 @@ class NewCompanyPresenter extends BasePresenter
 		$this->company = new Company($section->company . " " . trim($section->name_suf), $this->fieldsCategory);
 		if ($this->session->getSection("companyType")->type) {
 			$this->company->setType($this->session->getSection("companyType")->type);
+		} else {
+			$this->session->getSection("companyType")->type = "full";
 		}
 		$generalSection = $this->session->getSection("general");
 		$newUserID = $generalSection->userId;
