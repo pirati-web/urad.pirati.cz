@@ -12,6 +12,6 @@ RUN apt install -y pandoc libpng-dev default-jre
 RUN apt install -y --no-install-recommends --no-install-suggests libreoffice
 
 # Install dependencies
-COPY composer.json ./
-COPY composer.lock ./
+COPY composer.* ./
+RUN composer self-update
 RUN composer install
