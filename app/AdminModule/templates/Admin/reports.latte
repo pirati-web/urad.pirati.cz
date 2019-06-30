@@ -19,6 +19,19 @@
                                 <td>Za posledních 30 dní bylo založeno</td>
                                 <td>{$last_month->cnt}</td>
                             </tr>
+                            {foreach $last_month_list as $lml}
+                                <tr>
+                                    <td>{$lml->name}</td>
+                                    <td>{$lml->type}</td>
+                                    <td><span class="glyphicon glyphicon-pencil"></span> <a n:href="Admin:show $item->id">editovat</a></td>
+                                    <td>ověřit zápis</td>
+                                </tr>
+                            {/foreach}
+                            {foreach $lmwt as $type_count} 
+                            <tr>
+                                <td>{$type_count->type}</td><td>{$type_count->cnt}</td>
+                            </tr>
+                            {/foreach}
                             <tr>
                                 <td>Celkově bylo založeno</td>
                                 <td>{$overall->cnt}</td>

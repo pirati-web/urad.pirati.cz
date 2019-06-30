@@ -29,7 +29,14 @@ class Reports
 	/** @return Nette\Database\Table\ActiveRow */
 	public function last_month()
 	{
-		return $this->database->query('select * from company_progress where progress_id >= 8 and last_change BETWEEN (DATE(NOW()) - INTERVAL 1 MONTH) AND DATE(NOW())')->fetch();
+		return $this->database->query('select count(*) as cnt from company_progress where progress_id >= 8 and last_change BETWEEN (DATE(NOW()) - INTERVAL 1 MONTH) AND DATE(NOW())')->fetch();
+	}
+
+	/** @return Nette\Database\Table\Selection */
+	public function last_month_list(){
+		return $this->database->query('select * from company_progress
+		 join company on company_progress.company_id = company.id
+		 where progress_id >= 8 and last_change BETWEEN (DATE(NOW()) - INTERVAL 1 MONTH) AND DATE(NOW())');
 	}
 
 	/** @return Nette\Database\Table\ActiveRow */

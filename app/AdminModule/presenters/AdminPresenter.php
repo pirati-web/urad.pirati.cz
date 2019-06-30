@@ -273,6 +273,7 @@ class AdminPresenter extends SecuredPresenter
     public function renderReports()
 	{
         $this->template->last_month = $this->reports->last_month();        
+        $this->template->last_month_list = $this->reports->last_month_list();     
         $this->template->overall = $this->reports->all_time_stats();        
         $this->template->averagetime = $this->reports->average_time();
         $this->template->lmwt = $this->reports->last_month_with_types();
