@@ -31,6 +31,13 @@ class Reports
 	{
 		return $this->database->query('select count(*) as cnt from company_progress where progress_id >= 8 and last_change BETWEEN (DATE(NOW()) - INTERVAL 1 MONTH) AND DATE(NOW())')->fetch();
 	}
+	
+	/** @return Nette\Database\Table\Selection */
+	public function getForDateRange($from, $to) {
+		return $this->database->query('select * from company_progress
+		 join company on company_progress.company_id = company.id
+		 where progress_id >= 8 and last_change BETWEEN ? AND ?', $from, $to);
+	}
 
 	/** @return Nette\Database\Table\Selection */
 	public function last_month_list(){

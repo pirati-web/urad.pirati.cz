@@ -40,7 +40,39 @@
                                 <td>Firmu trvá průměrně založit (dny)</td>
                                 <td>{$averagetime->avg_time}</td>
                             </tr>
-                        </table>                        
+                        </table>
+                        
+                        <table class="table table-striped">
+                            <tr>
+                                <td colspan="2"><strong>Zajímá vás jiné období?</strong></td>
+                            </tr>  
+                        </table>
+                            {snippet dateReport}
+                                {form dateRangeForm role=>"form", class=>"form-inline ajax"}
+                                <div class="form-group col-xs-2"> 
+                                        <div class="col-xs-2 col-sm-4 text-right">
+                                            <input type="text" class="form-control input-lg" placeholder="yyyy-mm-dd" n:name="from" id="frm-dateRangeForm-from" value="">
+                                            <input type="text" class="form-control input-lg" placeholder="yyyy-mm-dd" n:name="to" id="frm-dateRangeForm-to" value="">
+                                            <button class="btn btn-warning btn-lg" type="submit" n:name="search" value="další">Hledat <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>				        
+                                        </div>                                  
+                                </div>
+                                {/form}                            
+                                {ifset $dateRangeStatsM}                
+                                    {$dateRangeStatsM}
+                                {/ifset}
+                                {ifset $dateRangeStats}
+                                <table>
+                                {foreach $dateRangeStats as $lml}
+                                    <tr>
+                                        <td>{$lml->name}</td>
+                                        <td>{$lml->type}</td>
+                                        <td><span class="glyphicon glyphicon-pencil"></span> <a n:href="Admin:show $item->id">editovat</a></td>
+                                        <td>ověřit zápis</td>
+                                    </tr>
+                                {/foreach}		  
+                                </table>         
+                                {/ifset}
+                            {/snippet}            
                     {else}
                         Je nám líto, nemáte oprávnění k reportům.
                     {/if}                

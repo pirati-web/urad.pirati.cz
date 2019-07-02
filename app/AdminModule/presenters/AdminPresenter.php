@@ -288,7 +288,40 @@ class AdminPresenter extends SecuredPresenter
 				->onClick[] = [$this, "handleFindCompany"];
 		$form->addProtection();
 		return $form;
-	}
+    }
+
+    protected function createComponentDateRangeForm($name)
+	{
+		$form = new Form;
+        $form->addText("from", "")
+                ->addRule(Form::PATTERN, "Datum musí být ve formátu yyyy-mm-dd", '([0-9]{4}-[0-9]{2}-[0-9]{2})')
+                ->setRequired("Musíte vyplnit odkdy");		
+        $form->addText("to", "")
+                ->addRule(Form::PATTERN, "Datum musí být ve formátu yyyy-mm-dd", '([0-9]{4}-[0-9]{2}-[0-9]{2})')
+				->setRequired("Musíte vyplnit dokdy");		
+		$form->addSubmit("search", "hledat")
+				->onClick[] = [$this, "handleGetDateRange"];
+		$form->addProtection();
+		return $form;
+    }
+    
+    public function handleGetDateRange($button)
+    {
+        $values = $button->getForm()->getValues();
+        $from = $values["from"];
+        $to = $values["to"];
+        $companies_stats = $this->reports->getForDateRange($from, $to);			
+        if ($companies_stats) {
+            $this->template->dateRangeStats = $companies_stats;
+            $this->template->dateRangeStatsM = "";
+        } else {
+            $this->template->dateRangeStats = null;
+            $this->template->dateRangeStatsM = "V dané době nebyla založena ždáná společnost.";	    	
+        }            
+    	if ($this->presenter->isAjax()) {                                
+            $this->redrawControl('dateReport');
+	    }         
+    }
 
     public function handleFindCompany($button)
 	{
