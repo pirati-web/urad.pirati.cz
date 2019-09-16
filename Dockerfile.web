@@ -13,5 +13,7 @@ RUN apt install -y --no-install-recommends --no-install-suggests libreoffice
 
 # Install dependencies
 COPY composer.* ./
-RUN composer self-update
-RUN composer install
+RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader && rm -rf /root/.composer
+
+# Finish composer
+RUN composer dump-autoload --no-scripts --no-dev --optimize
