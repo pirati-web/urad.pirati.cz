@@ -19,7 +19,12 @@ services:
     ports:
     - "8000:80"
     volumes:
-    - .:/opt/asisto
+    - ./app:/opt/asisto/app
+    - ./bin:/opt/asisto/bin
+    - ./data:/opt/asisto/data
+    - ./libs:/opt/asisto/libs
+    - ./log:/opt/asisto/log
+    - ./www:/opt/asisto/www
     depends_on:
       - "db"
     links:

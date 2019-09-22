@@ -15,5 +15,8 @@ RUN apt install -y --no-install-recommends --no-install-suggests libreoffice
 COPY composer.* ./
 RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader && rm -rf /root/.composer
 
+RUN mkdir /opt/asisto/temp
+RUN chmod 777 -R /opt/asisto/temp
+
 # Finish composer
 RUN composer dump-autoload --no-scripts --no-dev --optimize
