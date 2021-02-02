@@ -39,7 +39,8 @@ class Invoice // extends Nette\Object
 
 	/** @return Nette\Database\Table\ActiveRow */
 	public function insert($values)
-	{
+	{	
+		$values['docs_id'] = rand();
 		return $this->findAll()->insert($values);
 	}
 

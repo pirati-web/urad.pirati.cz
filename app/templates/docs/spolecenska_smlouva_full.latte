@@ -10,8 +10,8 @@
 </head>
 <body lang="cs-CZ" dir="ltr">
 <p align="center" style="margin-bottom: 0cm; line-height: 108%"><a name="_GoBack"></a>
-{var more = count($company->getPersons())>1}
-{var moreActingPersons = count($company->getActingPersons())>1}
+{var $more = count($company->getPersons())>1}
+{var $moreActingPersons = count($company->getActingPersons())>1}
 {var $title = (!$more) ? 'ZAKLADATELSKÁ LISTINA' : 'SPOLEČENSKÁ SMLOUVA'}
 <span><font face="Andale Mono"><font size="5" style="font-size: 18pt"><b>{$title|padline:44,STR_PAD_BOTH}<!-- Zakomponovat:
  Možnosti (1 jednatel, x jednatelů…, samostatně, společně)

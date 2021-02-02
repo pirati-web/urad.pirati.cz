@@ -11,12 +11,19 @@ RUN apt install -y pandoc libpng-dev default-jre
 
 RUN apt install -y --no-install-recommends --no-install-suggests libreoffice
 
+# in order to get mails working
+RUN apt install -y --no-install-recommends --no-install-suggests mailutils sendmail
+RUN chsh -s /bin/bash www-data
+
 # Install dependencies
 COPY composer.* ./
 RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader && rm -rf /root/.composer
 
 RUN mkdir /opt/asisto/temp
 RUN chmod 777 -R /opt/asisto/temp
+
+# enable mpdf tmp folder
+RUN chmod 777 -R /opt/asisto/vendor/mpdf/mpdf
 
 # Finish composer
 RUN composer dump-autoload --no-scripts --no-dev --optimize

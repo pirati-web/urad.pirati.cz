@@ -10,8 +10,8 @@
 </head>
 <body lang="cs-CZ" dir="ltr">
 <p align="center" style="margin-bottom: 0cm; line-height: 108%"><a name="_GoBack"></a>
-{var more = count($company->getPersons())>1}
-{var moreActingPersons = count($company->getActingPersons())>1}
+{var $more = count($company->getPersons())>1}
+{var $moreActingPersons = count($company->getActingPersons())>1}
 <span><font face="Times New Roman, serif"><font size="5" style="font-size: 18pt"><b>{if !$more}ZAKLADATELSKÁ
 LISTINA{else}SPOLEČENSKÁ SMLOUVA{/if}<!-- Zakomponovat:
  Možnosti (1 jednatel, x jednatelů…, samostatně, společně)

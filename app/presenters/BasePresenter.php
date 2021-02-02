@@ -66,6 +66,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 		}
 		$url = "https://or.justice.cz/ias/ui/rejstrik-\$firma?nazev=" . urlencode($companyName) . "&ico=" . urlencode($ico);
 		$html = file_get_contents($url);
+		
+		// hopefully disable errors for badly parsed reply from justice
+		$internalErrors = libxml_use_internal_errors(true);
 		$doc = new DOMDocument();
 		$doc->loadHTML($html);
 		$data = simplexml_import_dom($doc);

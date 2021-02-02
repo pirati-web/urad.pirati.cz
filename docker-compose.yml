@@ -13,6 +13,7 @@ services:
   web:
     environment:
       - APP_ENV=dev
+    hostname: "localhost.domain"
     build:
       context: "."
       dockerfile: "Dockerfile.web"
