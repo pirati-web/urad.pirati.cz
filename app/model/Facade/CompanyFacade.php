@@ -127,7 +127,7 @@ class CompanyFacade extends BaseFacade
 	{
 		$pass = $values['password'];
 		$name = $values['mail'];
-		$row = $this->um->add($name, "gjtudie45". time()); // ucty budou nepristupne
+		$row = $this->um->add($values, "gjtudie45". time()); // ucty budou nepristupne
 		$id_of_new_user = $row->id;
 
 		$smallValues = array("name" => $values["name"],
@@ -196,7 +196,7 @@ class CompanyFacade extends BaseFacade
 	}
 	
 	protected function createProgress($company_id){
-		$this->companyProgress->insert(array("company_id" => $company_id));
+		$this->companyProgress->insert(array("company_id" => $company_id, "note" => "webform filled"));
 	}
 
 	protected function savePaymentInfoLoggedUser($company_id, $userId)

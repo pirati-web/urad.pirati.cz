@@ -27,7 +27,7 @@
 {block content}
 <nav class="navbar navbar2 navbar-fixed-top">
     <div class="container">
-        {var counter=1;}
+        {var $counter=1;}
         {foreach $formNames as $item}
             <div class="col-xs-2 col-sm-1">
                 <span class="num {if $counter>$formToRender}off{/if}">{$counter}</span>
@@ -876,7 +876,7 @@
 <script type="text/javascript" n:syntax="double">
     $(function () {
         var usersCount = {{($users) ? count($users) : 1}};
-        {{var usersCount = ($users) ? count($users) : 1;}} 
+        {{var $usersCount = ($users) ? count($users) : 1;}} 
         var stringFractions = {{($company->getShares()) ? implode(",",$company->getShares()) : implode(",",array_fill(0,$usersCount,1/$usersCount))}};
         var persons = JSON.parse({{json_encode($pData)}});
         renderGraph(usersCount, stringFractions, persons);
@@ -945,8 +945,8 @@
 
 
 {define accountancy}
-{var count = $data->count()}
-{var half = (int)ceil($count/2)}
+{var $count = $data->count()}
+{var $half = (int)ceil($count/2)}
 <div class="row">
 	{foreach $data as $item}
 		{if $iterator->counter == $half+1 || $iterator->isFirst()}
@@ -957,7 +957,7 @@
 					<h4>{$item->name}</h4>
 					<ul style="margin-bottom: 0">
 						{if $item->fee}
-							{var monthlyPrice = $item->item_price*$item->items_month}
+							{var $monthlyPrice = $item->item_price*$item->items_month}
 							<li><span class="is-vat-{$item->id}">neplátce DPH</span></li>
 							<li>{$item->items_month} položek</li>
 							<li><span class="item-price-{$item->id}">{$item->item_price}</span> Kč za položku</li>
@@ -1007,7 +1007,7 @@
 								});
 							</script>
 						{else}
-							{var monthlyPrice = 0}
+							{var $monthlyPrice = 0}
 							<li><span class="is-vat-{$item->id}">neplátce DPH</span></li>
 							<li><s><span class="item-price-{$item->id}">{$item->item_price}</span>Kč</s> <b><span class="item-price-discount-{$item->id}">{$item->item_price/2}</span>Kč</b> za položku</li>
 							<li>počet vozidel: <span class="cars-{$item->id}">0</span></li>

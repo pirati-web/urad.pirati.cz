@@ -1,4 +1,4 @@
-FROM mysql:5.7
+FROM mariadb:10.3
 
 ADD sql/db_structure_with_basic_data.sql /docker-entrypoint-initdb.d
 

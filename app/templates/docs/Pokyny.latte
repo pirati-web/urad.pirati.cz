@@ -42,7 +42,7 @@ K&nbsp;ZALOŽENÍ</b></font></font></span></p>
 			<p style="margin-left: 0.5cm; text-indent: -0.5cm">✓</p>
 		</td>
 	</tr>
-	{var hasForeignActiongPerson = FALSE}
+	{var $hasForeignActiongPerson = FALSE}
 	{foreach $company->getActingPersons() as $p}
 		{if $p instanceof \ForeignSubject}
 			{php $hasForeignActiongPerson = TRUE}

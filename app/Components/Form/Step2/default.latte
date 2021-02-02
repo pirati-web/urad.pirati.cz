@@ -70,7 +70,7 @@
 	<ul class="list-group" id="all-fields">
 		{foreach $form[cat]->items as $key => $label}
 			<li class="list-group-item fields-item">
-				{var groups=explode(",",$it[$key])}
+				{var $groups=explode(",",$it[$key])}
 				<div class="checkbox t{$itemTypes[$key]["type_id"]} {foreach $groups as $g}g{$g} {/foreach}">
 					<label n:name="cat:$key"><input n:name="cat:$key"> {$label}</label>
 					<a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="{if $itemTypes[$key]["type_id"]==5}{$itemTypes[$key]["type_name"]|firstUpper} povolání{else}Živnost {$itemTypes[$key]["type_name"]}{/if}" data-placement="right" data-html="true" data-content="{if array_key_exists($key,$itemTypes)}<div>{$itemTypes[$key]["desc"]|noescape}</div>{/if}">
